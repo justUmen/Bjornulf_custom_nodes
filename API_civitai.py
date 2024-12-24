@@ -12,8 +12,6 @@ import importlib
 import folder_paths
 import node_helpers
 import hashlib
-import shutil
-import wget
 from folder_paths import get_filename_list, get_full_path, models_dir
 import nodes
 

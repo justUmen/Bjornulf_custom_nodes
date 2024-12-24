@@ -616,6 +616,8 @@ class SharedLists:
     
     # Add this to your SharedLists class
     OBJECTS = [
+        "sign",
+        "paper",
         "sword",
         "shield",
         "staff",

@@ -1,4 +1,4 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.63 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.64 🔗
 
 A list of 110 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
@@ -344,6 +344,7 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.61**: Add/modify a bunch of Ffmpeg / video nodes. With a global configuration system and toggle python-ffmpeg / system.
 - **0.62**: MASSIVE update, Text Generator nodes. (15 nodes), API nodes generate (civitai / black forest labs / fal.ai), API civit ai download models nodes, lora
 - **0.63**: delete long file, useless
+- **0.64**: remove "import wget", added some keywords to text generators.
 
 # 📝 Nodes descriptions
 
