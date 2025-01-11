@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.64 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.65 🔗
 
-A list of 110 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 116 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 # Coffee : ☕☕☕☕☕ 5/5
@@ -36,6 +36,12 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `67.` [📝➜✨ Text to Anything](#67----text-to-anything)  
 `68.` [✨➜📝 Anything to Text](#68----anything-to-text)  
 `75.` [📝➜📝 Replace text](#75----replace-text)  
+`15.` [💾 Save Text](#15----save-text)  
+`111.` [✨➜🔢 Anything to Int](#)  
+`112.` [✨➜🔢 Anything to Float](#)  
+`113.` [📝🔪 Text split in 5](#)  
+`115.` [📥 Load Text From Bjornulf Folder](#)  
+`116.` [📥 Load Text From Path](#)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -131,6 +137,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 ## 🚀 Load loras 🚀
 `54.` [♻ Loop Lora Selector](#54----loop-lora-selector)  
 `55.` [🎲 Random Lora@ Selector](#55----random-lora-selector)  
+`114.` [📥👑 Load Lora with Path]()  
 
 ## ☁ Image Creation : API / cloud / remote ☁
 `106.` [☁🎨 API Image Generator (FalAI) ☁](#10)  
@@ -345,6 +352,7 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.62**: MASSIVE update, Text Generator nodes. (15 nodes), API nodes generate (civitai / black forest labs / fal.ai), API civit ai download models nodes, lora
 - **0.63**: delete long file, useless
 - **0.64**: remove "import wget", added some keywords to text generators.
+- **0.65**: ❗Breaking changes : Combine Text inputs are now all optional (PLease remake your nodes, sorry.) Add 6 new nodes : any2int, any2float, load text from folder, load text from path, load lora from path. Also upgraded the Save text node.
 
 # 📝 Nodes descriptions
 
@@ -491,6 +499,7 @@ Resize an image to exact dimensions. The other node will save the image to the e
 **Description:**  
 Save the given text input to a file. Useful for logging and storing text data.  
 If the file already exist, it will add the text at the end of the file.  
+I recommend you to keep saving them in "Bjornulf/Text" (Which is in the Comfyui folder, next to output), this is where the node 116 `Load text from folder` is looking for text files.  
 
 ![Save Text](screenshots/save_text.png)
 
@@ -1575,3 +1584,60 @@ Generate an image with the Black Forest Labs API. (flux)
 Generate an image with the Stability API. (sd3)  
 
 ![api stability](screenshots/api_stability.png)  
+
+#### 111 - ✨➜🔢 Anything to Int
+
+**Description:**   
+
+Just convert anything to a valid INT. (integer)  
+
+![Anything to Int](screenshots/anything_to_int.png)  
+
+#### 112 - ✨➜🔢 Anything to Float
+
+**Description:**  
+
+Just convert anything to a valid FLOAT. (floating number)  
+
+![Anything to Float](screenshots/anything_to_float.png)  
+
+#### 113 - 📝🔪 Text split in 5
+
+**Description:**  
+
+Take a single input and split it in 5 with a delimiter (newline by default).  
+It can also ignore everything on the left side of a `=` symbol if you want to use a "variable type format".  
+
+![Text split in 5](screenshots/split_in_5.png)  
+
+#### 114 - 📥👑 Load Lora with Path
+
+**Description:**  
+
+Load a lora by using it's path.  
+
+![load lora with path](screenshots/load_lora_with_path.png)  
+
+Here is a complex practical example using node 113, 114, 112 :  
+![load lora with path](screenshots/load_lora_with_path_COMPLEX.png)  
+
+#### 115 - 📥 Load Text From Bjornulf Folder
+
+**Description:**  
+
+Just select a file from the folder `Bjornulf/Text` folder, it will recover its content.  
+It is made to be used with node 15 `Save Text`.  
+
+![Load Text](screenshots/load_text_from_Bjornulf.png)  
+
+#### 116 - 📥 Load Text From Path 
+
+**Description:**  
+
+Just give the path of the file, it will recover its content.  
+
+![Load Text](screenshots/load_text_requirements.png)  
+
+If you want, with `Load Text From Path` you can also recover the elements in "Bjornulf/Text" by just adding it:  
+
+![Load Text](screenshots/load_text_PATH.png)  

@@ -78,6 +78,8 @@ from .ollama_system_job import OllamaSystemJobSelector
 from .speech_to_text import SpeechToText
 from .text_to_anything import TextToAnything
 from .anything_to_text import AnythingToText
+from .anything_to_int import AnythingToInt
+from .anything_to_float import AnythingToFloat
 from .add_line_numbers import AddLineNumbers
 from .ffmpeg_convert import ConvertVideo
 # from .hiresfix import HiResFix
@@ -88,9 +90,16 @@ from .API_StableDiffusion import APIGenerateStability
 from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY
 from .API_falAI import APIGenerateFalAI
 from .latent_resolution_selector import LatentResolutionSelector
+from .loader_lora_with_path import LoaderLoraWithPath
+from .load_text import LoadTextFromFolder, LoadTextFromPath
+from .string_splitter import TextSplitin5
 
 NODE_CLASS_MAPPINGS = {
     "Bjornulf_LatentResolutionSelector": LatentResolutionSelector,
+    "Bjornulf_LoaderLoraWithPath": LoaderLoraWithPath,
+    "Bjornulf_LoadTextFromPath": LoadTextFromPath,
+    "Bjornulf_LoadTextFromFolder": LoadTextFromFolder,
+    "Bjornulf_TextSplitin5": TextSplitin5,
     "Bjornulf_APIGenerateFlux": APIGenerateFlux,
     "Bjornulf_APIGenerateFalAI": APIGenerateFalAI,
     "Bjornulf_APIGenerateStability": APIGenerateStability,
@@ -134,6 +143,8 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_AddLineNumbers": AddLineNumbers,
     "Bjornulf_TextToAnything": TextToAnything,
     "Bjornulf_AnythingToText": AnythingToText,
+    "Bjornulf_AnythingToInt": AnythingToInt,
+    "Bjornulf_AnythingToFloat": AnythingToFloat,
     "Bjornulf_SpeechToText": SpeechToText,
     "Bjornulf_OllamaConfig": OllamaConfig,
     "Bjornulf_OllamaSystemPersonaSelector": OllamaSystemPersonaSelector,
@@ -211,6 +222,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_ImageBlend": "🎨 Image Blend",
     # "Bjornulf_APIHiResCivitAI": "🎨➜🎨 API Image hires fix (CivitAI)",
     # "Bjornulf_CivitAILoraSelector": "lora Civit",
+    "Bjornulf_LoaderLoraWithPath": "📥👑 Load Lora with Path",
+    "Bjornulf_TextSplitin5": "📝🔪 Text split in 5",
     "Bjornulf_LatentResolutionSelector": "🩷 Empty Latent Selector",
     "Bjornulf_CivitAIModelSelectorSD15": "📥 Load checkpoint SD1.5 (+Download from CivitAi)",
     "Bjornulf_CivitAIModelSelectorSDXL": "📥 Load checkpoint SDXL (+Download from CivitAi)",
@@ -255,6 +268,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_TextToSpeech": "📝➜🔊 TTS - Text to Speech",
     "Bjornulf_TextToAnything": "📝➜✨ Text to Anything",
     "Bjornulf_AnythingToText": "✨➜📝 Anything to Text",
+    "Bjornulf_AnythingToInt": "✨➜🔢 Anything to Int",
+    "Bjornulf_AnythingToFloat": "✨➜🔢 Anything to Float",
     "Bjornulf_TextReplace": "📝➜📝 Replace text",
     "Bjornulf_AddLineNumbers": "🔢 Add line numbers",
     "Bjornulf_FFmpegConfig": "⚙📹 FFmpeg Configuration 📹⚙",
@@ -311,7 +326,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_SaveImageToFolder": "💾🖼📁 Save Image(s) to a folder",
     "Bjornulf_SaveTmpImage": "💾🖼 Save Image (tmp_api.png) ⚠️💣",
     "Bjornulf_SaveText": "💾 Save Text",
-    # "Bjornulf_LoadText": "📥 Load Text",
+    "Bjornulf_LoadTextFromPath": "📥 Load Text From Path",
+    "Bjornulf_LoadTextFromFolder": "📥 Load Text From Bjornulf Folder",
     "Bjornulf_CombineTexts": "🔗 Combine (Texts)",
     "Bjornulf_imagesToVideo": "📹 images to video (FFmpeg)",
     "Bjornulf_VideoPingPong": "📹 video PingPong",

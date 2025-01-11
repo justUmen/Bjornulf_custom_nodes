@@ -6,12 +6,12 @@ class SaveText:
         return {
             "required": {
                 "text": ("STRING", {"multiline": True, "forceInput": True}),
-                "filepath": ("STRING", {"default": "output/this_test.txt"}),
+                "filepath": ("STRING", {"default": "Bjornulf/Text/example.txt"}),
             }
         }
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("text",)
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("added_text", "complete_text", "filename", "full_path")
     FUNCTION = "save_text"
     OUTPUT_NODE = True
     CATEGORY = "Bjornulf"
@@ -27,11 +27,30 @@ class SaveText:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)
             
+            # Get absolute path
+            full_path = os.path.abspath(filepath)
+            
             # Append text to file with a newline
             with open(filepath, 'a', encoding='utf-8') as file:
                 file.write(text + '\n')
             
-            return {"ui": {"text": text}, "result": (text,)}
+            # Read complete file content
+            with open(filepath, 'r', encoding='utf-8') as file:
+                complete_text = file.read()
+            
+            # Get just the filename
+            filename = os.path.basename(filepath)
+            
+            # Return all requested information
+            return {
+                "ui": {"text": text},
+                "result": (
+                    text,           # added_text
+                    complete_text,  # complete_text
+                    filename,       # filename
+                    full_path       # full_path
+                )
+            }
             
         except (OSError, IOError) as e:
             raise ValueError(f"Error saving file: {str(e)}")

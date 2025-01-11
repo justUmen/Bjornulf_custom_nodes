@@ -1,3 +1,6 @@
+class Everything(str):
+    def __ne__(self, __value: object) -> bool:
+        return False
 class AnythingToText:
     @classmethod
     def INPUT_TYPES(s):
@@ -19,8 +22,3 @@ class AnythingToText:
     def any_to_text(self, anything):
         # Convert the input to string representation
         return (str(anything),)
-
-# Keep the Everything class definition as it's needed for type handling
-class Everything(str):
-    def __ne__(self, __value: object) -> bool:
-        return False
