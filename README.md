@@ -37,11 +37,11 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `68.` [✨➜📝 Anything to Text](#68----anything-to-text)  
 `75.` [📝➜📝 Replace text](#75----replace-text)  
 `15.` [💾 Save Text](#15----save-text)  
-`111.` [✨➜🔢 Anything to Int](#)  
-`112.` [✨➜🔢 Anything to Float](#)  
-`113.` [📝🔪 Text split in 5](#)  
-`115.` [📥 Load Text From Bjornulf Folder](#)  
-`116.` [📥 Load Text From Path](#)  
+`111.` [✨➜🔢 Anything to Int](#111----anything-to-int)  
+`112.` [✨➜🔢 Anything to Float](#112----anything-to-float)  
+`113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
+`115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
+`116.` [📥 Load Text From Path](#116----load-text-from-path)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -137,7 +137,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 ## 🚀 Load loras 🚀
 `54.` [♻ Loop Lora Selector](#54----loop-lora-selector)  
 `55.` [🎲 Random Lora@ Selector](#55----random-lora-selector)  
-`114.` [📥👑 Load Lora with Path]()  
+`114.` [📥👑 Load Lora with Path](#114----load-lora-with-path)  
 
 ## ☁ Image Creation : API / cloud / remote ☁
 `106.` [☁🎨 API Image Generator (FalAI) ☁](#10)  
