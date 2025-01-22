@@ -42,7 +42,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
 `115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
-`117.` [📝👈 Line selector (🎲 Or random)](#)  
+`117.` [📝👈 Line selector (🎲 Or random)](#117----line-selector--or-random)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -98,7 +98,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
-`117.` [📝👈 Line selector (🎲 Or random)](#)  
+`117.` [📝👈 Line selector (🎲 Or random)](#117----line-selector--or-random)  
 
 ## 🖼💾 Image Save 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
@@ -142,11 +142,11 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `114.` [📥👑 Load Lora with Path](#114----load-lora-with-path)  
 
 ## ☁ Image Creation : API / cloud / remote ☁
-`106.` [☁🎨 API Image Generator (FalAI) ☁](#10)  
-`107.` [☁🎨 API Image Generator (CivitAI) ☁](#10)  
-`108.` [☁👑 Add Lora (API ONLY - CivitAI) 👑☁](#10)  
-`109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#10)  
-`110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#10)  
+`106.` [☁🎨 API Image Generator (FalAI) ☁](#106----api-image-generator-falai-)  
+`107.` [☁🎨 API Image Generator (CivitAI) ☁](#107----api-image-generator-civitai-)  
+`108.` [☁👑 Add Lora (API ONLY - CivitAI) 👑☁](#108----add-lora-api-only---civitai-)  
+`109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
+`110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
 
 ## 📥 Take from CivitAI 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
@@ -157,7 +157,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `103.` [📥👑 Load Lora SD1.5 (+Download from CivitAi)](#103----load-lora-sd15-download-from-civitai)  
 `104.` [📥👑 Load Lora SDXL (+Download from CivitAi)](#104----load-lora-sdxl-download-from-civitai)  
 `105.` [📥👑 Load Lora Pony (+Download from CivitAi)](#105----load-lora-pony-download-from-civitai)  
-`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#)  
+`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
@@ -174,7 +174,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `77.` [📹🔍 Video details ⚙](#77----video-details-)  
 `78.` [📹➜📹 Convert Video](#78----convert-video)  
 `79.` [📹🔗 Concat Videos from list](#79----concat-videos-from-list)  
-`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#)  
+`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
 
 ## 🤖 AI 🤖
 `19.` [🦙💬 Ollama Talk](#19----ollama-talk)  
@@ -184,14 +184,14 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `64.` [🦙 Ollama Job Selector 💼](#64----ollama-job-selector-)  
 `65.` [🦙 Ollama Persona Selector 🧑](#65----ollama-persona-selector-)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
-`118.` [🔊 TTS Configuration ⚙](#118)  
+`118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 
 ## 🔊 Audio 🔊
 `31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
 `52.` [🔊📹 Audio Video Sync](#52----audio-video-sync)  
 `59.` [📹🔊 Combine Video + Audio](#59----combine-video--audio)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
-`118.` [🔊 TTS Configuration ⚙](#118)  
+`118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 
 ## 💻 System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
