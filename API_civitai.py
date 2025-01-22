@@ -14,7 +14,7 @@ import node_helpers
 import hashlib
 from folder_paths import get_filename_list, get_full_path, models_dir
 import nodes
-
+            
 # Register the new checkpoint folder
 bjornulf_checkpoint_path = os.path.join(folder_paths.models_dir, "checkpoints", "Bjornulf_civitAI")
 os.makedirs(bjornulf_checkpoint_path, exist_ok=True)
@@ -39,7 +39,9 @@ image_folders = {
     "lora_sdxl_1.0": os.path.join(civitai_base_path, "lora_sdxl_1.0"),
     "lora_sd_1.5": os.path.join(civitai_base_path, "lora_sd_1.5"),
     "lora_pony": os.path.join(civitai_base_path, "lora_pony"),
-    "lora_flux.1_d": os.path.join(civitai_base_path, "lora_flux.1_d")
+    "lora_flux.1_d": os.path.join(civitai_base_path, "lora_flux.1_d"),
+    "lora_hunyuan_video": os.path.join(civitai_base_path, "lora_hunyuan_video"),
+    "NSFW_lora_hunyuan_video": os.path.join(civitai_base_path, "NSFW_lora_hunyuan_video")
 }
 
 # Add folder paths for each image folder
@@ -1636,6 +1638,149 @@ class CivitAILoraSelectorPONY:
             raise ValueError(f"Failed to load LoRA: {e}")
 
         # Convert trained words list to comma-separated string
+        trained_words_str = ", ".join(lora_info.get('trained_words', []))
+        
+        return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)
+
+    @classmethod
+    def IS_CHANGED(s, image):
+        if image == "none":
+            return ""
+        image_path = os.path.join(civitai_base_path, image)
+        if not os.path.exists(image_path):
+            return ""
+        
+        m = hashlib.sha256()
+        with open(image_path, 'rb') as f:
+            m.update(f.read())
+        m.update(image.encode('utf-8'))
+        return m.digest().hex()
+
+
+
+class CivitAILoraSelectorHunyuan:
+    @classmethod
+    def INPUT_TYPES(s):
+        image_extensions = ('.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp')
+    
+        # Try NSFW folder first
+        nsfw_files = [f"NSFW_lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("NSFW_lora_hunyuan_video") 
+                if f.lower().endswith(image_extensions)]
+        
+        # If NSFW folder is empty or doesn't exist, try regular folder
+        if not nsfw_files:
+            files = [f"lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("lora_hunyuan_video") 
+                    if f.lower().endswith(image_extensions)]
+        else:
+            files = nsfw_files
+        
+        if not files:
+            files = ["none"]
+            
+            
+        return {
+            "required": {
+                        "image": (sorted(files), {"image_upload": True}),
+                        "model": ("MODEL",),
+                        "clip": ("CLIP",),
+                        "strength_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
+                        "strength_clip": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
+                        "civitai_token": ("STRING", {"default": ""})
+            },
+        }
+    
+    RETURN_TYPES = ("MODEL", "CLIP", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("model", "clip", "name", "civitai_url", "trigger_words")
+    FUNCTION = "load_lora"
+    CATEGORY = "Bjornulf"
+ 
+    def load_lora(self, image, model, clip, strength_model, strength_clip, civitai_token):
+        def download_file(url, destination_path, lora_name, api_token=None):
+            filename = f"{lora_name}.safetensors"
+            file_path = os.path.join(destination_path, filename)
+
+            headers = {}
+            if api_token:
+                headers['Authorization'] = f'Bearer {api_token}'
+
+            try:
+                print(f"Downloading from: {url}")
+                response = requests.get(url, headers=headers, stream=True)
+                response.raise_for_status()
+
+                file_size = int(response.headers.get('content-length', 0))
+                block_size = 8192
+                downloaded = 0
+
+                with open(file_path, 'wb') as f:
+                    for chunk in response.iter_content(chunk_size=block_size):
+                        if chunk:
+                            f.write(chunk)
+                            downloaded += len(chunk)
+                            
+                            if file_size > 0:
+                                progress = int(50 * downloaded / file_size)
+                                bars = '=' * progress + '-' * (50 - progress)
+                                percent = (downloaded / file_size) * 100
+                                print(f'\rProgress: [{bars}] {percent:.1f}%', end='')
+
+                print(f"\nFile downloaded successfully to: {file_path}")
+                return file_path
+
+            except requests.exceptions.RequestException as e:
+                print(f"Error downloading file: {e}")
+                raise
+        
+        if image == "none":
+            raise ValueError("No image selected")
+
+        # Try loading NSFW JSON first, fall back to regular JSON if not found
+        nsfw_json_path = os.path.join(parsed_models_path, 'NSFW_parsed_lora_hunyuan_video_loras.json')
+        regular_json_path = os.path.join(parsed_models_path, 'parsed_lora_hunyuan_video_loras.json')
+        
+        json_path = nsfw_json_path if os.path.exists(nsfw_json_path) else regular_json_path
+        hunYuan = "hunyuan_video"
+
+        with open(json_path, 'r') as f:
+            loras_info = json.load(f)
+        
+        image_name = os.path.basename(image)
+        lora_info = next((lora for lora in loras_info 
+                         if os.path.basename(lora['image_path']) == image_name), None)
+        
+        if not lora_info:
+            raise ValueError(f"No LoRA information found for image: {image_name}")
+
+        lora_dir = os.path.join(folder_paths.models_dir, "loras", "Bjornulf_civitAI", hunYuan)
+        os.makedirs(lora_dir, exist_ok=True)
+
+        lora_filename = f"{lora_info['name']}.safetensors"
+        full_lora_path = os.path.join(lora_dir, lora_filename)
+
+        if not os.path.exists(full_lora_path):
+            print(f"Downloading LoRA {lora_info['name']}...")
+            
+            download_url = lora_info['download_url']
+            if civitai_token:
+                download_url += f"?token={civitai_token}" if '?' not in download_url else f"&token={civitai_token}"
+
+            try:
+                download_file(download_url, lora_dir, lora_info['name'], civitai_token)
+            except Exception as e:
+                raise ValueError(f"Failed to download LoRA: {e}")
+
+        relative_lora_path = os.path.join("Bjornulf_civitAI", hunYuan, lora_filename)
+
+        try:
+            lora_loader = nodes.LoraLoader()
+            model_lora, clip_lora = lora_loader.load_lora(model=model, 
+                                                        clip=clip,
+                                                        lora_name=relative_lora_path,
+                                                        strength_model=strength_model,
+                                                        strength_clip=strength_clip)
+        except Exception as e:
+            raise ValueError(f"Failed to load LoRA: {e}")
+
         trained_words_str = ", ".join(lora_info.get('trained_words', []))
         
         return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)

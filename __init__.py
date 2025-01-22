@@ -37,7 +37,7 @@ from .random_seed_with_text import TextToStringAndSeed
 from .load_image_alpha import LoadImageWithTransparency
 from .image_mask_cutter import ImageMaskCutter
 from .character_description import CharacterDescriptionGenerator
-from .text_to_speech import TextToSpeech
+from .text_to_speech import TextToSpeech, XTTSConfig
 from .loop_combine_texts_by_lines import CombineTextsByLines
 from .free_vram_hack import FreeVRAM
 from .pause_resume_stop import PauseResume
@@ -87,14 +87,18 @@ from .ffmpeg_convert import ConvertVideo
 from .text_generator import TextGenerator, TextGeneratorScene, TextGeneratorStyle, TextGeneratorCharacterFemale, TextGeneratorCharacterMale, TextGeneratorOutfitMale, TextGeneratorOutfitFemale, ListLooper, ListLooperScene, ListLooperStyle, ListLooperCharacter, ListLooperOutfitFemale, ListLooperOutfitMale, TextGeneratorCharacterPose, TextGeneratorCharacterObject, TextGeneratorCharacterCreature
 from .API_flux import APIGenerateFlux
 from .API_StableDiffusion import APIGenerateStability
-from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY
+from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY, CivitAILoraSelectorHunyuan
 from .API_falAI import APIGenerateFalAI
 from .latent_resolution_selector import LatentResolutionSelector
 from .loader_lora_with_path import LoaderLoraWithPath
 from .load_text import LoadTextFromFolder, LoadTextFromPath
 from .string_splitter import TextSplitin5
-
+from .line_selector import LineSelector
+# from .text_generator_t2v import TextGeneratorText2Video
 NODE_CLASS_MAPPINGS = {
+    "Bjornulf_LineSelector": LineSelector,
+    "Bjornulf_XTTSConfig": XTTSConfig,
+    # "Bjornulf_TextGeneratorText2Video": TextGeneratorText2Video,
     "Bjornulf_LatentResolutionSelector": LatentResolutionSelector,
     "Bjornulf_LoaderLoraWithPath": LoaderLoraWithPath,
     "Bjornulf_LoadTextFromPath": LoadTextFromPath,
@@ -112,6 +116,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_CivitAILoraSelectorSD15": CivitAILoraSelectorSD15,
     "Bjornulf_CivitAILoraSelectorSDXL": CivitAILoraSelectorSDXL,
     "Bjornulf_CivitAILoraSelectorPONY": CivitAILoraSelectorPONY,
+    "Bjornulf_CivitAILoraSelectorHunyuan": CivitAILoraSelectorHunyuan,
     # "Bjornulf_CivitAILoraSelector": CivitAILoraSelector,
     "Bjornulf_APIGenerateCivitAIAddLORA": APIGenerateCivitAIAddLORA,
     "Bjornulf_TextGenerator": TextGenerator,
@@ -222,7 +227,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_ImageBlend": "🎨 Image Blend",
     # "Bjornulf_APIHiResCivitAI": "🎨➜🎨 API Image hires fix (CivitAI)",
     # "Bjornulf_CivitAILoraSelector": "lora Civit",
+    "Bjornulf_LineSelector": "📝👈 Line selector (🎲 Or random)",
     "Bjornulf_LoaderLoraWithPath": "📥👑 Load Lora with Path",
+    # "Bjornulf_TextGeneratorText2Video": "🔥📝📹 Text Generator for text to video 📹📝🔥",
     "Bjornulf_TextSplitin5": "📝🔪 Text split in 5",
     "Bjornulf_LatentResolutionSelector": "🩷 Empty Latent Selector",
     "Bjornulf_CivitAIModelSelectorSD15": "📥 Load checkpoint SD1.5 (+Download from CivitAi)",
@@ -233,6 +240,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_CivitAILoraSelectorSD15": "📥👑 Load Lora SD1.5 (+Download from CivitAi)",
     "Bjornulf_CivitAILoraSelectorSDXL": "📥👑 Load Lora SDXL (+Download from CivitAi)",
     "Bjornulf_CivitAILoraSelectorPONY": "📥👑 Load Lora Pony (+Download from CivitAi)",
+    "Bjornulf_CivitAILoraSelectorHunyuan": "📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)",
     "Bjornulf_APIGenerateFalAI": "☁🎨 API Image Generator (FalAI) 🎨☁",
     "Bjornulf_APIGenerateCivitAI": "☁🎨 API Image Generator (CivitAI) 🎨☁",
     "Bjornulf_APIGenerateCivitAIAddLORA": "☁👑 Add Lora (API ONLY - CivitAI) 👑☁",
@@ -262,6 +270,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_OllamaTalk": "🦙💬 Ollama Talk",
     "Bjornulf_OllamaImageVision": "🦙👁 Ollama Vision",
     "Bjornulf_OllamaConfig": "🦙 Ollama Configuration ⚙",
+    "Bjornulf_XTTSConfig": "🔊 TTS Configuration ⚙",
     "Bjornulf_OllamaSystemJobSelector": "🦙 Ollama Job Selector 👇",
     "Bjornulf_OllamaSystemPersonaSelector": "🦙 Ollama Persona Selector 👇",
     "Bjornulf_SpeechToText": "🔊➜📝 STT - Speech to Text",

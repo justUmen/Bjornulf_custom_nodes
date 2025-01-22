@@ -1,0 +1,1299 @@
+[
+    {
+        "name": "Super_Realistic_Ahegao_for_Hunyuan_Video",
+        "lora_id": 1075765,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Super_Realistic_Ahegao_for_Hunyuan_Video_47865399.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1207650",
+        "trained_words": [
+            "ahegao face, cross-eyed, tongue sticking out"
+        ]
+    },
+    {
+        "name": "Eimi_Fukada__PonyXL_Flux_Hunyuan_Video_",
+        "lora_id": 477692,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Eimi_Fukada__PonyXL_Flux_Hunyuan_Video__51633903.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1282806",
+        "trained_words": [
+            "eimifukada"
+        ]
+    },
+    {
+        "name": "Rem__Re_Zero__Hunyuan_Video_Character_Lora",
+        "lora_id": 1033325,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Rem__Re_Zero__Hunyuan_Video_Character_Lora_45263956.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1158953",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Emma_Watson_Hunyuan_video_Lora",
+        "lora_id": 1099522,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Emma_Watson_Hunyuan_video_Lora_49291156.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1235087",
+        "trained_words": []
+    },
+    {
+        "name": "Hunyuan_Video_Lora_-_Yor",
+        "lora_id": 1055994,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hunyuan_Video_Lora_-_Yor_46607353.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1184914",
+        "trained_words": [
+            "dagger",
+            "black dress",
+            "gold accessories",
+            "yor forger"
+        ]
+    },
+    {
+        "name": "Natalie_Portman_Hunyuan_Video_Lora",
+        "lora_id": 1090839,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Natalie_Portman_Hunyuan_Video_Lora_49741912.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1244794",
+        "trained_words": [
+            "p0rtm4n"
+        ]
+    },
+    {
+        "name": "Hunyuan_Video_Lora_-_AnimeShots",
+        "lora_id": 1064343,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hunyuan_Video_Lora_-_AnimeShots_47127332.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1194497",
+        "trained_words": [
+            "anime"
+        ]
+    },
+    {
+        "name": "Belle_Delphine__Hunyuan_Video_",
+        "lora_id": 1106750,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Belle_Delphine__Hunyuan_Video__49686175.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1243416",
+        "trained_words": [
+            "belle delphine"
+        ]
+    },
+    {
+        "name": "Wednesday_Addams_-_Hunyuan_Video_Lora",
+        "lora_id": 1120311,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Wednesday_Addams_-_Hunyuan_Video_Lora_50441123.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1259103",
+        "trained_words": [
+            "wednesday addams"
+        ]
+    },
+    {
+        "name": "Walking_Animation_Hunyuan_Video",
+        "lora_id": 1032126,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Walking_Animation_Hunyuan_Video_45192417.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1157591",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Joan_Holloway__Christina_Hendricks____Hunyuan_Video_LORA",
+        "lora_id": 1085399,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Joan_Holloway__Christina_Hendricks____Hunyuan_Video_LORA_48763837.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1218824",
+        "trained_words": [
+            "Joan"
+        ]
+    },
+    {
+        "name": "Jennifer_Connelly__from_Career_Opportunities____Hunyuan_Video_LORA",
+        "lora_id": 1101425,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jennifer_Connelly__from_Career_Opportunities____Hunyuan_Video_LORA_49384788.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1237245",
+        "trained_words": [
+            "jennifer connelly",
+            "white tank top"
+        ]
+    },
+    {
+        "name": "Hunyuan_Video_-_Arnold_Schwarzenegger_-_LoRA",
+        "lora_id": 1034630,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hunyuan_Video_-_Arnold_Schwarzenegger_-_LoRA_45332037.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1160430",
+        "trained_words": [
+            "ohwx person"
+        ]
+    },
+    {
+        "name": "Sydney_Sweeney_Hunyuan_video_Lora",
+        "lora_id": 1093331,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Sydney_Sweeney_Hunyuan_video_Lora_49693394.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1243594",
+        "trained_words": [
+            "sw33ny"
+        ]
+    },
+    {
+        "name": "Ariana_Grande_-_Hunyuan_Video_Lora",
+        "lora_id": 1135315,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ariana_Grande_-_Hunyuan_Video_Lora_51296793.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1276468",
+        "trained_words": [
+            "Ariana"
+        ]
+    },
+    {
+        "name": "Scarlett_Johansson_Hunyuan_video_Lora",
+        "lora_id": 1093521,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Scarlett_Johansson_Hunyuan_video_Lora_48935102.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1228207",
+        "trained_words": []
+    },
+    {
+        "name": "Taylor_Swift__Hunyuan_Video_",
+        "lora_id": 1097210,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Taylor_Swift__Hunyuan_Video__49156770.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1232523",
+        "trained_words": [
+            "taySwift"
+        ]
+    },
+    {
+        "name": "Minrill_Style_Animation_-_Hunyuan_Video_LoRA",
+        "lora_id": 1120207,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Minrill_Style_Animation_-_Hunyuan_Video_LoRA_50431057.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1258988",
+        "trained_words": [
+            "minrill style animation"
+        ]
+    },
+    {
+        "name": "Chloe_Grace_Moretz_-_Hunyuan_Video_Lora",
+        "lora_id": 1135436,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Chloe_Grace_Moretz_-_Hunyuan_Video_Lora_51302071.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1276609",
+        "trained_words": [
+            "Moretz"
+        ]
+    },
+    {
+        "name": "Tina__Cameron_Diaz__The_Mask_-_Hunyuan_Video_Lora",
+        "lora_id": 1134510,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Tina__Cameron_Diaz__The_Mask_-_Hunyuan_Video_Lora_51250975.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1275534",
+        "trained_words": [
+            "Tina "
+        ]
+    },
+    {
+        "name": "Jennifer_Lawrence_-_Hunyuan_video_Lora",
+        "lora_id": 1120059,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jennifer_Lawrence_-_Hunyuan_video_Lora_50420359.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1258811",
+        "trained_words": [
+            "Jennifer Lawrence"
+        ]
+    },
+    {
+        "name": "Zero_Suit_Samus_-_Metroid__Hunyuan_Video_",
+        "lora_id": 1104251,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Zero_Suit_Samus_-_Metroid__Hunyuan_Video__49549908.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1240480",
+        "trained_words": [
+            "s4mus woman",
+            "ponytail",
+            "zer0Suit"
+        ]
+    },
+    {
+        "name": "杀戮都市Gantz下平玲花--realistic_Video_model_for_Hunyuan_video",
+        "lora_id": 1114660,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/杀戮都市Gantz下平玲花--realistic_Video_model_for_Hunyuan_video_50126550.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1252600",
+        "trained_words": [
+            "black hair with bangs",
+            "black latex bodysuit",
+            "blue gem",
+            "Reika",
+            "cutout"
+        ]
+    },
+    {
+        "name": "Emma_Hyers_-_Hunyuan_Video_Lora",
+        "lora_id": 1120087,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Emma_Hyers_-_Hunyuan_Video_Lora_50421009.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1258840",
+        "trained_words": [
+            "emma myers a woman"
+        ]
+    },
+    {
+        "name": "Kaylee__from_Firefly____Hunyuan_Video_LORA",
+        "lora_id": 1111536,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kaylee__from_Firefly____Hunyuan_Video_LORA_49955692.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1248985",
+        "trained_words": [
+            "kaylee"
+        ]
+    },
+    {
+        "name": "Starlight_-_Hunyuan_video_Lora",
+        "lora_id": 1116180,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Starlight_-_Hunyuan_video_Lora_50356124.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1254301",
+        "trained_words": [
+            "st4rl1ght "
+        ]
+    },
+    {
+        "name": "Orbit_Cam_Character_Hunyuan_Video",
+        "lora_id": 1032826,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Orbit_Cam_Character_Hunyuan_Video_45235085.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1158379",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Anya_Taylor_Joy_-_Hunyuan_Video_Lora",
+        "lora_id": 1134899,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Anya_Taylor_Joy_-_Hunyuan_Video_Lora_51298168.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1275982",
+        "trained_words": [
+            "Anya"
+        ]
+    },
+    {
+        "name": "Ella_Purnell_Hunyuan_video_Lora",
+        "lora_id": 1103395,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ella_Purnell_Hunyuan_video_Lora_49502572.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1239512",
+        "trained_words": [
+            "purn3ll"
+        ]
+    },
+    {
+        "name": "Megan_Fox_-_Hunyuan_Video_Lora",
+        "lora_id": 1138649,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Megan_Fox_-_Hunyuan_Video_Lora_51482919.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280502",
+        "trained_words": [
+            "meganFox"
+        ]
+    },
+    {
+        "name": "Himiko_Toga_-_Realistic___Animated__Hunyuan_Video_",
+        "lora_id": 1086330,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Himiko_Toga_-_Realistic___Animated__Hunyuan_Video__48509177.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1219916",
+        "trained_words": [
+            "T0gA_H!m1k0, anime style, blonde hair, bangs, twin buns, yellow eyes, wide grin, sharp teeth"
+        ]
+    },
+    {
+        "name": "Annie_Edison_from_Community__Alison_Brie____Hunyuan_Video_LORA",
+        "lora_id": 1129647,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Annie_Edison_from_Community__Alison_Brie____Hunyuan_Video_LORA_50979520.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1269866",
+        "trained_words": [
+            "annie"
+        ]
+    },
+    {
+        "name": "Daisy_Ridley_-_Hunyuan_Video_Lora",
+        "lora_id": 1138792,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Daisy_Ridley_-_Hunyuan_Video_Lora_51515085.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280666",
+        "trained_words": [
+            "daisyRidley"
+        ]
+    },
+    {
+        "name": "Sadie_Sink_-_Hunyuan_Video_Lora",
+        "lora_id": 1124045,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Sadie_Sink_-_Hunyuan_Video_Lora_50658915.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1263387",
+        "trained_words": [
+            "sadie sink a woman"
+        ]
+    },
+    {
+        "name": "Makoto_Shinkai_Anime_Style___Hunyuan_Video",
+        "lora_id": 1099506,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Makoto_Shinkai_Anime_Style___Hunyuan_Video_49285478.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1235068",
+        "trained_words": [
+            "anime style"
+        ]
+    },
+    {
+        "name": "John_Wick_-_Hunyuan_Video_Lora",
+        "lora_id": 1131159,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/John_Wick_-_Hunyuan_Video_Lora_51066592.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1271641",
+        "trained_words": [
+            "wick"
+        ]
+    },
+    {
+        "name": "Jennifer_Love_Hewitt_Hunyuan_video_Lora",
+        "lora_id": 1117619,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jennifer_Love_Hewitt_Hunyuan_video_Lora_50295310.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1255995",
+        "trained_words": [
+            "h3w1tt"
+        ]
+    },
+    {
+        "name": "Jessica_Alba_-_Hunyuan_Video_Lora",
+        "lora_id": 1138975,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jessica_Alba_-_Hunyuan_Video_Lora_51515398.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280876",
+        "trained_words": [
+            "jessicaAlba"
+        ]
+    },
+    {
+        "name": "Jenna_Fischer_Hunyuan_video_Lora",
+        "lora_id": 1114292,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jenna_Fischer_Hunyuan_video_Lora_50117732.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1252155",
+        "trained_words": [
+            "j3nn4"
+        ]
+    },
+    {
+        "name": "Natalia_Dyer_-_Hunyuan_Video_Lora",
+        "lora_id": 1124058,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Natalia_Dyer_-_Hunyuan_Video_Lora_50659458.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1263399",
+        "trained_words": [
+            "natalia dyer a woman"
+        ]
+    },
+    {
+        "name": "Megumin___hunyuan_video",
+        "lora_id": 1095939,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Megumin___hunyuan_video_49082567.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1231001",
+        "trained_words": [
+            "Megumin"
+        ]
+    },
+    {
+        "name": "This_Is_Fine__meme__-_Hunyuan_Video_Lora",
+        "lora_id": 1035870,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/This_Is_Fine__meme__-_Hunyuan_Video_Lora_45413866.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1161881",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Ana_De_Armas_lora_hunyuan_video",
+        "lora_id": 1118825,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ana_De_Armas_lora_hunyuan_video_50356881.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1257419",
+        "trained_words": [
+            "young woman"
+        ]
+    },
+    {
+        "name": "Britney_Spears_-_Hunyuan_Video_Lora",
+        "lora_id": 1144531,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Britney_Spears_-_Hunyuan_Video_Lora_51817609.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287216",
+        "trained_words": [
+            "britneySpears"
+        ]
+    },
+    {
+        "name": "Selena_Gomez_Hunyuan_video_Lora",
+        "lora_id": 1117661,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Selena_Gomez_Hunyuan_video_Lora_50297850.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1256041",
+        "trained_words": [
+            "s3l3n4"
+        ]
+    },
+    {
+        "name": "Hunyuan_Video_-_Alf_-_LoRA_-_1980s_television_Character",
+        "lora_id": 1051048,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hunyuan_Video_-_Alf_-_LoRA_-_1980s_television_Character_46313206.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1179361",
+        "trained_words": [
+            "alfman"
+        ]
+    },
+    {
+        "name": "David_Hamilton_Cinematography_Style_LoRA_for_Hunyuan_video",
+        "lora_id": 1042795,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/David_Hamilton_Cinematography_Style_LoRA_for_Hunyuan_video_45810615.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1170001",
+        "trained_words": []
+    },
+    {
+        "name": "Brie_Larson_Hunyuan_video_Lora",
+        "lora_id": 1130078,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Brie_Larson_Hunyuan_video_Lora_50997833.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1270382",
+        "trained_words": []
+    },
+    {
+        "name": "Angourie_Rice_-_Hunyuan_Video_Lora",
+        "lora_id": 1135004,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Angourie_Rice_-_Hunyuan_Video_Lora_51282006.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1276105",
+        "trained_words": [
+            "Angourie Rice"
+        ]
+    },
+    {
+        "name": "Anne_Hathaway_-_Hunyuan_Video_Lora",
+        "lora_id": 1144533,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Anne_Hathaway_-_Hunyuan_Video_Lora_51816952.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287213",
+        "trained_words": [
+            "anne hathaway"
+        ]
+    },
+    {
+        "name": "Alexandra_Daddario_-_Hunyuan_Video_Lora",
+        "lora_id": 1144534,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Alexandra_Daddario_-_Hunyuan_Video_Lora_51816846.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287212",
+        "trained_words": [
+            "alexandra daddario"
+        ]
+    },
+    {
+        "name": "Keira_Knightley_-_Hunyuan_Video_Lora",
+        "lora_id": 1144532,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Keira_Knightley_-_Hunyuan_Video_Lora_51817532.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287214",
+        "trained_words": [
+            "keira Knightley"
+        ]
+    },
+    {
+        "name": "mika__blue_archive____hunyuan_video",
+        "lora_id": 1065138,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/mika__blue_archive____hunyuan_video_47171868.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1195431",
+        "trained_words": [
+            "mika"
+        ]
+    },
+    {
+        "name": "Kendall_Jenner_-_Hunyuan_video_Lora",
+        "lora_id": 1120025,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kendall_Jenner_-_Hunyuan_video_Lora_50417413.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1258769",
+        "trained_words": [
+            "Kendall Jenner"
+        ]
+    },
+    {
+        "name": "Shiftymine_Hunyuan_video_Lora",
+        "lora_id": 1092699,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Shiftymine_Hunyuan_video_Lora_48889933.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1227269",
+        "trained_words": [
+            "woman"
+        ]
+    },
+    {
+        "name": "Pixel_style_hunyuan_video_model",
+        "lora_id": 1144459,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Pixel_style_hunyuan_video_model_51822477.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287140",
+        "trained_words": [
+            "Pixel anime pixel art drawing."
+        ]
+    },
+    {
+        "name": "Krysten_Ritter_-_Hunyuan_Video_Lora",
+        "lora_id": 1139115,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Krysten_Ritter_-_Hunyuan_Video_Lora_51514356.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1281036",
+        "trained_words": [
+            "krysten"
+        ]
+    },
+    {
+        "name": "Milana_Vayntrub_Hunyuan_video_Lora",
+        "lora_id": 1122264,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Milana_Vayntrub_Hunyuan_video_Lora_50553513.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1261344",
+        "trained_words": [
+            "m1l4n4"
+        ]
+    },
+    {
+        "name": "Mantis_-_Hunyuan_Video_Lora",
+        "lora_id": 1127286,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Mantis_-_Hunyuan_Video_Lora_50864138.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1267115",
+        "trained_words": [
+            "Mantis"
+        ]
+    },
+    {
+        "name": "Sandra_Bullock_-_Hunyuan_Video_Lora",
+        "lora_id": 1138968,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Sandra_Bullock_-_Hunyuan_Video_Lora_51504118.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280869",
+        "trained_words": [
+            "sandraBullock"
+        ]
+    },
+    {
+        "name": "kitagawa_marin___hunyuan_video",
+        "lora_id": 1086275,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/kitagawa_marin___hunyuan_video_48501199.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1219847",
+        "trained_words": [
+            "kitagawa marin"
+        ]
+    },
+    {
+        "name": "Barbara_Palvin_-_Hunyuan_Video_Lora",
+        "lora_id": 1134889,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Barbara_Palvin_-_Hunyuan_Video_Lora_51281696.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1275975",
+        "trained_words": [
+            "barbara palving"
+        ]
+    },
+    {
+        "name": "Ciri_-_The_Witcher_4__Hunyuan_Video_",
+        "lora_id": 1137571,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ciri_-_The_Witcher_4__Hunyuan_Video__51409962.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1279184",
+        "trained_words": [
+            "ciri4 with long braid wearing an armor"
+        ]
+    },
+    {
+        "name": "Andrea_Riseborough__from_Oblivion____Hunyuan_Video_LORA",
+        "lora_id": 1100619,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Andrea_Riseborough__from_Oblivion____Hunyuan_Video_LORA_49342846.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1236324",
+        "trained_words": [
+            "gray oblivion dress",
+            "andrea"
+        ]
+    },
+    {
+        "name": "Monica_s_apartment_Hunyuan_Video_lora",
+        "lora_id": 1089122,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Monica_s_apartment_Hunyuan_Video_lora_48673748.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1223166",
+        "trained_words": [
+            "mosapar",
+            "a vibrant living room"
+        ]
+    },
+    {
+        "name": "Dua_Lipa_Hunyuan_Video",
+        "lora_id": 1090284,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Dua_Lipa_Hunyuan_Video_48740585.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1224490",
+        "trained_words": []
+    },
+    {
+        "name": "Zendaya_-_Hunyuan_Video_Lora",
+        "lora_id": 1139099,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Zendaya_-_Hunyuan_Video_Lora_51513997.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1281017",
+        "trained_words": [
+            "Zendaya"
+        ]
+    },
+    {
+        "name": "Inara__from_Firefly____Hunyuan_Video_LORA",
+        "lora_id": 1110009,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Inara__from_Firefly____Hunyuan_Video_LORA_49870409.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1247195?type=Training%20Data",
+        "trained_words": [
+            "inara"
+        ]
+    },
+    {
+        "name": "Billie_Eilish_-_Hunyuan_Video_Lora",
+        "lora_id": 1138929,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Billie_Eilish_-_Hunyuan_Video_Lora_51501439.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280828",
+        "trained_words": [
+            "billieEilish"
+        ]
+    },
+    {
+        "name": "Tiffani_Thiessen_Hunyuan_video_Lora",
+        "lora_id": 1102883,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Tiffani_Thiessen_Hunyuan_video_Lora_49476998.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1238923",
+        "trained_words": [
+            "t1ff4n1"
+        ]
+    },
+    {
+        "name": "Millie_Bobby_Brown_-_Hunyuan_Video_Lora",
+        "lora_id": 1124080,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Millie_Bobby_Brown_-_Hunyuan_Video_Lora_50660458.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1263418",
+        "trained_words": [
+            "millie bobby"
+        ]
+    },
+    {
+        "name": "Kat_Dennings_Hunyuan_video_Lora",
+        "lora_id": 1132634,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kat_Dennings_Hunyuan_video_Lora_51147226.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1273331",
+        "trained_words": []
+    },
+    {
+        "name": "Ella_Purnell__Hunyuan_Video_",
+        "lora_id": 1136252,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ella_Purnell__Hunyuan_Video__51351144.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1277552",
+        "trained_words": [
+            "ellaPurnell"
+        ]
+    },
+    {
+        "name": "hunyuan_video-威尔史密斯-Will-simth",
+        "lora_id": 1124157,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/hunyuan_video-威尔史密斯-Will-simth_50665760.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1263507",
+        "trained_words": []
+    },
+    {
+        "name": "Emily_Ratajkowski_Hunyuan_video_Lora",
+        "lora_id": 1093767,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Emily_Ratajkowski_Hunyuan_video_Lora_48951329.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1228497",
+        "trained_words": []
+    },
+    {
+        "name": "Kiernan_Shipka_lora_hunyuan_video",
+        "lora_id": 1142927,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kiernan_Shipka_lora_hunyuan_video_51732889.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1285378",
+        "trained_words": [
+            "kiernan"
+        ]
+    },
+    {
+        "name": "Felicity_Jones_-_Hunyuan_Video_Lora",
+        "lora_id": 1138631,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Felicity_Jones_-_Hunyuan_Video_Lora_51481353.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280479",
+        "trained_words": [
+            "Felicity "
+        ]
+    },
+    {
+        "name": "Super_Saiyan_Hunyuan_Video_Lora",
+        "lora_id": 1038512,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Super_Saiyan_Hunyuan_Video_Lora_45561703.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1164936",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Plana__blue_archive__普拉娜_Hunyuan_Video____Chenkin",
+        "lora_id": 1088631,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Plana__blue_archive__普拉娜_Hunyuan_Video____Chenkin_48635739.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1222573",
+        "trained_words": [
+            "A girl wearing a dark sailor-style outfit with a white scarf and a choker, who has long white hair, red eyes, and a light pink halo."
+        ]
+    },
+    {
+        "name": "Avatar_Hunyuan_Video_LoRa",
+        "lora_id": 1075511,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Avatar_Hunyuan_Video_LoRa_47850501.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1207362",
+        "trained_words": []
+    },
+    {
+        "name": "Rashida_Jones_Hunyuan_video_Lora",
+        "lora_id": 1129417,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Rashida_Jones_Hunyuan_video_Lora_50965170.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1269592",
+        "trained_words": []
+    },
+    {
+        "name": "Elizabeth_Olsen_Hunyuan_video_Lora",
+        "lora_id": 1133736,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Elizabeth_Olsen_Hunyuan_video_Lora_51195811.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1274624",
+        "trained_words": []
+    },
+    {
+        "name": "Katou_Megumi___hunyuan_video",
+        "lora_id": 1049399,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Katou_Megumi___hunyuan_video_46212991.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1177487",
+        "trained_words": [
+            "katou megumi"
+        ]
+    },
+    {
+        "name": "Kristin_Kreuk_-_Hunyuan_Video_Lora",
+        "lora_id": 1144528,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kristin_Kreuk_-_Hunyuan_Video_Lora_51818095.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287221",
+        "trained_words": [
+            "kreuk"
+        ]
+    },
+    {
+        "name": "noa__blue_archive____hunyuan_video",
+        "lora_id": 1040525,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/noa__blue_archive____hunyuan_video_46631400.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1185463",
+        "trained_words": [
+            "noa \\(blue archive\\)"
+        ]
+    },
+    {
+        "name": "Kristen_Bell_Hunyuan_video_Lora",
+        "lora_id": 1137542,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kristen_Bell_Hunyuan_video_Lora_51407947.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1279141",
+        "trained_words": []
+    },
+    {
+        "name": "Mila_Kunis_Hunyuan_video_Lora",
+        "lora_id": 1139895,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Mila_Kunis_Hunyuan_video_Lora_51557854.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1281891",
+        "trained_words": []
+    },
+    {
+        "name": "Gal_Gadot_Hunyuan_video_Lora",
+        "lora_id": 1129436,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Gal_Gadot_Hunyuan_video_Lora_50965885.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1269616",
+        "trained_words": [
+            "ohwx"
+        ]
+    },
+    {
+        "name": "Shadowheart_-_Baldur_s_Gate_3__Hunyuan_Video_",
+        "lora_id": 1104643,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Shadowheart_-_Baldur_s_Gate_3__Hunyuan_Video__49582678.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1240952",
+        "trained_words": [
+            "dark leather vest",
+            "hair in a long braid",
+            "shadowheart"
+        ]
+    },
+    {
+        "name": "Alanah_Pearce_-_Hunyuan_Video_Lora",
+        "lora_id": 1134530,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Alanah_Pearce_-_Hunyuan_Video_Lora_51248788.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1275561",
+        "trained_words": [
+            "alanah pearce"
+        ]
+    },
+    {
+        "name": "Kate_Middleton_Hunyuan_video_Lora",
+        "lora_id": 1128534,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kate_Middleton_Hunyuan_video_Lora_50917147.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1268565",
+        "trained_words": []
+    },
+    {
+        "name": "Angela_Kinsey_Hunyuan_video_Lora",
+        "lora_id": 1125599,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Angela_Kinsey_Hunyuan_video_Lora_50743078.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1265161",
+        "trained_words": [
+            "k1ns3y"
+        ]
+    },
+    {
+        "name": "Henry_Cavill_-_Hunyuan_Video_Lora",
+        "lora_id": 1077691,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Henry_Cavill_-_Hunyuan_Video_Lora_47976905.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1209838",
+        "trained_words": [
+            "H3c4vill"
+        ]
+    },
+    {
+        "name": "Hera_Syndulla___Hunyuan_Video_LORA",
+        "lora_id": 1139076,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hera_Syndulla___Hunyuan_Video_LORA_51526974.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280993",
+        "trained_words": [
+            "hera"
+        ]
+    },
+    {
+        "name": "Buratino___Co__Hunyuan_Video_",
+        "lora_id": 1105109,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Buratino___Co__Hunyuan_Video__49648606.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1241506",
+        "trained_words": [
+            "Malvina",
+            "Bazilio",
+            "Buratino",
+            "Alisa"
+        ]
+    },
+    {
+        "name": "Ellen_Page_-_Hunyuan_Video_Lora",
+        "lora_id": 1144530,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ellen_Page_-_Hunyuan_Video_Lora_51817961.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287219",
+        "trained_words": [
+            "epage"
+        ]
+    },
+    {
+        "name": "Haley_Atwell_Hunyuan_video_Lora",
+        "lora_id": 1143022,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Haley_Atwell_Hunyuan_video_Lora_51738176.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1285496",
+        "trained_words": []
+    },
+    {
+        "name": "makise_kurisu___hunyuan_video",
+        "lora_id": 1121474,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/makise_kurisu___hunyuan_video_50513678.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1260457",
+        "trained_words": [
+            "makise kurisu"
+        ]
+    },
+    {
+        "name": "Kate_Upton_-_Hunyuan_Video_Lora",
+        "lora_id": 1138806,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kate_Upton_-_Hunyuan_Video_Lora_51493515.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280680",
+        "trained_words": [
+            "upton"
+        ]
+    },
+    {
+        "name": "Kate_Upton_-_Hunyuan_Video_Lora",
+        "lora_id": 1138806,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kate_Upton_-_Hunyuan_Video_Lora_51493515.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280680",
+        "trained_words": [
+            "upton"
+        ]
+    },
+    {
+        "name": "Hunyuan_video_-_bogged_-_LoRA",
+        "lora_id": 1035770,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hunyuan_video_-_bogged_-_LoRA_45628400.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1166218",
+        "trained_words": []
+    },
+    {
+        "name": "Kathryn_Newton_-_Hunyuan_Video_Lora",
+        "lora_id": 1138639,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kathryn_Newton_-_Hunyuan_Video_Lora_51481877.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280487",
+        "trained_words": [
+            "Kathryn"
+        ]
+    },
+    {
+        "name": "Renamon_Digimon_hunyuan_video_lora",
+        "lora_id": 1097416,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Renamon_Digimon_hunyuan_video_lora_51801429.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1286872",
+        "trained_words": [
+            "renamon"
+        ]
+    },
+    {
+        "name": "Blu__Hunyuan_Video_Lora_",
+        "lora_id": 1086057,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Blu__Hunyuan_Video_Lora__48570554.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1219604",
+        "trained_words": []
+    },
+    {
+        "name": "Gamora_-_Hunyuan_Video_Lora",
+        "lora_id": 1127069,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Gamora_-_Hunyuan_Video_Lora_50865955.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1266864",
+        "trained_words": [
+            "gamora"
+        ]
+    },
+    {
+        "name": "Baby_Sinclair__Hunyuan_Video_",
+        "lora_id": 1073579,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Baby_Sinclair__Hunyuan_Video__47729448.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1205141",
+        "trained_words": [
+            "b4by_d1n0"
+        ]
+    },
+    {
+        "name": "Madison_Beer_-_Hunyuan_Video_Lora",
+        "lora_id": 1138754,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Madison_Beer_-_Hunyuan_Video_Lora_51490439.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280621",
+        "trained_words": [
+            "madisonBeer"
+        ]
+    },
+    {
+        "name": "Evangeline_Lilly_Hunyuan_video_Lora",
+        "lora_id": 1143762,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Evangeline_Lilly_Hunyuan_video_Lora_51779039.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1286344",
+        "trained_words": []
+    },
+    {
+        "name": "Meisho_doto__umamusume__for_Hunyuan_Video",
+        "lora_id": 1106102,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Meisho_doto__umamusume__for_Hunyuan_Video_50344604.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1242672",
+        "trained_words": [
+            "meisho doto (umamusume)"
+        ]
+    },
+    {
+        "name": "Ellie_-_Hunyuan_Video_Lora",
+        "lora_id": 1127489,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Ellie_-_Hunyuan_Video_Lora_50847950.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1267359",
+        "trained_words": [
+            "Ellie"
+        ]
+    },
+    {
+        "name": "Miley_Cyrus_-_Hunyuan_Video_Lora",
+        "lora_id": 1144537,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Miley_Cyrus_-_Hunyuan_Video_Lora_51816713.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287226",
+        "trained_words": [
+            "mileyCyrus"
+        ]
+    },
+    {
+        "name": "Nicole_Kidman_-_Hunyuan_Video_Lora",
+        "lora_id": 1134537,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Nicole_Kidman_-_Hunyuan_Video_Lora_51237223.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1275570",
+        "trained_words": []
+    },
+    {
+        "name": "Cheyenne_-_Hunyuan_Video_Lora",
+        "lora_id": 1131522,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Cheyenne_-_Hunyuan_Video_Lora_51090854.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1272105",
+        "trained_words": [
+            "cheyenne"
+        ]
+    },
+    {
+        "name": "Fat_Elvis_Hunyuan_Video_LoRA",
+        "lora_id": 1045567,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Fat_Elvis_Hunyuan_Video_LoRA_45972230.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1173135",
+        "trained_words": [
+            "fatelvis"
+        ]
+    },
+    {
+        "name": "Nekomiya_Mana_LoRA_for_Hunyuan_Video",
+        "lora_id": 1096010,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Nekomiya_Mana_LoRA_for_Hunyuan_Video_49092529.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1231089",
+        "trained_words": [
+            "nekomiya mana, 1girl,"
+        ]
+    },
+    {
+        "name": "Allison_Mack_-_Hunyuan_Video_Lora",
+        "lora_id": 1138780,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Allison_Mack_-_Hunyuan_Video_Lora_51492013.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1280653",
+        "trained_words": [
+            "allisonMack"
+        ]
+    },
+    {
+        "name": "Melora_Hardin_Hunyuan_video_Lora",
+        "lora_id": 1131576,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Melora_Hardin_Hunyuan_video_Lora_51083337.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1272137",
+        "trained_words": []
+    },
+    {
+        "name": "Jessica_Chastain_-_Hunyuan_Video_Lora",
+        "lora_id": 1144535,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Jessica_Chastain_-_Hunyuan_Video_Lora_51816781.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287211",
+        "trained_words": [
+            "jessica chastain"
+        ]
+    },
+    {
+        "name": "Kate_Flannery_Hunyuan_video_Lora",
+        "lora_id": 1140060,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Kate_Flannery_Hunyuan_video_Lora_51567425.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1282091",
+        "trained_words": []
+    },
+    {
+        "name": "Hailee_Steinfeld_-_Hunyuan_Video_Lora",
+        "lora_id": 1144524,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Hailee_Steinfeld_-_Hunyuan_Video_Lora_51818142.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287223",
+        "trained_words": [
+            "hailee"
+        ]
+    },
+    {
+        "name": "Anna_Chlumsky_Hunyuan_video_Lora",
+        "lora_id": 1132146,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Anna_Chlumsky_Hunyuan_video_Lora_51118776.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1272776",
+        "trained_words": []
+    },
+    {
+        "name": "Gemma_Chan_-_Hunyuan_Video_Lora",
+        "lora_id": 1144523,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Gemma_Chan_-_Hunyuan_Video_Lora_51818154.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287225",
+        "trained_words": [
+            "gemmaChan"
+        ]
+    },
+    {
+        "name": "Rachel_Sennott_Hunyuan_video_Lora",
+        "lora_id": 1133175,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Rachel_Sennott_Hunyuan_video_Lora_51169338.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1273957",
+        "trained_words": []
+    },
+    {
+        "name": "Sue__from_The_Substance____Hunyuan_Video_LORA",
+        "lora_id": 1145860,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Sue__from_The_Substance____Hunyuan_Video_LORA_51898258.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1288755",
+        "trained_words": [
+            "sue"
+        ]
+    },
+    {
+        "name": "Natsu_Dragneel_hunyuan_video_Character_Lora_by_ComfyOnline",
+        "lora_id": 1085968,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Natsu_Dragneel_hunyuan_video_Character_Lora_by_ComfyOnline_48482826.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1219490",
+        "trained_words": [
+            "Natsu_dragneel"
+        ]
+    },
+    {
+        "name": "Civitai_Logo__Hunyuan_Video_",
+        "lora_id": 1113899,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Civitai_Logo__Hunyuan_Video__50098973.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1251718",
+        "trained_words": [
+            "civitaiLogo"
+        ]
+    },
+    {
+        "name": "Miranda_Kerr_-_Hunyuan_Video_Lora",
+        "lora_id": 1144526,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Miranda_Kerr_-_Hunyuan_Video_Lora_51818103.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287222",
+        "trained_words": [
+            "kerr"
+        ]
+    },
+    {
+        "name": "sonic_the_manhog_2019_lora_hunyuan_video",
+        "lora_id": 1074683,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/sonic_the_manhog_2019_lora_hunyuan_video_47788941.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1206408",
+        "trained_words": [
+            "sonicthemanhog2004"
+        ]
+    },
+    {
+        "name": "Dina_-_Hunyuan_Video_Lora",
+        "lora_id": 1131325,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Dina_-_Hunyuan_Video_Lora_51079367.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1271844",
+        "trained_words": [
+            "dyna"
+        ]
+    },
+    {
+        "name": "vivziepop_style_hunyuan_video",
+        "lora_id": 1071906,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/vivziepop_style_hunyuan_video_47615402.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1203226",
+        "trained_words": []
+    },
+    {
+        "name": "Shinzo_Abe_Hunyuan_Video_LoRA__晋さん_",
+        "lora_id": 1129166,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Shinzo_Abe_Hunyuan_Video_LoRA__晋さん__50953056.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1269295",
+        "trained_words": []
+    },
+    {
+        "name": "Reverse_Mermaid_Hunyuan_Video_Lora",
+        "lora_id": 1035388,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Reverse_Mermaid_Hunyuan_Video_Lora_45377336.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1161307",
+        "trained_words": [
+            "kxsr"
+        ]
+    },
+    {
+        "name": "Sam_Altman_-_Hunyuan_Video_Lora",
+        "lora_id": 1144529,
+        "base_model": "Hunyuan Video",
+        "image_path": "loras/lora_hunyuan_video/Sam_Altman_-_Hunyuan_Video_Lora_51818024.jpeg",
+        "download_url": "https://civitai.com/api/download/models/1287220",
+        "trained_words": [
+            "samaltman"
+        ]
+    }
+]

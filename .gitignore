@@ -6,3 +6,5 @@ web/js/clear_vram.js
 speakers
 *.text
 web/js/*.txt
+ScriptsPerso/
+civitai/NSFW_*

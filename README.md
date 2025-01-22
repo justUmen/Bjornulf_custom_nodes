@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.65 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.66 🔗
 
-A list of 116 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 119 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 # Coffee : ☕☕☕☕☕ 5/5
@@ -42,6 +42,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
 `115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
+`117.` [📝👈 Line selector (🎲 Or random)](#)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -97,6 +98,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
+`117.` [📝👈 Line selector (🎲 Or random)](#)  
 
 ## 🖼💾 Image Save 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
@@ -155,6 +157,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `103.` [📥👑 Load Lora SD1.5 (+Download from CivitAi)](#103----load-lora-sd15-download-from-civitai)  
 `104.` [📥👑 Load Lora SDXL (+Download from CivitAi)](#104----load-lora-sdxl-download-from-civitai)  
 `105.` [📥👑 Load Lora Pony (+Download from CivitAi)](#105----load-lora-pony-download-from-civitai)  
+`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#)  
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
@@ -171,21 +174,24 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `77.` [📹🔍 Video details ⚙](#77----video-details-)  
 `78.` [📹➜📹 Convert Video](#78----convert-video)  
 `79.` [📹🔗 Concat Videos from list](#79----concat-videos-from-list)  
+`119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#)  
 
 ## 🤖 AI 🤖
 `19.` [🦙💬 Ollama Talk](#19----ollama-talk)  
+`31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
 `62.` [🦙👁 Ollama Vision](#62----ollama-vision)  
 `63.` [🦙 Ollama Configuration ⚙](#63----ollama-configuration-)  
 `64.` [🦙 Ollama Job Selector 💼](#64----ollama-job-selector-)  
 `65.` [🦙 Ollama Persona Selector 🧑](#65----ollama-persona-selector-)  
-`31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
+`118.` [🔊 TTS Configuration ⚙](#118)  
 
 ## 🔊 Audio 🔊
 `31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
 `52.` [🔊📹 Audio Video Sync](#52----audio-video-sync)  
 `59.` [📹🔊 Combine Video + Audio](#59----combine-video--audio)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
+`118.` [🔊 TTS Configuration ⚙](#118)  
 
 ## 💻 System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
@@ -353,6 +359,7 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.63**: delete long file, useless
 - **0.64**: remove "import wget", added some keywords to text generators.
 - **0.65**: ❗Breaking changes : Combine Text inputs are now all optional (PLease remake your nodes, sorry.) Add 6 new nodes : any2int, any2float, load text from folder, load text from path, load lora from path. Also upgraded the Save text node.
+- **0.66**: Add lora hunyuan CIVIT ai + download, add TTS configuration node, edit requirements.txt
 
 # 📝 Nodes descriptions
 
@@ -1641,3 +1648,35 @@ Just give the path of the file, it will recover its content.
 If you want, with `Load Text From Path` you can also recover the elements in "Bjornulf/Text" by just adding it:  
 
 ![Load Text](screenshots/load_text_PATH.png)  
+
+#### 117 - 📝👈 Line selector (🎲 Or random)
+
+**Description:**  
+
+Select a line from input text. If set to 0 it will take a line at random.  
+If line taken at random,. it will not take a line starting with the symbol `#`.  
+So use that if you want to ignore a line.  
+
+![Line Selector](screenshots/line_selector.png)  
+
+#### 118 - 🔊 TTS Configuration ⚙
+
+**Description:**  
+
+New optional configuration node to connect to TTS node, it can request a list of speakers for a given language and replace in the main TTS node :  
+- The URL.
+- The language.
+- The speaker.
+Connect them only if you want to replace them with the one from the configuration node.  
+
+![tts config](screenshots/tts_config.png)  
+
+#### 119 - 📥👑 Load Lora Hunyuan Video (+Download from CivitAi)
+
+**Description:**  
+
+Take a CivitAI Lora to use with Hunyuan. (NSFW list not on github of course.)
+
+The workflow below is included : `workflows/HUNYUAN_basic_lora.json`) :  
+
+![hunyuan lora](screenshots/hunyuan_lora.png)  
