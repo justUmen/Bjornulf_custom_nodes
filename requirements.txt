@@ -5,4 +5,5 @@ faster_whisper
 ffmpeg-python
 civitai-py
 fal_client
-importlib
+sounddevice
+kokoro_onnx

@@ -94,10 +94,12 @@ from .loader_lora_with_path import LoaderLoraWithPath
 from .load_text import LoadTextFromFolder, LoadTextFromPath
 from .string_splitter import TextSplitin5
 from .line_selector import LineSelector
+from .text_to_speech_kokoro import KokoroTTS
 # from .text_generator_t2v import TextGeneratorText2Video
 NODE_CLASS_MAPPINGS = {
     "Bjornulf_LineSelector": LineSelector,
     "Bjornulf_XTTSConfig": XTTSConfig,
+    "Bjornulf_KokoroTTS": KokoroTTS,
     # "Bjornulf_TextGeneratorText2Video": TextGeneratorText2Video,
     "Bjornulf_LatentResolutionSelector": LatentResolutionSelector,
     "Bjornulf_LoaderLoraWithPath": LoaderLoraWithPath,
@@ -223,10 +225,13 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "Bjornulf_XTTSConfig": "🔊 TTS Configuration ⚙",
+    "Bjornulf_TextToSpeech": "📝➜🔊 TTS - Text to Speech",
     # "Bjornulf_HiResFix": "HiResFix",
     # "Bjornulf_ImageBlend": "🎨 Image Blend",
     # "Bjornulf_APIHiResCivitAI": "🎨➜🎨 API Image hires fix (CivitAI)",
     # "Bjornulf_CivitAILoraSelector": "lora Civit",
+    "Bjornulf_KokoroTTS": "📝➜🔊 Kokoro - Text to Speech",
     "Bjornulf_LineSelector": "📝👈 Line selector (🎲 Or random)",
     "Bjornulf_LoaderLoraWithPath": "📥👑 Load Lora with Path",
     # "Bjornulf_TextGeneratorText2Video": "🔥📝📹 Text Generator for text to video 📹📝🔥",

@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.66 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.67 🔗
 
-A list of 119 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 120 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 # Coffee : ☕☕☕☕☕ 5/5
@@ -192,6 +192,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `59.` [📹🔊 Combine Video + Audio](#59----combine-video--audio)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
+`120.` [📝➜🔊 Kokoro - Text to Speech](#120)  
 
 ## 💻 System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
@@ -360,6 +361,7 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.64**: remove "import wget", added some keywords to text generators.
 - **0.65**: ❗Breaking changes : Combine Text inputs are now all optional (PLease remake your nodes, sorry.) Add 6 new nodes : any2int, any2float, load text from folder, load text from path, load lora from path. Also upgraded the Save text node.
 - **0.66**: Add lora hunyuan CIVIT ai + download, add TTS configuration node, edit requirements.txt
+- **0.67**: Add kokoro TTS node.
 
 # 📝 Nodes descriptions
 
@@ -1680,3 +1682,11 @@ Take a CivitAI Lora to use with Hunyuan. (NSFW list not on github of course.)
 The workflow below is included : `workflows/HUNYUAN_basic_lora.json`) :  
 
 ![hunyuan lora](screenshots/hunyuan_lora.png)  
+
+#### 120 - 📝➜🔊 Kokoro - Text to Speech
+
+**Description:**  
+Another Text to Speech node based on Kokoro. : https://github.com/thewh1teagle/kokoro-onnx  
+Lightweight, much simpler, no configuration and fully integrated into Comfyui. (No external backend to run.)  
+
+![tts kokoro](screenshots/kokoro_tts.png)  
