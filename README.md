@@ -192,7 +192,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `59.` [📹🔊 Combine Video + Audio](#59----combine-video--audio)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
-`120.` [📝➜🔊 Kokoro - Text to Speech](#120)  
+`120.` [📝➜🔊 Kokoro - Text to Speech](#120----kokoro---text-to-speech)  
 
 ## 💻 System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
