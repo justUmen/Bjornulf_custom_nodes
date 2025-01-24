@@ -2,6 +2,10 @@ import os
 import requests
 import random
 
+class Everything(str):
+    def __ne__(self, __value: object) -> bool:
+        return False
+
 VOICE_OPTIONS = {
     "af_bella": "Bella (American Female) - af_bella",
     "af_nicole": "Nicole (American Female) - af_nicole",
@@ -61,16 +65,20 @@ class KokoroTTS:
                 "save_audio": ("BOOLEAN", {"default": True}),
                 "overwrite": ("BOOLEAN", {"default": False}),
                 "seed": ("INT", {"default": 0}),
+            },
+            "optional": {
+                "connect_to_workflow": (Everything("*"), {"forceInput": True}),
             }
         }
 
-    RETURN_TYPES = ("AUDIO",)
+    RETURN_TYPES = ("AUDIO", "STRING", "STRING", "FLOAT")
+    RETURN_NAMES = ("AUDIO", "audio_path", "audio_full_path", "audio_duration")
     FUNCTION = "generate_audio"
     CATEGORY = "Bjornulf/Kokoro"
 
     def generate_audio(self, text: str, voice: str, language: str, speed: float,
                       autoplay: bool, save_audio: bool, 
-                      overwrite: bool, seed: int):
+                      overwrite: bool, seed: int, connect_to_workflow: any = None):
         random.seed(seed)
 
         config = {
@@ -138,8 +146,8 @@ class KokoroTTS:
 
             audio_tensor = torch.from_numpy(samples).unsqueeze(0)
             audio_output = {"waveform": audio_tensor.unsqueeze(0), "sample_rate": sample_rate}
-            return (audio_output,)
+            return (audio_output, save_path, full_path, len(samples) / sample_rate)
 
         except Exception as e:
             print(f"Error in Kokoro TTS: {e}")
-            return ({"waveform": torch.zeros(1, 1, 1), "sample_rate": 22050},)
+            return ({"waveform": torch.zeros(1, 1, 1), "sample_rate": 22050}, "", "", 0.0)

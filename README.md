@@ -1,4 +1,4 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.67 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.68 🔗
 
 A list of 120 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
@@ -362,6 +362,7 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.65**: ❗Breaking changes : Combine Text inputs are now all optional (PLease remake your nodes, sorry.) Add 6 new nodes : any2int, any2float, load text from folder, load text from path, load lora from path. Also upgraded the Save text node.
 - **0.66**: Add lora hunyuan CIVIT ai + download, add TTS configuration node, edit requirements.txt
 - **0.67**: Add kokoro TTS node.
+- **0.68**: Update kokoro TTS node with connect_to_workflow and same outputs as XTTS.
 
 # 📝 Nodes descriptions
 
