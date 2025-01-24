@@ -252,6 +252,8 @@ If you have any issues with this template from Runpod, please let me know, I'm h
 
 # 🏗 Dependencies (nothing to do for runpod ☁)
 
+Check `requirements.txt` for the latest dependencies...  
+
 ## 🪟🐍 Windows : Install dependencies on windows with embedded python (portable version)
 
 First you need to find this python_embedded `python.exe`, then you can right click or shift + right click inside the folder in your file manager to open a terminal there.  
@@ -266,9 +268,14 @@ You can then run comfyui.
 
 ## 🐧🐍 Linux : Install dependencies (without venv, not recommended)
 
+Move the the custom_node folder and :  `pip install -r requirements.txt`
+
+OR
+
 - `pip install ollama` (you can also install ollama if you want :  https://ollama.com/download) - You don't need to really install it if you don't want to use my ollama node. (BUT you need to run `pip install ollama`)
 - `pip install pydub` (for TTS node)
 - `pip install opencv-python`
+- etc...
 
 ## 🐧🐍 Linux : Install dependencies with python virtual environment (venv)
 
@@ -283,7 +290,8 @@ Once you have your environment in this new folder, you can activate it with and 
 
 ```
 source /the/path/you/want/venv/bjornulf_comfyui/bin/activate
-pip install ollama pydub opencv-python
+cd custom_nodes/Bjornulf_custom_nodes
+pip install -r requirements.txt
 ```
 
 Then you can start comfyui with this environment (notice that you need to re-activate it each time you want to launch comfyui) :  
