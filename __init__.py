@@ -95,9 +95,11 @@ from .load_text import LoadTextFromFolder, LoadTextFromPath
 from .string_splitter import TextSplitin5
 from .line_selector import LineSelector
 from .text_to_speech_kokoro import KokoroTTS
+# from .empty_latent_video import EmptyVideoLatentWithSingle
 # from .text_generator_t2v import TextGeneratorText2Video
 NODE_CLASS_MAPPINGS = {
     "Bjornulf_LineSelector": LineSelector,
+    # "Bjornulf_EmptyVideoLatentWithSingle": EmptyVideoLatentWithSingle,
     "Bjornulf_XTTSConfig": XTTSConfig,
     "Bjornulf_KokoroTTS": KokoroTTS,
     # "Bjornulf_TextGeneratorText2Video": TextGeneratorText2Video,
@@ -225,6 +227,7 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    # "Bjornulf_EmptyVideoLatentWithSingle": "Bjornulf_EmptyVideoLatentWithSingle",
     "Bjornulf_XTTSConfig": "🔊 TTS Configuration ⚙",
     "Bjornulf_TextToSpeech": "📝➜🔊 TTS - Text to Speech",
     # "Bjornulf_HiResFix": "HiResFix",

@@ -568,7 +568,7 @@ class CivitAIModelSelectorSD15:
         return (model[0], model[1], model[2], model_info['name'], f"https://civitai.com/models/{model_info['model_id']}")
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -706,7 +706,7 @@ class CivitAIModelSelectorSDXL:
         return (model[0], model[1], model[2], model_info['name'], f"https://civitai.com/models/{model_info['model_id']}")
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -842,7 +842,7 @@ class CivitAIModelSelectorFLUX_D:
         return (model[0], model[1], model[2], model_info['name'], f"https://civitai.com/models/{model_info['model_id']}")
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -1116,7 +1116,7 @@ class CivitAIModelSelectorPony:
         return (model[0], model[1], model[2], model_info['name'], f"https://civitai.com/models/{model_info['model_id']}")
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -1357,7 +1357,7 @@ class CivitAILoraSelectorSD15:
         return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -1500,7 +1500,7 @@ class CivitAILoraSelectorSDXL:
         return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -1643,7 +1643,7 @@ class CivitAILoraSelectorPONY:
         return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
@@ -1786,7 +1786,7 @@ class CivitAILoraSelectorHunyuan:
         return (model_lora, clip_lora, lora_info['name'], f"https://civitai.com/models/{lora_info['lora_id']}", trained_words_str)
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(s, image, **kwargs):
         if image == "none":
             return ""
         image_path = os.path.join(civitai_base_path, image)
