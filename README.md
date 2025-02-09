@@ -26,9 +26,9 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `72.` [👁 Show (Float)](#72----show-float)  
 `73.` [👁 Show (String/Text)](#73----show-stringtext)  
 `74.` [👁 Show (JSON)](#74----show-json)  
-`126.` [📒 Note](#126)  
-`127.` [🖼📒 Image Note](#127)  
-`128.` [🖼👁 Preview (first) image](#128)  
+`126.` [📒 Note](#126----note)  
+`127.` [🖼📒 Image Note](#127----image-note)  
+`128.` [🖼👁 Preview (first) image](#128----preview-first-image)  
 
 ## ✒ Text ✒
 `2.` [✒ Write Text](#2----write-text)  
@@ -104,19 +104,19 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
-`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117)  
+`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117----line-selector--or--or-)  
 
 ## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
 `17.` [💾🖼 Save image as `tmp_api.png` Temporary API](#17----save-image-as-tmp_apipng-temporary-api-%EF%B8%8F)  
 `18.` [💾🖼📁 Save image to a chosen folder name](#18----save-image-to-a-chosen-folder-name)  
 `14.` [💾🖼 Save Exact name](#1314------resize-and-save-exact-name-%EF%B8%8F)  
-`123.` 💾 Save Global Variables](#123)  
+`123.` [💾 Save Global Variables](#123----save-global-variables)  
 
 ## 🖼📥 Load Image / Text 📥🖼
 `29.` [📥🖼 Load Image with Transparency ▢](#29----load-image-with-transparency-)  
 `43.` [📥🖼📂 Load Images from output folder](#43----load-images-from-output-folder)  
-`124.` [📥 Load Global Variables](#124)  
+`124.` [📥 Load Global Variables](#124----load-global-variables)  
 
 ## 🖼 Image - others 🖼
 `13.` [📏 Resize Image](#1314------resize-and-save-exact-name-%EF%B8%8F)  
@@ -143,13 +143,13 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `42.` [♻ Loop (Model+Clip+Vae) - aka Checkpoint / Model](#42----loop-modelclipvae---aka-checkpoint--model)  
 `53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)  
-`125.` [📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)](#125)  
+`125.` [📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)](#125----model-clip-vae-selector--or--or-)  
 
 ## 🚀 Load loras 🚀
 `54.` [♻ Loop Lora Selector](#54----loop-lora-selector)  
 `55.` [🎲 Random Lora@ Selector](#55----random-lora-selector)  
 `114.` [📥👑 Load Lora with Path](#114----load-lora-with-path)  
-`122.` [👑 Combine Loras, Lora stack](#122)  
+`122.` [👑 Combine Loras, Lora stack](#122----combine-loras-lora-stack)  
 
 ## ☁ Image Creation : API / cloud / remote ☁
 `106.` [☁🎨 API Image Generator (FalAI) ☁](#106----api-image-generator-falai-)  
@@ -168,7 +168,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `104.` [📥👑 Load Lora SDXL (+Download from CivitAi)](#104----load-lora-sdxl-download-from-civitai)  
 `105.` [📥👑 Load Lora Pony (+Download from CivitAi)](#105----load-lora-pony-download-from-civitai)  
 `119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
-`121.` [💾 Huggingface Downloader](#121)  
+`121.` [💾 Huggingface Downloader](#121----huggingface-downloader)  
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
@@ -211,6 +211,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
+`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117----line-selector--or--or-)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
@@ -1752,7 +1753,6 @@ Here is an example of usage save/load :
 #### 125 - 📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)
 
 **Description:**  
-
 If you want to use and manage multiple models/clip/vae : this is the universal node for it.  
 You can run them in a LOOP, one at RANDOM, a LOOP SEQUENTIAL (one at a time for each workflow run) and even SELECT a specific one.  
 
@@ -1771,7 +1771,6 @@ You can do whatever you want of course, below is an example about HunYuan video 
 #### 127 - 🖼📒 Image Note
 
 **Description:**  
-
 You can use this node to have it show a previously generated image and some custom text. (Use image_path or IMAGE type.)  
 ![Image note](screenshots/image_note.png)  
 
@@ -1784,6 +1783,7 @@ Here is a complex example on how i use that, for a list of loras stacks. (I then
 
 #### 128 - 🖼👁 Preview (first) image
 
+**Description:**  
 This node can display a preview of an image...  
 - But also can take a list of images and preview only the first image. (Useful for video, it will take the first image.)  
 - But can also take as input the full path of an image.  
@@ -1791,5 +1791,4 @@ This node can display a preview of an image...
 Very useful for testing when working with videos.  
 Below is a visual example of what I just said :  
 
-**Description:**  
 ![First image preview](screenshots/first_image_preview.png)  
