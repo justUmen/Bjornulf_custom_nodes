@@ -68,7 +68,7 @@ async def get_counter_value(request):
 
 @PromptServer.instance.routes.post("/reset_counter")
 async def reset_counter(request):
-    logging.info("Reset counter called")
+    # logging.info("Reset counter called")
     counter_file = os.path.join("Bjornulf", "counter_integer.txt")
     try:
         os.remove(counter_file)

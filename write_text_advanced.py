@@ -1,7 +1,7 @@
 import re
 import random
 import time
-import logging
+# import logging
 
 class WriteTextAdvanced:
     @classmethod
@@ -23,8 +23,8 @@ class WriteTextAdvanced:
     CATEGORY = "Bjornulf"
     
     def write_text_special(self, text, variables="", seed=None):
-        logging.info(f"Raw text: {text}")
-        logging.info(f"Variables: {variables}")
+        # logging.info(f"Raw text: {text}")
+        # logging.info(f"Variables: {variables}")
 
         if len(text) > 10000:
             return ("Text too large to process at once. Please split into smaller parts.",)
@@ -41,7 +41,7 @@ class WriteTextAdvanced:
                 key, value = line.split('=', 1)
                 var_dict[key.strip()] = value.strip()
         
-        logging.info(f"Parsed variables: {var_dict}")
+        # logging.info(f"Parsed variables: {var_dict}")
 
         # Replace variables
         for key, value in var_dict.items():
@@ -54,7 +54,7 @@ class WriteTextAdvanced:
             return random.choice(match.group(1).split('|'))
 
         result = re.sub(pattern, replace_random, text)
-        logging.info(f"Final text: {result}")
+        # logging.info(f"Final text: {result}")
         
         return (result,)
 

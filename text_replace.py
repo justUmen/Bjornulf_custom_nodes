@@ -15,11 +15,14 @@ class TextReplace:
                                           "display": "number", 
                                           "tooltip": "Number of replacements (0 = replace all)"}),
                 "use_regex": ("BOOLEAN", {"default": False}),
-                "case_sensitive": ("BOOLEAN", {"default": True, "tooltip": "Whether the search should be case-sensitive"}),
+                "case_sensitive": ("BOOLEAN", {"default": True, 
+                                             "tooltip": "Whether the search should be case-sensitive"}),
                 "trim_whitespace": (["none", "left", "right", "both"], {
                     "default": "none", 
                     "tooltip": "Remove whitespace around the found text"
-                })
+                }),
+                "multiline_regex": ("BOOLEAN", {"default": False, 
+                                              "tooltip": "Make dot (.) match newlines in regex"})
             }
         }
     
@@ -27,7 +30,8 @@ class TextReplace:
     FUNCTION = "replace_text"
     CATEGORY = "Bjornulf"
     
-    def replace_text(self, input_text, search_text, replace_text, replace_count, use_regex, case_sensitive, trim_whitespace):
+    def replace_text(self, input_text, search_text, replace_text, replace_count, 
+                    use_regex, multiline_regex, case_sensitive, trim_whitespace):
         try:
             # Convert input to string
             input_text = str(input_text)
@@ -36,16 +40,10 @@ class TextReplace:
             regex_flags = 0
             if not case_sensitive:
                 regex_flags |= re.IGNORECASE
-            
-            # Debug print
-            # print(f"Input: {input_text}")
-            # print(f"Search Text: {search_text}")
-            # print(f"Replace Text: {replace_text}")
-            # print(f"Use Regex: {use_regex}")
-            # print(f"Regex Flags: {regex_flags}")
+            if multiline_regex and use_regex:
+                regex_flags |= re.DOTALL
             
             if use_regex:
-                # Ensure regex pattern is valid
                 try:
                     # Compile the regex pattern first
                     pattern = re.compile(search_text, flags=regex_flags)
@@ -58,13 +56,9 @@ class TextReplace:
                         # Replace specific number of instances
                         result = pattern.sub(replace_text, input_text, count=replace_count)
                     
-                    # Debug print
-                    # print(f"Regex Result: {result}")
-                    
                     return (result,)
                 
                 except re.error as regex_compile_error:
-                    # print(f"Invalid Regex Pattern: {regex_compile_error}")
                     return (input_text,)
             
             else:
@@ -121,10 +115,9 @@ class TextReplace:
             return (result,)
             
         except Exception as e:
-            # print(f"Unexpected error during text replacement: {e}")
             return (input_text,)
 
     @classmethod
-    def IS_CHANGED(cls, input_text, search_text, replace_text, replace_count, use_regex, case_sensitive, trim_whitespace):
+    def IS_CHANGED(cls, *args):
         # Return float("NaN") to ensure the node always processes
         return float("NaN")

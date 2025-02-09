@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-import logging
+# import logging
 
 class CombineImages:
     @classmethod
@@ -24,8 +24,8 @@ class CombineImages:
     def all_in_one_images(self, number_of_images, all_in_one, ** kwargs):
         images = [kwargs[f"image_{i}"] for i in range(1, number_of_images + 1) if f"image_{i}" in kwargs]
         
-        for i, img in enumerate(images):
-            logging.info(f"Image {i+1} shape: {img.shape}, dtype: {img.dtype}, min: {img.min()}, max: {img.max()}")
+        # for i, img in enumerate(images):
+        #     logging.info(f"Image {i+1} shape: {img.shape}, dtype: {img.dtype}, min: {img.min()}, max: {img.max()}")
         
         if all_in_one:
             # Check if all images have the same shape

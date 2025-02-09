@@ -1,9 +1,9 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.69 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.70 🔗
 
-A list of 120 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 128 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
-#  Watch Video Intro :
+#  Watch Video Intro (Quick overview 28 minutes) :
 [![Watch the video](https://img.youtube.com/vi/jTg9QsgKYmA/hqdefault.jpg)](https://youtu.be/jTg9QsgKYmA)
 
 # Coffee : ☕☕☕☕☕ 5/5
@@ -26,6 +26,9 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `72.` [👁 Show (Float)](#72----show-float)  
 `73.` [👁 Show (String/Text)](#73----show-stringtext)  
 `74.` [👁 Show (JSON)](#74----show-json)  
+`126.` [📒 Note](#126)  
+`127.` [🖼📒 Image Note](#127)  
+`128.` [🖼👁 Preview (first) image](#128)  
 
 ## ✒ Text ✒
 `2.` [✒ Write Text](#2----write-text)  
@@ -45,7 +48,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
 `115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
-`117.` [📝👈 Line selector (🎲 Or random)](#117----line-selector--or-random)  
+`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -81,8 +84,8 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `42.` [♻ Loop (Model+Clip+Vae) - aka Checkpoint / Model](#42----loop-modelclipvae---aka-checkpoint--model)  
 `53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)  
 `54.` [♻👑 Loop Lora Selector](#54----loop-lora-selector)  
-`56.` [♻📝 Loop Sequential (Integer)](#56----loop-sequential-integer)  
-`57.` [♻📝 Loop Sequential (input Lines)](#57----loop-sequential-input-lines)  
+`56.` [♻📑 Loop Sequential (Integer)](#56----loop-sequential-integer)  
+`57.` [♻📑 Loop Sequential (input Lines)](#57----loop-sequential-input-lines)  
 `90.` [♻🔥📝 List Looper (Text Generator)](#8)  
 `91.` [♻🌄📝 List Looper (Text Generator Scenes)](#8)  
 `92.` [♻🎨📝 List Looper (Text Generator Styles)](#8)  
@@ -101,17 +104,19 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
-`117.` [📝👈 Line selector (🎲 Or random)](#117----line-selector--or-random)  
+`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117)  
 
-## 🖼💾 Image Save 💾🖼
+## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
 `17.` [💾🖼 Save image as `tmp_api.png` Temporary API](#17----save-image-as-tmp_apipng-temporary-api-%EF%B8%8F)  
 `18.` [💾🖼📁 Save image to a chosen folder name](#18----save-image-to-a-chosen-folder-name)  
 `14.` [💾🖼 Save Exact name](#1314------resize-and-save-exact-name-%EF%B8%8F)  
+`123.` 💾 Save Global Variables](#123)  
 
-## 🖼📥 Image Load 📥🖼
+## 🖼📥 Load Image / Text 📥🖼
 `29.` [📥🖼 Load Image with Transparency ▢](#29----load-image-with-transparency-)  
 `43.` [📥🖼📂 Load Images from output folder](#43----load-images-from-output-folder)  
+`124.` [📥 Load Global Variables](#124)  
 
 ## 🖼 Image - others 🖼
 `13.` [📏 Resize Image](#1314------resize-and-save-exact-name-%EF%B8%8F)  
@@ -137,12 +142,14 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `40.` [🎲 Random (Model+Clip+Vae) - aka Checkpoint / Model](#40----random-modelclipvae---aka-checkpoint--model)  
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `42.` [♻ Loop (Model+Clip+Vae) - aka Checkpoint / Model](#42----loop-modelclipvae---aka-checkpoint--model)  
-`53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)
+`53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)  
+`125.` [📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)](#125)  
 
 ## 🚀 Load loras 🚀
 `54.` [♻ Loop Lora Selector](#54----loop-lora-selector)  
 `55.` [🎲 Random Lora@ Selector](#55----random-lora-selector)  
 `114.` [📥👑 Load Lora with Path](#114----load-lora-with-path)  
+`122.` [👑 Combine Loras, Lora stack](#122)  
 
 ## ☁ Image Creation : API / cloud / remote ☁
 `106.` [☁🎨 API Image Generator (FalAI) ☁](#106----api-image-generator-falai-)  
@@ -151,7 +158,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
 `110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
 
-## 📥 Take from CivitAI 📥
+## 📥 Take from CivitAI / Hugginface 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
 `99.` [📥 Load checkpoint SDXL (+Download from CivitAi)](#99----load-checkpoint-sdxl-download-from-civitai)  
 `100.` [📥 Load checkpoint Pony (+Download from CivitAi)](#100----load-checkpoint-pony-download-from-civitai)  
@@ -161,6 +168,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `104.` [📥👑 Load Lora SDXL (+Download from CivitAi)](#104----load-lora-sdxl-download-from-civitai)  
 `105.` [📥👑 Load Lora Pony (+Download from CivitAi)](#105----load-lora-pony-download-from-civitai)  
 `119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
+`121.` [💾 Huggingface Downloader](#121)  
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
@@ -375,6 +383,11 @@ cd /where/you/installed/ComfyUI && python main.py
 - **0.67**: Add kokoro TTS node.
 - **0.68**: Update kokoro TTS node with connect_to_workflow and same outputs as XTTS.
 - **0.69**: Small fixes
+- **0.70**: ❗Breaking changes : "Line Selector Node" is now a "universal node" : manual selection, random, and LOOP + Sequential.
+Text replace now have multine option for regex. (https://github.com/justUmen/Bjornulf_custom_nodes/issues/17) - can remove <think> tag from ollama.  
+8 new nodes : "🖼👁 Preview (first) image", "💾 Huggingface Downloader", "👑 Combine Loras, Lora stack", "📥 Load Global Variables", "💾 Save Global Variables", "📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)", "📒 Note", "🖼📒 Image Note".
+Fix a lot of code everywhere, a little better logging system, etc...  
+WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71) Maybe don't use them yet...
 
 # 📝 Nodes descriptions
 
@@ -1091,7 +1104,7 @@ Just take a single Lora at random from a list of Loras.
 
 ![random lora selector](screenshots/random_lora_selector.png)
 
-### 56 - ♻📝 Loop Sequential (Integer)
+### 56 - ♻📑📝 Loop Sequential (Integer)
 
 **Description:**  
 This loop works like a normal loop, BUT it is sequential : It will run only once for each workflow run !!!  
@@ -1106,7 +1119,7 @@ Update 0.57: Now also contains the next counter in the reset button.
 ![loop sequential integer](screenshots/loop_sequential_integer_3.png)  
 ![loop sequential integer](screenshots/loop_sequential_integer_4.png)  
 
-### 57 - ♻📝 Loop Sequential (input Lines)
+### 57 - ♻📑 Loop Sequential (input Lines)
 
 **Description:**  
 This loop works like a normal loop, BUT it is sequential : It will run only once for each workflow run !!!  
@@ -1276,6 +1289,8 @@ Replace text with another text, allow regex and more options, check examples bel
 ![text replace](screenshots/text_replace_1.png)  
 ![text replace](screenshots/text_replace_2.png)  
 ![text replace](screenshots/text_replace_3.png)  
+
+0.70 ： Text replace now have multiline option for regex.
 
 ### 76 - ⚙📹 FFmpeg Configuration 📹⚙
 
@@ -1664,7 +1679,7 @@ If you want, with `Load Text From Path` you can also recover the elements in "Bj
 
 ![Load Text](screenshots/load_text_PATH.png)  
 
-#### 117 - 📝👈 Line selector (🎲 Or random)
+#### 117 - 📝👈 Line selector (🎲 or ♻ or ♻📑)
 
 **Description:**  
 
@@ -1703,3 +1718,78 @@ Another Text to Speech node based on Kokoro. : https://github.com/thewh1teagle/k
 Lightweight, much simpler, no configuration and fully integrated into Comfyui. (No external backend to run.)  
 
 ![tts kokoro](screenshots/kokoro_tts.png)  
+
+#### 121 - 💾 Huggingface Downloader
+
+**Description:**  
+This node allows you to download models/vae/unet etc... directly from huggingface with your access token.  
+
+![huggingface dl](screenshots/huggingface_dl.png)  
+
+#### 122 - 👑 Combine Loras, Lora stack
+
+**Description:**  
+If you want to have multiple loras in a single node, well this is it.  
+
+![Lora stack](screenshots/lora_stacks.png)  
+
+#### 123 - 💾 Save Global Variables
+
+**Description:**  
+So if you know how to use variables with my nodes, this node gives you the opportunity to create global variables.  
+This node is very simple, it will just append (or overwrite) the file : `Bjornulf/GlobalVariables.txt` (You can edit that manually if you want.)
+
+![Global Save](screenshots/global_save.png)  
+
+#### 124 - 📥 Load Global Variables
+
+**Description:**  
+This node will load the global variables as text from the file `Bjornulf/GlobalVariables.txt`.  
+Here is an example of usage save/load :
+
+![Global images](screenshots/global_load.png)  
+
+#### 125 - 📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)
+
+**Description:**  
+
+If you want to use and manage multiple models/clip/vae : this is the universal node for it.  
+You can run them in a LOOP, one at RANDOM, a LOOP SEQUENTIAL (one at a time for each workflow run) and even SELECT a specific one.  
+
+![model clip vae selector](screenshots/model_clip_vae_selector.png)  
+
+#### 126 - 📒 Note
+
+**Description:**  
+Sometimes I want to add a NOTE but I want this note to be connected to a specific spaghetti.  
+So you can use this to write details about a specific connection, it will move with it.  
+
+You can do whatever you want of course, below is an example about HunYuan video generation. (You can quickly switch connection to the rest of your workflow, depending on what you want to run.)
+
+![note](screenshots/note.png)  
+
+#### 127 - 🖼📒 Image Note
+
+**Description:**  
+
+You can use this node to have it show a previously generated image and some custom text. (Use image_path or IMAGE type.)  
+![Image note](screenshots/image_note.png)  
+
+You can use the text to display the prompt used to generate the image for example.
+
+Sometimes I want to display an image to explain what something specific is doing visually. (For example a stack of loras will have a specific style.)  
+Here is a complex example on how i use that, for a list of loras stacks. (I then "select" a style by using node `125 - Model-Clip-Vae selector`)  
+
+![Image note](screenshots/image_notes.png)  
+
+#### 128 - 🖼👁 Preview (first) image
+
+This node can display a preview of an image...  
+- But also can take a list of images and preview only the first image. (Useful for video, it will take the first image.)  
+- But can also take as input the full path of an image.  
+- BUT it can also take a video path as input and extract the first frame of it.  
+Very useful for testing when working with videos.  
+Below is a visual example of what I just said :  
+
+**Description:**  
+![First image preview](screenshots/first_image_preview.png)  

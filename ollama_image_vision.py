@@ -7,7 +7,7 @@ import requests
 import json
 import ollama
 from ollama import Client
-import logging
+# import logging
 import hashlib
 from typing import Dict, Any
 from PIL.PngImagePlugin import PngInfo

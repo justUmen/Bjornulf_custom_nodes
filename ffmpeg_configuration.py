@@ -1,13 +1,12 @@
 import json
 import subprocess
-import ffmpeg  # Assuming the Python FFmpeg bindings (ffmpeg-python) are installed
+import ffmpeg
 
 class FFmpegConfig:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "use_python_ffmpeg": ("BOOLEAN", {"default": False}),
                 "ffmpeg_path": ("STRING", {"default": "ffmpeg"}),
                 "video_codec": ([
                     "None",
@@ -64,9 +63,9 @@ class FFmpegConfig:
                     "step": 0.01,
                     "description": "Force output FPS (0 = use source FPS)"
                 }),
-                
-                "width": ("INT", {"default": 1152, "min": 1, "max": 10000}),
-                "height": ("INT", {"default": 768, "min": 1, "max": 10000}),
+                "enabled_change_resolution": ("BOOLEAN", {"default": False}),
+                "width": ("INT", {"default": 0, "min": 0, "max": 10000}),
+                "height": ("INT", {"default": 0, "min": 0, "max": 10000}),
                 
                 "ignore_audio": ("BOOLEAN", {"default": False}),
                 "audio_codec": ([
@@ -79,6 +78,11 @@ class FFmpegConfig:
                     "none"
                 ], {"default": "aac"}),
                 "audio_bitrate": ("STRING", {"default": "192k"}),
+                
+                "force_transparency": ("BOOLEAN", {
+                    "default": False,
+                    "description": "Force transparency in WebM output"
+                }),
             }
         }
 
@@ -87,30 +91,22 @@ class FFmpegConfig:
     FUNCTION = "create_config"
     CATEGORY = "Bjornulf"
 
-    def get_ffmpeg_version(self, ffmpeg_path, use_python_ffmpeg):
-        if use_python_ffmpeg:
-            try:
-                # Retrieve Python ffmpeg-python version
-                return f"Python FFmpeg binding (ffmpeg-python) version: {ffmpeg.__version__}"
-            except AttributeError:
-                return "Python FFmpeg binding (ffmpeg-python) version: Unknown (no __version__ attribute)"
-        else:
-            try:
-                # Retrieve system FFmpeg version
-                result = subprocess.run(
-                    [ffmpeg_path, "-version"],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    text=True
-                )
-                version_line = result.stdout.splitlines()[0]
-                return version_line
-            except Exception as e:
-                return f"Error fetching FFmpeg version: {e}"
+    def get_ffmpeg_version(self, ffmpeg_path):
+        try:
+            result = subprocess.run(
+                [ffmpeg_path, "-version"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+            version_line = result.stdout.splitlines()[0]
+            return version_line
+        except Exception as e:
+            return f"Error fetching FFmpeg version: {e}"
 
-    def create_json_output(self, config, use_python_ffmpeg):
+    def create_json_output(self, config):
         """Create a JSON string containing all FFmpeg configuration."""
-        ffmpeg_version = self.get_ffmpeg_version(config["ffmpeg_path"], use_python_ffmpeg)
+        ffmpeg_version = self.get_ffmpeg_version(config["ffmpeg_path"])
         config_info = {
             "ffmpeg": {
                 "path": config["ffmpeg_path"],
@@ -122,14 +118,16 @@ class FFmpegConfig:
                 "preset": config["preset"] or "None",
                 "pixel_format": config["pixel_format"] or "None",
                 "crf": config["crf"],
-                "resolution": {
-                    "width": config["width"],
-                    "height": config["height"]
-                },
+                "resolution": (
+                    {"width": config["width"], "height": config["height"]}
+                    if (config["enabled_change_resolution"] and config["width"] > 0 and config["height"] > 0)
+                    else None
+                ),
                 "fps": {
                     "force_fps": config["force_fps"],
                     "enabled": config["force_fps"] > 0
-                }
+                },
+                "force_transparency": config["force_transparency"]
             },
             "audio": {
                 "enabled": not config["ignore_audio"],
@@ -142,9 +140,10 @@ class FFmpegConfig:
         }
         return json.dumps(config_info, indent=2)
 
-    def create_config(self, ffmpeg_path, use_python_ffmpeg, ignore_audio, video_codec, audio_codec,
+    def create_config(self, ffmpeg_path, ignore_audio, video_codec, audio_codec,
                      video_bitrate, audio_bitrate, preset, pixel_format,
-                     container_format, crf, force_fps, width, height):
+                     container_format, crf, force_fps, enabled_change_resolution, 
+                     width, height, force_transparency):
                      
         config = {
             "ffmpeg_path": ffmpeg_path,
@@ -152,6 +151,7 @@ class FFmpegConfig:
             "preset": None if preset == "None" else preset,
             "crf": crf,
             "force_fps": force_fps,
+            "enabled_change_resolution": enabled_change_resolution,
             "ignore_audio": ignore_audio,
             "audio_bitrate": audio_bitrate,
             "width": width,
@@ -160,12 +160,14 @@ class FFmpegConfig:
             "pixel_format": None if pixel_format == "None" else pixel_format,
             "container_format": None if container_format == "None" else container_format,
             "audio_codec": None if audio_codec == "None" or ignore_audio else audio_codec,
+            "force_transparency": force_transparency
         }
 
-        return (self.create_json_output(config, use_python_ffmpeg),)
+        return (self.create_json_output(config),)
 
     @classmethod 
-    def IS_CHANGED(cls, ffmpeg_path, use_python_ffmpeg, ignore_audio, video_codec, audio_codec,
+    def IS_CHANGED(cls, ffmpeg_path, ignore_audio, video_codec, audio_codec,
                   video_bitrate, audio_bitrate, preset, pixel_format,
-                  container_format, crf, force_fps, width, height) -> float:
+                  container_format, crf, force_fps, enabled_change_resolution, 
+                  width, height, force_transparency) -> float:
         return 0.0

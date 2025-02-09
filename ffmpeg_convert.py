@@ -24,7 +24,7 @@ class ConvertVideo:
     CATEGORY = "Bjornulf"
 
     def __init__(self):
-        self.output_dir = Path(os.path.abspath("ffmpeg/converted_videos"))
+        self.output_dir = Path(os.path.abspath("Bjornulf/ffmpeg/converted_videos"))
         os.makedirs(self.output_dir, exist_ok=True)
 
     def get_default_config(self):
@@ -190,8 +190,7 @@ class ConvertVideo:
         # Use default configuration if no JSON is provided
         if FFMPEG_CONFIG_JSON is None:
             default_config = self.get_default_config()
-            # Create a JSON-like structure to match the parse_config_json method's expectations
-            FFMPEG_CONFIG_JSON = {
+            config_json = {
                 'ffmpeg': {
                     'path': default_config['ffmpeg_path']
                 },
@@ -204,7 +203,7 @@ class ConvertVideo:
                     'fps': {
                         'force_fps': default_config['force_fps']
                     },
-                    'resolution': {
+                    'resolution': None if default_config['width'] == 0 or default_config['height'] == 0 else {
                         'width': default_config['width'],
                         'height': default_config['height']
                     }
@@ -218,8 +217,7 @@ class ConvertVideo:
                     'bitrate': default_config['audio_bitrate']
                 }
             }
-            # Convert to JSON string
-            FFMPEG_CONFIG_JSON = json.dumps(FFMPEG_CONFIG_JSON)
+            FFMPEG_CONFIG_JSON = json.dumps(config_json)
         
         # Parse the JSON configuration
         FFMPEG_CONFIG_JSON = self.parse_config_json(FFMPEG_CONFIG_JSON)
@@ -240,7 +238,6 @@ class ConvertVideo:
             FFMPEG_CONFIG_JSON['ffmpeg_path'], '-y',
             '-i', str(input_path)
         ]
-
         # Add video codec settings if not None
         if FFMPEG_CONFIG_JSON['video_codec'] is not None:
             if FFMPEG_CONFIG_JSON['video_codec'] == 'copy':
@@ -251,8 +248,8 @@ class ConvertVideo:
                 if FFMPEG_CONFIG_JSON['preset'] is not None:
                     cmd.extend(['-preset', FFMPEG_CONFIG_JSON['preset']])
                 
-                if FFMPEG_CONFIG_JSON['width'] and FFMPEG_CONFIG_JSON['height']:
-                    cmd.extend(['-vf', f'scale={FFMPEG_CONFIG_JSON["width"]}:{FFMPEG_CONFIG_JSON["height"]}'])
+                if 'resolution' in FFMPEG_CONFIG_JSON and FFMPEG_CONFIG_JSON['resolution'] is not None:
+                    cmd.extend(['-vf', f'scale={FFMPEG_CONFIG_JSON["resolution"]["width"]}:{FFMPEG_CONFIG_JSON["resolution"]["height"]}'])
                 
                 if FFMPEG_CONFIG_JSON['video_bitrate']:
                     cmd.extend(['-b:v', FFMPEG_CONFIG_JSON['video_bitrate']])
@@ -268,18 +265,18 @@ class ConvertVideo:
                 if FFMPEG_CONFIG_JSON['force_fps'] > 0:
                     cmd.extend(['-r', str(FFMPEG_CONFIG_JSON['force_fps'])])
 
-        # Add audio codec settings
-        if FFMPEG_CONFIG_JSON['ignore_audio'] or FFMPEG_CONFIG_JSON['audio_codec'] is None:
-            cmd.extend(['-an'])
-        elif FFMPEG_CONFIG_JSON['audio_codec'] == 'copy':
-            cmd.extend(['-c:a', 'copy'])
-        else:
-            cmd.extend([
-                '-c:a', FFMPEG_CONFIG_JSON['audio_codec'],
-                '-b:a', FFMPEG_CONFIG_JSON['audio_bitrate']
-            ])
+            # Add audio codec settings
+            if FFMPEG_CONFIG_JSON['ignore_audio'] or FFMPEG_CONFIG_JSON['audio_codec'] is None:
+                cmd.extend(['-an'])
+            elif FFMPEG_CONFIG_JSON['audio_codec'] == 'copy':
+                cmd.extend(['-c:a', 'copy'])
+            else:
+                cmd.extend([
+                    '-c:a', FFMPEG_CONFIG_JSON['audio_codec'],
+                    '-b:a', FFMPEG_CONFIG_JSON['audio_bitrate']
+                ])
 
-        cmd.append(str(output_path))
+            cmd.append(str(output_path))
         
         # Convert command list to string
         ffmpeg_command = ' '.join(cmd)

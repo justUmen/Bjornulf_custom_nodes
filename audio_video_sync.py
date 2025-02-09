@@ -5,7 +5,7 @@ import subprocess
 from datetime import datetime
 import math
 from PIL import Image
-import logging
+# import logging
 import torchvision.transforms as transforms
 
 class AudioVideoSync:
@@ -361,7 +361,7 @@ class AudioVideoSync:
         if audio_duration is None or audio_duration == 0.0:
             audio_duration = self.get_audio_duration(AUDIO)
             
-        logging.info(f"Audio duration: {audio_duration}")
+        # logging.info(f"Audio duration: {audio_duration}")
 
         # Process input source
         if IMAGES is not None and len(IMAGES) > 0:

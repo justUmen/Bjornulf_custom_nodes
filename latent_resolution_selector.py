@@ -77,7 +77,7 @@ class LatentResolutionSelector:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "generate_latent"
-    CATEGORY = "latent"
+    CATEGORY = "Bjornulf"
 
     def generate_latent(self, resolution_preset, batch_size=1):
         # Extract dimensions from the preset string

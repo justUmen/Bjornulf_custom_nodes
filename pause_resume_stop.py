@@ -1,7 +1,7 @@
 import time
 from aiohttp import web
 from server import PromptServer
-import logging
+# import logging
 from pydub import AudioSegment
 from pydub.playback import play
 import os
@@ -61,7 +61,7 @@ class PauseResume:
         self.play_audio()
         self.input = input
         while PauseResume.is_paused and not PauseResume.should_stop:
-            logging.info(f"PauseResume.is_paused: {PauseResume.is_paused}, PauseResume.should_stop: {PauseResume.should_stop}")
+            # logging.info(f"PauseResume.is_paused: {PauseResume.is_paused}, PauseResume.should_stop: {PauseResume.should_stop}")
             time.sleep(1)  # Sleep to prevent busy waiting
         
         if PauseResume.should_stop:
@@ -75,13 +75,13 @@ class PauseResume:
 
 @PromptServer.instance.routes.get("/bjornulf_resume")
 async def resume_node(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PauseResume.is_paused = False
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_stop")
 async def stop_node(request):
-    logging.info("Stop node called")
+    # logging.info("Stop node called")
     PauseResume.should_stop = True
     PauseResume.is_paused = False  # Ensure the loop exits
     return web.Response(text="Workflow stopped")

@@ -19,6 +19,9 @@ app.registerExtension({
 
     // Function to update the Reset Button text
     const updateResetButtonTextNode = () => {
+      console.log("[loop_lines_sequential]=====> updateResetButtonTextNode");
+      if (!node.graph) return;
+
       fetch("/get_current_line_number", {
         method: "POST",
       })
@@ -36,12 +39,12 @@ app.registerExtension({
               resetButton.name = `Reset Counter (next: ${next_value})`;
             }
           } else {
-            console.error("Error in context size:", data.error);
+            console.error("[Loop Lines Sequential] Error in context size:", data.error);
             resetButton.name = "Reset Counter (Error)";
           }
         })
         .catch((error) => {
-          console.error("Error fetching context size:", error);
+          console.error("[Loop Lines Sequential] Error fetching context size:", error);
           resetButton.name = "Reset Counter (Error)";
         });
     };
@@ -56,20 +59,15 @@ app.registerExtension({
           if (data.success) {
             // updateLineNumber();
             updateResetButtonTextNode();
-            app.ui.toast("Counter reset successfully!", { duration: 5000 });
+            // app.ui.dialog.show("Counter reset successfully!");
           } else {
-            app.ui.toast(
-              `Failed to reset counter: ${data.error || "Unknown error"}`,
-              { type: "error", duration: 5000 }
-            );
+            app.ui.dialog.show(
+              `[Loop Lines Sequential] Failed to reset counter: ${data.error || "Unknown error"}`);
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          app.ui.toast("An error occurred while resetting the counter.", {
-            type: "error",
-            duration: 5000,
-          });
+          console.error("[Loop Lines Sequential] Error:", error);
+          app.ui.dialog.show("[Loop Lines Sequential] An error occurred while resetting the counter.");
         });
     });
 
@@ -82,20 +80,15 @@ app.registerExtension({
         .then((data) => {
           if (data.success) {
             updateResetButtonTextNode();
-            app.ui.toast("Counter incremented", { duration: 3000 });
+            // app.ui.dialog.show("Counter incremented");
           } else {
-            app.ui.toast(
-              `Failed to increment counter: ${data.error || "Unknown error"}`,
-              { type: "error", duration: 5000 }
-            );
+            app.ui.dialog.show(
+              `[Loop Lines Sequential] Failed to increment counter: ${data.error || "Unknown error"}`);
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          app.ui.toast("An error occurred while incrementing the counter.", {
-            type: "error",
-            duration: 5000,
-          });
+          console.error("[Loop Lines Sequential] Error:", error);
+          app.ui.dialog.show("[Loop Lines Sequential] An error occurred while incrementing the counter.");
         });
     });
 
@@ -108,48 +101,17 @@ app.registerExtension({
         .then((data) => {
           if (data.success) {
             updateResetButtonTextNode();
-            app.ui.toast("Counter decremented", { duration: 3000 });
+            // app.ui.dialog.show("Counter decremented");
           } else {
-            app.ui.toast(
-              `Failed to decrement counter: ${data.error || "Unknown error"}`,
-              { type: "error", duration: 5000 }
-            );
+            app.ui.dialog.show(
+              `[Loop Lines Sequential] Failed to decrement counter: ${data.error || "Unknown error"}`);
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          app.ui.toast("An error occurred while decrementing the counter.", {
-            type: "error",
-            duration: 5000,
-          });
+          console.error("[Loop Lines Sequential] Error:", error);
+          app.ui.dialog.show("[Loop Lines Sequential] An error occurred while decrementing the counter.");
         });
     });
-
-    // Add reset button
-    // const resetButton = node.addWidget("button", "Reset Counter", null, () => {
-    //   fetch("/reset_lines_counter", {
-    //     method: "POST",
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       if (data.success) {
-    //         updateLineNumber();
-    //         app.ui.toast("Counter reset successfully!", { duration: 5000 });
-    //       } else {
-    //         app.ui.toast(
-    //           `Failed to reset counter: ${data.error || "Unknown error"}`,
-    //           { type: "error", duration: 5000 }
-    //         );
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error:", error);
-    //       app.ui.toast("An error occurred while resetting the counter.", {
-    //         type: "error",
-    //         duration: 5000,
-    //       });
-    //     });
-    // });
 
     // Update line number periodically
     setTimeout(updateResetButtonTextNode, 0);
@@ -178,10 +140,7 @@ app.registerExtension({
       if (result instanceof Promise) {
         return result.catch((error) => {
           if (error.message.includes("Counter has reached its limit")) {
-            app.ui.toast(`Execution blocked: ${error.message}`, {
-              type: "error",
-              duration: 5000,
-            });
+            app.ui.dialog.show(`[Loop Lines Sequential] Execution blocked: ${error.message}`);
           }
           throw error;
         });

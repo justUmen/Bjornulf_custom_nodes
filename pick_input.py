@@ -1,7 +1,7 @@
 import time
 from aiohttp import web
 from server import PromptServer
-import logging
+# import logging
 from pydub import AudioSegment
 from pydub.playback import play
 import os
@@ -62,11 +62,11 @@ class PickInput:
 
     def pick_input(self, seed, **kwargs):
         random.seed(seed)
-        logging.info(f"Selected input at the start: {PickInput.selected_input}")
+        # logging.info(f"Selected input at the start: {PickInput.selected_input}")
         self.play_audio()
         
         while PickInput.is_paused and not PickInput.should_stop:
-            logging.info(f"PickInput.is_paused: {PickInput.is_paused}, PickInput.should_stop: {PickInput.should_stop}")
+            # logging.info(f"PickInput.is_paused: {PickInput.is_paused}, PickInput.should_stop: {PickInput.should_stop}")
             time.sleep(1)  # Sleep to prevent busy waiting
         
         if PickInput.should_stop:
@@ -79,12 +79,12 @@ class PickInput:
         
         # Check if the selected input exists in kwargs
         if PickInput.selected_input not in kwargs:
-            logging.error(f"Selected input '{PickInput.selected_input}' not found in kwargs")
-            logging.info(f"Available kwargs: {list(kwargs.keys())}")
+            # logging.error(f"Selected input '{PickInput.selected_input}' not found in kwargs")
+            # logging.info(f"Available kwargs: {list(kwargs.keys())}")
             return (None,)  # or handle this error as appropriate
         
         selected_value = kwargs.get(PickInput.selected_input)
-        logging.info(f"Value of selected input '{PickInput.selected_input}': {selected_value}")
+        # logging.info(f"Value of selected input '{PickInput.selected_input}': {selected_value}")
         
         # Store the value in self.target if needed
         self.target = selected_value
@@ -100,77 +100,77 @@ class PickInput:
 
 @PromptServer.instance.routes.get("/bjornulf_stop_pick")
 async def stop_node_pick(request):
-    logging.info("Stop node pick called")
+    # logging.info("Stop node pick called")
     PickInput.should_stop = True
     PickInput.is_paused = False  # Ensure the loop exits
     return web.Response(text="Workflow stopped")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_1")
 async def bjornulf_select_input_1(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_1"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_2")
 async def bjornulf_select_input_2(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_2"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_3")
 async def bjornulf_select_input_3(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_3"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_4")
 async def bjornulf_select_input_4(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_4"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_5")
 async def bjornulf_select_input_5(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_5"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_6")
 async def bjornulf_select_input_6(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_6"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_7")
 async def bjornulf_select_input_7(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_7"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_8")
 async def bjornulf_select_input_8(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_8"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_9")
 async def bjornulf_select_input_9(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_9"
     return web.Response(text="Node resumed")
 
 @PromptServer.instance.routes.get("/bjornulf_select_input_10")
 async def bjornulf_select_input_10(request):
-    logging.info("Resume node called")
+    # logging.info("Resume node called")
     PickInput.is_paused = False
     PickInput.selected_input="input_10"
     return web.Response(text="Node resumed")

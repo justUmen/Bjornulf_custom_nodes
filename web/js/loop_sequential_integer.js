@@ -23,6 +23,9 @@ app.registerExtension({
 
     // Function to update the Reset Button text
     const updateResetButtonTextNode = () => {
+      console.log("[loop_sequential_integer]=====> updateResetButtonTextNode");
+      if (!node.graph) return;
+      
       fetch("/get_counter_value", {
         method: "POST",
       })
@@ -49,12 +52,12 @@ app.registerExtension({
               }
             }
           } else {
-            console.error("Error in context size:", data.error);
+            console.error("[Loop Integer Sequential] Error in context size:", data.error);
             resetButton.name = "Reset Counter (Error)";
           }
         })
         .catch((error) => {
-          console.error("Error fetching context size:", error);
+          console.error("[Loop Integer Sequential] Error fetching context size:", error);
           resetButton.name = "Reset Counter (Error)";
         });
     };
@@ -69,20 +72,15 @@ app.registerExtension({
           if (data.success) {
             // updateLineNumber();
             updateResetButtonTextNode();
-            app.ui.toast("Counter reset successfully!", { duration: 5000 });
+            // app.ui.dialog.show("Counter reset successfully!");
           } else {
-            app.ui.toast(
-              `Failed to reset counter: ${data.error || "Unknown error"}`,
-              { type: "error", duration: 5000 }
-            );
+            app.ui.dialog.show(
+              `[Loop Integer Sequential] Failed to reset counter: ${data.error || "Unknown error"}`);
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          app.ui.toast("An error occurred while resetting the counter.", {
-            type: "error",
-            duration: 5000,
-          });
+          console.error("[Loop Integer Sequential] Error:", error);
+          app.ui.dialog.show("[Loop Integer Sequential] An error occurred while resetting the counter.");
         });
     });
 
@@ -92,8 +90,8 @@ app.registerExtension({
       const result = originalExecute.apply(this, arguments);
       if (result instanceof Promise) {
         return result.catch((error) => {
-          if (error.message.includes("Counter has reached its limit")) {
-            app.ui.toast(`Execution blocked: ${error.message}`, {
+          if (error.message.includes("[Loop Integer Sequential] Counter has reached its limit")) {
+            app.ui.dialog.show(`[Loop Integer Sequential] Execution blocked: ${error.message}`, {
               type: "error",
               duration: 5000,
             });
@@ -150,20 +148,15 @@ app.registerExtension({
             if (data.success) {
               // updateLineNumber();
               updateResetButtonTextNode();
-              app.ui.toast("Counter reset successfully!", { duration: 5000 });
+              // app.ui.dialog.show("Counter reset successfully!", { duration: 5000 });
             } else {
-              app.ui.toast(
-                `Failed to reset counter: ${data.error || "Unknown error"}`,
-                { type: "error", duration: 5000 }
-              );
+              app.ui.dialog.show(
+                `[Loop Integer Sequential] Failed to reset counter: ${data.error || "Unknown error"}`);
             }
           })
           .catch((error) => {
-            console.error("Error:", error);
-            app.ui.toast("An error occurred while resetting the counter.", {
-              type: "error",
-              duration: 5000,
-            });
+            console.error("[Loop Integer Sequential] Error:", error);
+            app.ui.dialog.show("[Loop Integer Sequential] An error occurred while resetting the counter.");
           });
       };
     }

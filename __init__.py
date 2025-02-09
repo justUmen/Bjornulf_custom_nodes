@@ -1,5 +1,5 @@
 from .show_stuff import ShowFloat, ShowInt, ShowStringText, ShowJson
-from .images_to_video import imagesToVideo
+from .ffmpeg_images_to_video import imagesToVideo
 from .write_text import WriteText
 from .text_replace import TextReplace
 # from .write_image_environment import WriteImageEnvironment
@@ -17,7 +17,7 @@ from .loop_integer import LoopInteger
 from .loop_basic_batch import LoopBasicBatch
 from .loop_samplers import LoopSamplers
 from .loop_schedulers import LoopSchedulers
-from .ollama import ollamaLoader
+# from .ollama import ollamaLoader OBSOLETE
 from .show_text import ShowText
 from .save_text import SaveText
 from .save_tmp_image import SaveTmpImage
@@ -58,16 +58,16 @@ from .combine_images import CombineImages
 from .text_scramble_character import ScramblerCharacter
 from .audio_video_sync import AudioVideoSync
 from .video_path_to_images import VideoToImagesList
-from .images_to_video_path import ImagesListToVideo
+from .ffmpeg_images_to_video_path import ImagesListToVideo
 from .video_preview import VideoPreview
 from .loop_model_selector import LoopModelSelector
 from .random_lora_selector import RandomLoraSelector
 from .loop_lora_selector import LoopLoraSelector
 from .loop_sequential_integer import LoopIntegerSequential
 from .loop_lines_sequential import LoopLinesSequential
-from .concat_videos import ConcatVideos
-from .concat_videos_from_list import ConcatVideosFromList
-from .combine_video_audio import CombineVideoAudio
+from .ffmpeg_concat_videos import ConcatVideos
+from .ffmpeg_concat_videos_from_list import ConcatVideosFromList
+from .ffmpeg_combine_video_audio import CombineVideoAudio
 from .images_merger_horizontal import MergeImagesHorizontally
 from .images_merger_vertical import MergeImagesVertically
 from .ollama_talk import OllamaTalk
@@ -95,9 +95,26 @@ from .load_text import LoadTextFromFolder, LoadTextFromPath
 from .string_splitter import TextSplitin5
 from .line_selector import LineSelector
 from .text_to_speech_kokoro import KokoroTTS
+from .note_text import DisplayNote
+from .note_image import ImageNote
+from .model_clip_vae_selector import ModelClipVaeSelector
+from .global_variables import LoadGlobalVariables, SaveGlobalVariables
+from .lora_stacks import AllLoraSelector
+from .hugginface_download import HuggingFaceDownloader
+from .preview_first_image import PreviewFirstImage
+# from .video_latent import VideoLatentResolutionSelector
 # from .empty_latent_video import EmptyVideoLatentWithSingle
 # from .text_generator_t2v import TextGeneratorText2Video
 NODE_CLASS_MAPPINGS = {
+    "Bjornulf_PreviewFirstImage": PreviewFirstImage,
+    "Bjornulf_HuggingFaceDownloader": HuggingFaceDownloader,
+    # "Bjornulf_VideoLatentResolutionSelector": VideoLatentResolutionSelector,
+    "Bjornulf_AllLoraSelector": AllLoraSelector,
+    "Bjornulf_LoadGlobalVariables": LoadGlobalVariables,
+    "Bjornulf_SaveGlobalVariables": SaveGlobalVariables,
+    "Bjornulf_ModelClipVaeSelector": ModelClipVaeSelector,
+    "Bjornulf_DisplayNote": DisplayNote,
+    "Bjornulf_ImageNote": ImageNote,
     "Bjornulf_LineSelector": LineSelector,
     # "Bjornulf_EmptyVideoLatentWithSingle": EmptyVideoLatentWithSingle,
     "Bjornulf_XTTSConfig": XTTSConfig,
@@ -146,7 +163,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_ShowFloat": ShowFloat,
     "Bjornulf_ShowJson": ShowJson,
     "Bjornulf_ShowStringText": ShowStringText,
-    "Bjornulf_ollamaLoader": ollamaLoader,
+    # "Bjornulf_ollamaLoader": ollamaLoader, OBSOLETE
     "Bjornulf_FFmpegConfig": FFmpegConfig,
     "Bjornulf_ConvertVideo": ConvertVideo,
     "Bjornulf_AddLineNumbers": AddLineNumbers,
@@ -227,6 +244,15 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "Bjornulf_PreviewFirstImage": "🖼👁 Preview (first) image",
+    "Bjornulf_HuggingFaceDownloader": "💾 Huggingface Downloader",
+    "Bjornulf_AllLoraSelector": "👑 Combine Loras, Lora stack",
+    "Bjornulf_LoadGlobalVariables": "📥 Load Global Variables",
+    "Bjornulf_SaveGlobalVariables": "💾 Save Global Variables",
+    "Bjornulf_ModelClipVaeSelector": "📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)",
+    "Bjornulf_DisplayNote": "📒 Note",
+    "Bjornulf_ImageNote": "🖼📒 Image Note",
+    # "Bjornulf_VideoLatentResolutionSelector": "🩷📹 Empty Video Latent Selector",
     # "Bjornulf_EmptyVideoLatentWithSingle": "Bjornulf_EmptyVideoLatentWithSingle",
     "Bjornulf_XTTSConfig": "🔊 TTS Configuration ⚙",
     "Bjornulf_TextToSpeech": "📝➜🔊 TTS - Text to Speech",
@@ -235,7 +261,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_APIHiResCivitAI": "🎨➜🎨 API Image hires fix (CivitAI)",
     # "Bjornulf_CivitAILoraSelector": "lora Civit",
     "Bjornulf_KokoroTTS": "📝➜🔊 Kokoro - Text to Speech",
-    "Bjornulf_LineSelector": "📝👈 Line selector (🎲 Or random)",
+    "Bjornulf_LineSelector": "📝👈 Line selector (🎲 or ♻ or ♻📑)",
     "Bjornulf_LoaderLoraWithPath": "📥👑 Load Lora with Path",
     # "Bjornulf_TextGeneratorText2Video": "🔥📝📹 Text Generator for text to video 📹📝🔥",
     "Bjornulf_TextSplitin5": "📝🔪 Text split in 5",
@@ -290,21 +316,21 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_TextReplace": "📝➜📝 Replace text",
     "Bjornulf_AddLineNumbers": "🔢 Add line numbers",
     "Bjornulf_FFmpegConfig": "⚙📹 FFmpeg Configuration 📹⚙",
-    "Bjornulf_ConvertVideo": "📹➜📹 Convert Video",
-    "Bjornulf_VideoDetails": "📹🔍 Video details ⚙",
+    "Bjornulf_ConvertVideo": "📹➜📹 Convert Video (FFmpeg)",
+    "Bjornulf_VideoDetails": "📹🔍 Video details (FFmpeg) ⚙",
     "Bjornulf_WriteText": "✒ Write Text",
     "Bjornulf_MergeImagesHorizontally": "🖼🖼 Merge Images/Videos 📹📹 (Horizontally)",
     "Bjornulf_MergeImagesVertically": "🖼🖼 Merge Images/Videos 📹📹 (Vertically)",
     "Bjornulf_CombineVideoAudio": "📹🔊 Combine Video + Audio",
-    "Bjornulf_ConcatVideos": "📹🔗 Concat Videos",
-    "Bjornulf_ConcatVideosFromList": "📹🔗 Concat Videos from list",
-    "Bjornulf_LoopLinesSequential": "♻📝 Loop Sequential (input Lines)",
-    "Bjornulf_LoopIntegerSequential": "♻📝 Loop Sequential (Integer)",
+    "Bjornulf_ConcatVideos": "📹🔗 Concat Videos (FFmpeg)",
+    "Bjornulf_ConcatVideosFromList": "📹🔗 Concat Videos from list (FFmpeg)",
+    "Bjornulf_LoopLinesSequential": "♻📑 Loop Sequential (input Lines)",
+    "Bjornulf_LoopIntegerSequential": "♻📑 Loop Sequential (Integer)",
     "Bjornulf_LoopLoraSelector": "♻👑 Loop Lora Selector",
     "Bjornulf_RandomLoraSelector": "🎲👑 Random Lora Selector",
     "Bjornulf_LoopModelSelector": "♻ Loop Load checkpoint (Model Selector)",
     "Bjornulf_VideoPreview": "📹👁 Video Preview",
-    "Bjornulf_ImagesListToVideo": "🖼➜📹 Images to Video path (tmp video)",
+    "Bjornulf_ImagesListToVideo": "🖼➜📹 Images to Video path (tmp video) (FFmpeg)",
     "Bjornulf_VideoToImagesList": "📹➜🖼 Video Path to Images (Load video)",
     "Bjornulf_AudioVideoSync": "🔊📹 Audio Video Sync",
     "Bjornulf_ScramblerCharacter": "🔀🎲 Text scrambler (🧑 Character)",

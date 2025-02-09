@@ -215,18 +215,23 @@ async def get_current_context_size(request):
     counter_file = os.path.join("Bjornulf", "ollama", "ollama_context.txt")
     try:
         if not os.path.exists(counter_file):
-            logging.info("Context file does not exist")
+            logging.info("[Ollama] Context file does not exist")
+            # Create parent directories if they don't exist
+            os.makedirs(os.path.dirname(counter_file), exist_ok=True)
+            # Create empty file
+            open(counter_file, 'w').close()
+            logging.info(f"[Ollama] Created empty context file at: {counter_file}")
             return web.json_response({"success": True, "value": 0}, status=200)
             
         with open(counter_file, 'r', encoding='utf-8') as f:
             # Count non-empty lines in the file
             lines = [line.strip() for line in f.readlines() if line.strip()]
             line_count = len(lines)
-            logging.info(f"Found {line_count} lines in context file")
+            logging.info(f"[Ollama] Found {line_count} lines in context file")
             return web.json_response({"success": True, "value": line_count}, status=200)
                 
     except Exception as e:
-        logging.error(f"Error reading context size: {str(e)}")
+        # logging.error(f"Error reading context size: {str(e)}")
         return web.json_response({
             "success": False, 
             "error": str(e),
@@ -258,7 +263,7 @@ def get_next_filename(base_path, base_name):
 
 @PromptServer.instance.routes.post("/reset_lines_context")
 def reset_lines_context(request):
-    logging.info("Reset lines counter called")
+    # logging.info("Reset lines counter called")
     base_dir = os.path.join("Bjornulf", "ollama")
     base_file = "ollama_context"
     counter_file = os.path.join(base_dir, f"{base_file}.txt")
@@ -268,7 +273,7 @@ def reset_lines_context(request):
             # Get new filename and rename
             new_filename = os.path.join(base_dir, get_next_filename(base_dir, base_file))
             os.rename(counter_file, new_filename)
-            logging.info(f"Renamed {counter_file} to {new_filename}")
+            # logging.info(f"Renamed {counter_file} to {new_filename}")
             
             # Send notification through ComfyUI
             notification = {

@@ -14,24 +14,28 @@ app.registerExtension({
 
       // Function to update the Reset Button text
       const updateResetButtonTextNode = () => {
+        console.log("[ollama_talk]=====> updateResetButtonTextNode:");
+        if (!node.graph) return;
+
         fetch("/get_current_context_size", {
           method: "POST",
         })
           .then((response) => response.json())
           .then((data) => {
             if (data.success) {
+              // console.log("[Ollama] /get_current_context_size fetched successfully");
               if (data.value === 0) {
                 resetButton.name = "Save/Reset Context File (Empty)";
               } else {
-                resetButton.name = `Save/Reset Context File (${data.value} lines)`;
+                resetButton.name = `Reset Context File (${data.value} lines)`;
               }
             } else {
-              console.error("Error in context size:", data.error);
+              console.error("[Ollama] Error in context size:", data.error);
               resetButton.name = "Save/Reset Context File (Error)";
             }
           })
           .catch((error) => {
-            console.error("Error fetching context size:", error);
+            console.error("[Ollama] Error fetching context size:", error);
             resetButton.name = "Save/Reset Context File (Error)";
           });
       };
@@ -50,20 +54,15 @@ app.registerExtension({
               if (data.success) {
                 // updateLineNumber();
                 updateResetButtonTextNode();
-                app.ui.toast("Counter reset successfully!", { duration: 5000 });
+                app.ui.dialog.show("[Ollama] Context saved in Bjornulf/ollama and reset successfully!");
               } else {
-                app.ui.toast(
-                  `Failed to reset counter: ${data.error || "Unknown error"}`,
-                  { type: "error", duration: 5000 }
-                );
+                app.ui.dialog.show(
+                  `[Ollama] Failed to reset Context: ${data.error || "Unknown error"}`);
               }
             })
             .catch((error) => {
               console.error("Error:", error);
-              app.ui.toast("An error occurred while resetting the counter.", {
-                type: "error",
-                duration: 5000,
-              });
+              app.ui.dialog.show("[Ollama] An error occurred while resetting the Context.");
             });
         }
       );
@@ -89,31 +88,52 @@ app.registerExtension({
         })
           .then((response) => response.text())
           .then((data) => {
-            console.log("Resume response:", data);
+            console.log("[Ollama] Resume response:", data);
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => console.error("[Ollama] Error:", error));
       });
 
       // Function to update button visibility based on widget values
+      // const updateButtonVisibility = () => {
+      //   // Check context file widget
+      //   const contextWidget = node.widgets.find(
+      //     (w) => w.name === "use_context_file"
+      //   );
+      //   const isContextFileEnabled = contextWidget
+      //     ? contextWidget.value
+      //     : false;
+      //   resetButton.type = isContextFileEnabled ? "button" : "HIDDEN";
+
+      //   // Check waiting for prompt widget
+      //   const waitingWidget = node.widgets.find(
+      //     (w) => w.name === "waiting_for_prompt"
+      //   );
+      //   const isWaitingForPrompt = waitingWidget ? waitingWidget.value : false;
+      //   resumeButton.type = isWaitingForPrompt ? "button" : "HIDDEN";
+
+      //   //ALSO update reset button text node
+      //   updateResetButtonTextNode(); // Will trigger when... toggle / refresh page
+
+      //   // Force canvas redraw to update UI
+      //   node.setDirtyCanvas(true);
+      // };
+
+      // In updateButtonVisibility function - Only update when context is enabled
       const updateButtonVisibility = () => {
         // Check context file widget
-        const contextWidget = node.widgets.find(
-          (w) => w.name === "use_context_file"
-        );
-        const isContextFileEnabled = contextWidget
-          ? contextWidget.value
-          : false;
+        const contextWidget = node.widgets.find(w => w.name === "use_context_file");
+        const isContextFileEnabled = contextWidget ? contextWidget.value : false;
         resetButton.type = isContextFileEnabled ? "button" : "HIDDEN";
 
         // Check waiting for prompt widget
-        const waitingWidget = node.widgets.find(
-          (w) => w.name === "waiting_for_prompt"
-        );
+        const waitingWidget = node.widgets.find(w => w.name === "waiting_for_prompt");
         const isWaitingForPrompt = waitingWidget ? waitingWidget.value : false;
         resumeButton.type = isWaitingForPrompt ? "button" : "HIDDEN";
 
-        //ALSO update reset button text node
-        updateResetButtonTextNode(); // Will trigger when... toggle / refresh page
+        // ONLY update reset button text if context file is enabled
+        if (isContextFileEnabled) {
+          updateResetButtonTextNode();
+        }
 
         // Force canvas redraw to update UI
         node.setDirtyCanvas(true);
@@ -151,8 +171,15 @@ app.registerExtension({
       setTimeout(updateButtonVisibility, 0);
 
       // Listen for node execution events
+      // api.addEventListener("executed", async () => {
+      //   updateResetButtonTextNode();
+      // });
       api.addEventListener("executed", async () => {
-        updateResetButtonTextNode();
+        // Check if context file is enabled before updating
+        const contextWidget = node.widgets.find(w => w.name === "use_context_file");
+        if (contextWidget && contextWidget.value) {
+          updateResetButtonTextNode();
+        }
       });
 
       //If workflow is stopped during pause, cancel the run
