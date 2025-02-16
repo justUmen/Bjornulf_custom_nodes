@@ -3,8 +3,8 @@
 A list of 133 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
-#  Watch Video Intro (Quick overview 28 minutes) :
-[![Watch the video](https://img.youtube.com/vi/jTg9QsgKYmA/hqdefault.jpg)](https://youtu.be/jTg9QsgKYmA)
+#  Watch Video (Quick overview 28 minutes) :
+[![Watch the video](https://img.youtube.com/vi/jTg9QsgKYmA/hqdefault.jpg)](https://www.youtube.com/playlist?list=PL_hRi_PPLLWvUNfG_np_d3K0nBCabM3iQ)
 
 # Coffee : ☕☕☕☕☕ 5/5
 
@@ -27,12 +27,14 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `73.` [👁 Show (String/Text)](#73----show-stringtext)  
 `74.` [👁 Show (JSON)](#74----show-json)  
 `126.` [📒 Note](#126----note)  
-`127.` [🖼📒 Image Note (Load image)](#127)  
+`127.` [🖼📒 Image Note (Load image)](#130----image-note-load-image)  
 `128.` [🖼👁 Preview (first) image](#128----preview-first-image)  
+`130.` [📥🖼📒 Image Note (Load image)](#130----image-note-load-image)
+`133.` [🖼👁 Preview 1-4 images (compare)](#128----preview-first-image)  
 
 ## ✒ Text ✒
 `2.` [✒ Write Text](#2----write-text)  
-`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3)  
+`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3---🅰%EF%B8%8F-advanced-write-text---random-option)  
 `4.` [🔗 Combine Texts](#4----combine-texts)  
 `15.` [💾 Save Text](#15----save-text)  
 `26.` [🎲 Random line from input](#26----random-line-from-input)  
@@ -46,10 +48,11 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `111.` [✨➜🔢 Anything to Int](#111----anything-to-int)  
 `112.` [✨➜🔢 Anything to Float](#112----anything-to-float)  
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
-`.` [📝🔪 Text split in 10](#1)  
+`132.` [📝🔪 Text split in 10](#132----text-split-in-10)  
 `115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
-`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
+`131.` [✒👉 Write Pick Me Chain](#131----write-pick-me-chain)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -81,7 +84,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `27.` [♻ Loop (All Lines from input)](#27----loop-all-lines-from-input)  
 `33.` [♻ Loop (All Lines from input 🔗 combine by lines)](#33----loop-all-lines-from-input--combine-by-lines)  
 `38.` [♻🖼 Loop (Images)](#38----loop-images)  
-`39.` [♻ Loop (✒🗔🅰️ Advanced Write Text)](#39)  
+`39.` [♻ Loop (✒🗔🅰️ Advanced Write Text)](#39----loop-🅰%EF%B8%8F-advanced-write-text)  
 `42.` [♻ Loop (Model+Clip+Vae) - aka Checkpoint / Model](#42----loop-modelclipvae---aka-checkpoint--model)  
 `53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)  
 `54.` [♻👑 Loop Lora Selector](#54----loop-lora-selector)  
@@ -96,7 +99,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `96.` [♻👗 List Looper (Text Generator Outfits Female)](#8)  
 
 ## 🎲 Randomization 🎲
-`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3)  
+`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3---🅰%EF%B8%8F-advanced-write-text---random-option)  
 `5.` [🎲 Random (Texts)](#5----random-texts)  
 `26.` [🎲 Random line from input](#26----random-line-from-input)  
 `28.` [🔢🎲 Text with random Seed](#28----text-with-random-seed)  
@@ -105,19 +108,19 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
-`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 
 ## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
 `17.` [💾🖼 Save image as `tmp_api.png` Temporary API](#17----save-image-as-tmp_apipng-temporary-api-%EF%B8%8F)  
 `18.` [💾🖼📁 Save image to a chosen folder name](#18----save-image-to-a-chosen-folder-name)  
 `14.` [💾🖼 Save Exact name](#1314------resize-and-save-exact-name-%EF%B8%8F)  
-`123.` [💾🅰️ Save Global Variables](#123)  
+`123.` [💾🅰️ Save Global Variables](#123---🅰%EF%B8%8F-save-global-variables)  
 
 ## 🖼📥 Load Image / Text 📥🖼
 `29.` [📥🖼 Load Image with Transparency ▢](#29----load-image-with-transparency-)  
 `43.` [📥🖼📂 Load Images from output folder](#43----load-images-from-output-folder)  
-`124.` [📥🅰️ Load Global Variables](#124)  
+`124.` [📥🅰️ Load Global Variables](#124---🅰%EF%B8%8F-load-global-variables)  
 
 ## 🖼 Image - others 🖼
 `13.` [📏 Resize Image](#1314------resize-and-save-exact-name-%EF%B8%8F)  
@@ -140,9 +143,10 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `80.` [🩷 Empty Latent Selector](#80----empty-latent-selector)  
 
 ## 🅰️ Variables 🅰️
-`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
-`123.` [💾🅰️ Save Global Variables](#123)  
-`124.` [📥🅰️ Load Global Variables](#124)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
+`123.` [💾🅰️ Save Global Variables](#123---🅰%EF%B8%8F-save-global-variables)  
+`124.` [📥🅰️ Load Global Variables](#124---🅰%EF%B8%8F-load-global-variables)  
+`129.` [📌🅰️ Set Variable from Text](#129---🅰%EF%B8%8F-set-variable-from-text)  
 
 ## 🚀 Load checkpoints 🚀
 `40.` [🎲 Random (Model+Clip+Vae) - aka Checkpoint / Model](#40----random-modelclipvae---aka-checkpoint--model)  
@@ -217,7 +221,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
-`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
