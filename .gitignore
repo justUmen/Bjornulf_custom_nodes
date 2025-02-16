@@ -8,3 +8,6 @@ speakers
 web/js/*.txt
 ScriptsPerso/
 civitai/NSFW_*
+pickme.py
+web/js/pickme.js
+todo.py

@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.70 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.71 🔗
 
-A list of 128 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 133 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 #  Watch Video Intro (Quick overview 28 minutes) :
@@ -27,12 +27,12 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `73.` [👁 Show (String/Text)](#73----show-stringtext)  
 `74.` [👁 Show (JSON)](#74----show-json)  
 `126.` [📒 Note](#126----note)  
-`127.` [🖼📒 Image Note](#127----image-note)  
+`127.` [🖼📒 Image Note (Load image)](#127)  
 `128.` [🖼👁 Preview (first) image](#128----preview-first-image)  
 
 ## ✒ Text ✒
 `2.` [✒ Write Text](#2----write-text)  
-`3.` [✒🗔 Advanced Write Text (+ 🎲 random selection and 🅰️ variables)](#3----advanced-write-text---random-selection-and-🅰%EF%B8%8F-variables)  
+`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3)  
 `4.` [🔗 Combine Texts](#4----combine-texts)  
 `15.` [💾 Save Text](#15----save-text)  
 `26.` [🎲 Random line from input](#26----random-line-from-input)  
@@ -46,6 +46,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `111.` [✨➜🔢 Anything to Int](#111----anything-to-int)  
 `112.` [✨➜🔢 Anything to Float](#112----anything-to-float)  
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
+`.` [📝🔪 Text split in 10](#1)  
 `115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
 `117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117)  
@@ -80,7 +81,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `27.` [♻ Loop (All Lines from input)](#27----loop-all-lines-from-input)  
 `33.` [♻ Loop (All Lines from input 🔗 combine by lines)](#33----loop-all-lines-from-input--combine-by-lines)  
 `38.` [♻🖼 Loop (Images)](#38----loop-images)  
-`39.` [♻ Loop (✒🗔 Advanced Write Text + 🅰️ variables)](#39----loop--advanced-write-text)  
+`39.` [♻ Loop (✒🗔🅰️ Advanced Write Text)](#39)  
 `42.` [♻ Loop (Model+Clip+Vae) - aka Checkpoint / Model](#42----loop-modelclipvae---aka-checkpoint--model)  
 `53.` [♻ Loop Load checkpoint (Model Selector)](#53----loop-load-checkpoint-model-selector)  
 `54.` [♻👑 Loop Lora Selector](#54----loop-lora-selector)  
@@ -95,7 +96,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `96.` [♻👗 List Looper (Text Generator Outfits Female)](#8)  
 
 ## 🎲 Randomization 🎲
-`3.` [✒🗔 Advanced Write Text (+ 🎲 random selection and 🅰️ variables)](#3----advanced-write-text---random-selection-and-🅰%EF%B8%8F-variables)  
+`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3)  
 `5.` [🎲 Random (Texts)](#5----random-texts)  
 `26.` [🎲 Random line from input](#26----random-line-from-input)  
 `28.` [🔢🎲 Text with random Seed](#28----text-with-random-seed)  
@@ -104,19 +105,19 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `41.` [🎲 Random Load checkpoint (Model Selector)](#41----random-load-checkpoint-model-selector)  
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
-`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117----line-selector--or--or-)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
 
 ## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
 `17.` [💾🖼 Save image as `tmp_api.png` Temporary API](#17----save-image-as-tmp_apipng-temporary-api-%EF%B8%8F)  
 `18.` [💾🖼📁 Save image to a chosen folder name](#18----save-image-to-a-chosen-folder-name)  
 `14.` [💾🖼 Save Exact name](#1314------resize-and-save-exact-name-%EF%B8%8F)  
-`123.` [💾 Save Global Variables](#123----save-global-variables)  
+`123.` [💾🅰️ Save Global Variables](#123)  
 
 ## 🖼📥 Load Image / Text 📥🖼
 `29.` [📥🖼 Load Image with Transparency ▢](#29----load-image-with-transparency-)  
 `43.` [📥🖼📂 Load Images from output folder](#43----load-images-from-output-folder)  
-`124.` [📥 Load Global Variables](#124----load-global-variables)  
+`124.` [📥🅰️ Load Global Variables](#124)  
 
 ## 🖼 Image - others 🖼
 `13.` [📏 Resize Image](#1314------resize-and-save-exact-name-%EF%B8%8F)  
@@ -137,6 +138,11 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `62.` [🦙👁 Ollama Vision](#62----ollama-vision)  
 `70.` [📏 Resize Image Percentage](#70----resize-image-percentage)  
 `80.` [🩷 Empty Latent Selector](#80----empty-latent-selector)  
+
+## 🅰️ Variables 🅰️
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
+`123.` [💾🅰️ Save Global Variables](#123)  
+`124.` [📥🅰️ Load Global Variables](#124)  
 
 ## 🚀 Load checkpoints 🚀
 `40.` [🎲 Random (Model+Clip+Vae) - aka Checkpoint / Model](#40----random-modelclipvae---aka-checkpoint--model)  
@@ -211,7 +217,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
-`117.` [📝👈 Line selector (🎲 or ♻ or ♻📑)](#117----line-selector--or--or-)  
+`117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
@@ -388,7 +394,8 @@ cd /where/you/installed/ComfyUI && python main.py
 Text replace now have multine option for regex. (https://github.com/justUmen/Bjornulf_custom_nodes/issues/17) - can remove <think> tag from ollama.  
 8 new nodes : "🖼👁 Preview (first) image", "💾 Huggingface Downloader", "👑 Combine Loras, Lora stack", "📥 Load Global Variables", "💾 Save Global Variables", "📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)", "📒 Note", "🖼📒 Image Note".
 Fix a lot of code everywhere, a little better logging system, etc...  
-WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71) Maybe don't use them yet...
+WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71?) Maybe don't use them yet...
+- **0.71**: ❗Breaking changes for Global variable nodes. (add to global variable system a "filename", which is a a separate global variable file.) bug fix speech to text node, 5 new nodes 129-133. combine text limit raised to 100. improve Save image in folder node.
 
 # 📝 Nodes descriptions
 
@@ -410,7 +417,7 @@ Simple node to write text.
 
 ![write Text](screenshots/write.png)
 
-## 3 - ✒🗔 Advanced Write Text (+ 🎲 random selection and 🅰️ variables)
+## 3 - ✒🗔🅰️ Advanced Write Text (+ 🎲 random option)
 
 **Description:**  
 Advanced Write Text node allows for special syntax to accept random variants, like `{hood|helmet}` will randomly choose between hood or helmet.  
@@ -852,7 +859,7 @@ Loop over a list of images.
 Usage example : You have a list of images, and you want to apply the same process to all of them.  
 Above is an example of the loop images node sending them to an Ipadapter workflow. (Same seed of course.)  
 
-### 39 - ♻ Loop (✒🗔 Advanced Write Text)
+### 39 - ♻ Loop (✒🗔🅰️ Advanced Write Text)
 
 **Description:**  
 If you need a quick loop but you don't want something too complex with a loop node, you can use this combined write text + loop.  
@@ -1680,7 +1687,7 @@ If you want, with `Load Text From Path` you can also recover the elements in "Bj
 
 ![Load Text](screenshots/load_text_PATH.png)  
 
-#### 117 - 📝👈 Line selector (🎲 or ♻ or ♻📑)
+#### 117 - 📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)
 
 **Description:**  
 
@@ -1734,7 +1741,7 @@ If you want to have multiple loras in a single node, well this is it.
 
 ![Lora stack](screenshots/lora_stacks.png)  
 
-#### 123 - 💾 Save Global Variables
+#### 123 - 💾🅰️ Save Global Variables
 
 **Description:**  
 So if you know how to use variables with my nodes, this node gives you the opportunity to create global variables.  
@@ -1742,7 +1749,7 @@ This node is very simple, it will just append (or overwrite) the file : `Bjornul
 
 ![Global Save](screenshots/global_save.png)  
 
-#### 124 - 📥 Load Global Variables
+#### 124 - 📥🅰️ Load Global Variables
 
 **Description:**  
 This node will load the global variables as text from the file `Bjornulf/GlobalVariables.txt`.  
@@ -1775,6 +1782,7 @@ You can use this node to have it show a previously generated image and some cust
 ![Image note](screenshots/image_note.png)  
 
 You can use the text to display the prompt used to generate the image for example.
+It's behavior is like a "Preview image" node. (See node 130 if you want a behavior similar to "Load image")  
 
 Sometimes I want to display an image to explain what something specific is doing visually. (For example a stack of loras will have a specific style.)  
 Here is a complex example on how i use that, for a list of loras stacks. (I then "select" a style by using node `125 - Model-Clip-Vae selector`)  
@@ -1792,3 +1800,51 @@ Very useful for testing when working with videos.
 Below is a visual example of what I just said :  
 
 ![First image preview](screenshots/first_image_preview.png)  
+
+#### 129 - 📌🅰️ Set Variable from Text
+
+**Description:**  
+This node will just quickly transform a text in another text which can be quickly used for all my variables nodes.
+Here is an example below with "Advanced write text", but you can use with all of them, global variables, etc...
+
+![text_to_variable](screenshots/text_to_variable.png)  
+
+#### 130 - 📥🖼📒 Image Note (Load image)
+
+**Description:**  
+This node is quite similar to the node 127. But this one uses LoadImage instead of a preview system.  
+So if you want to have a "preview" before you launch workflow one time, you can use this one.  
+It's behaviour is like a "Load image" node.  
+
+![Image note Load](screenshots/note_load_image.png)  
+
+#### 131 - ✒👉 Write Pick Me Chain
+
+**Description:**  
+So this is a new "write text" node.  
+But with a twist. You can connect them to each other and when clicking on the PICK ME button, it will disable all other write text node of the chain and activate only the one you click on. (It will turn green.)  
+So with this node, you can switch from one prompt to another by the click of a button !!
+Not limited to one line, you can use list, variables, etc... but below is a simple example :  
+
+![write pick me chain](screenshots/write_pick_me_chain.png)  
+
+#### 132 - 📝🔪 Text split in 10
+
+**Description:**  
+Same as node 113, but split in 10 parts.  
+One day I had 6, and got stuck with the split in 5 node, so i guess it can be useful sometimes, let's make one with 10...
+
+![text split 10](screenshots/text_split_10.png)  
+
+#### 133 - 🖼👁 Preview 1-4 images (compare)
+
+**Description:**  
+Cool node that you can use to compare several images.  
+The middle is a cursor that you can move wherever you want by just clicking on the image.  
+Below is an example, you can see that at this size/resolution, 25% is almost as good as the initial image.  
+
+![four previews](screenshots/four_preview.png)  
+
+Here is a zoom on the same image :  
+
+![four previews](screenshots/four_preview_zoom.png)  

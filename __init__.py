@@ -92,11 +92,11 @@ from .API_falAI import APIGenerateFalAI
 from .latent_resolution_selector import LatentResolutionSelector
 from .loader_lora_with_path import LoaderLoraWithPath
 from .load_text import LoadTextFromFolder, LoadTextFromPath
-from .string_splitter import TextSplitin5
+from .string_splitter import TextSplitin5, TextSplitin10
 from .line_selector import LineSelector
 from .text_to_speech_kokoro import KokoroTTS
 from .note_text import DisplayNote
-from .note_image import ImageNote
+from .note_image import ImageNote, ImageNoteLoadImage
 from .model_clip_vae_selector import ModelClipVaeSelector
 from .global_variables import LoadGlobalVariables, SaveGlobalVariables
 from .lora_stacks import AllLoraSelector
@@ -105,7 +105,18 @@ from .preview_first_image import PreviewFirstImage
 # from .video_latent import VideoLatentResolutionSelector
 # from .empty_latent_video import EmptyVideoLatentWithSingle
 # from .text_generator_t2v import TextGeneratorText2Video
+from .images_compare import FourImageViewer
+# from .pickme import WriteTextPickMe, PickMe
+from .write_pickme_chain import WriteTextPickMeChain
+# from .todo import ToDoList
+from .text_to_variable import TextToVariable
 NODE_CLASS_MAPPINGS = {
+    "Bjornulf_TextToVariable": TextToVariable,
+    # "Bjornulf_ToDoList": ToDoList,
+    # "Bjornulf_WriteTextPickMe": WriteTextPickMe,
+    "Bjornulf_WriteTextPickMeChain": WriteTextPickMeChain,
+    # "Bjornulf_PickMe": PickMe,
+    "Bjornulf_FourImageViewer": FourImageViewer,
     "Bjornulf_PreviewFirstImage": PreviewFirstImage,
     "Bjornulf_HuggingFaceDownloader": HuggingFaceDownloader,
     # "Bjornulf_VideoLatentResolutionSelector": VideoLatentResolutionSelector,
@@ -115,6 +126,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_ModelClipVaeSelector": ModelClipVaeSelector,
     "Bjornulf_DisplayNote": DisplayNote,
     "Bjornulf_ImageNote": ImageNote,
+    "Bjornulf_ImageNoteLoadImage": ImageNoteLoadImage,
     "Bjornulf_LineSelector": LineSelector,
     # "Bjornulf_EmptyVideoLatentWithSingle": EmptyVideoLatentWithSingle,
     "Bjornulf_XTTSConfig": XTTSConfig,
@@ -125,6 +137,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_LoadTextFromPath": LoadTextFromPath,
     "Bjornulf_LoadTextFromFolder": LoadTextFromFolder,
     "Bjornulf_TextSplitin5": TextSplitin5,
+    "Bjornulf_TextSplitin10": TextSplitin10,
     "Bjornulf_APIGenerateFlux": APIGenerateFlux,
     "Bjornulf_APIGenerateFalAI": APIGenerateFalAI,
     "Bjornulf_APIGenerateStability": APIGenerateStability,
@@ -244,14 +257,21 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "Bjornulf_TextToVariable": "📌🅰️ Set Variable from Text",
+    # "Bjornulf_ToDoList": "ToDoList",
+    # "Bjornulf_WriteTextPickMe": "✒👉 Write Pick Me",
+    "Bjornulf_WriteTextPickMeChain": "✒👉 Write Pick Me Chain",
+    # "Bjornulf_PickMe": "✋ Recover Pick Me ! ✋",
+    "Bjornulf_FourImageViewer": "🖼👁 Preview 1-4 images (compare)",
     "Bjornulf_PreviewFirstImage": "🖼👁 Preview (first) image",
     "Bjornulf_HuggingFaceDownloader": "💾 Huggingface Downloader",
     "Bjornulf_AllLoraSelector": "👑 Combine Loras, Lora stack",
-    "Bjornulf_LoadGlobalVariables": "📥 Load Global Variables",
-    "Bjornulf_SaveGlobalVariables": "💾 Save Global Variables",
+    "Bjornulf_LoadGlobalVariables": "📥🅰️ Load Global Variables",
+    "Bjornulf_SaveGlobalVariables": "💾🅰️ Save Global Variables",
     "Bjornulf_ModelClipVaeSelector": "📝👈 Model-Clip-Vae selector (🎲 or ♻ or ♻📑)",
     "Bjornulf_DisplayNote": "📒 Note",
     "Bjornulf_ImageNote": "🖼📒 Image Note",
+    "Bjornulf_ImageNoteLoadImage": "📥🖼📒 Image Note (Load image)",
     # "Bjornulf_VideoLatentResolutionSelector": "🩷📹 Empty Video Latent Selector",
     # "Bjornulf_EmptyVideoLatentWithSingle": "Bjornulf_EmptyVideoLatentWithSingle",
     "Bjornulf_XTTSConfig": "🔊 TTS Configuration ⚙",
@@ -261,10 +281,11 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_APIHiResCivitAI": "🎨➜🎨 API Image hires fix (CivitAI)",
     # "Bjornulf_CivitAILoraSelector": "lora Civit",
     "Bjornulf_KokoroTTS": "📝➜🔊 Kokoro - Text to Speech",
-    "Bjornulf_LineSelector": "📝👈 Line selector (🎲 or ♻ or ♻📑)",
+    "Bjornulf_LineSelector": "📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)",
     "Bjornulf_LoaderLoraWithPath": "📥👑 Load Lora with Path",
     # "Bjornulf_TextGeneratorText2Video": "🔥📝📹 Text Generator for text to video 📹📝🔥",
     "Bjornulf_TextSplitin5": "📝🔪 Text split in 5",
+    "Bjornulf_TextSplitin10": "📝🔪 Text split in 10",
     "Bjornulf_LatentResolutionSelector": "🩷 Empty Latent Selector",
     "Bjornulf_CivitAIModelSelectorSD15": "📥 Load checkpoint SD1.5 (+Download from CivitAi)",
     "Bjornulf_CivitAIModelSelectorSDXL": "📥 Load checkpoint SDXL (+Download from CivitAi)",
@@ -334,8 +355,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_VideoToImagesList": "📹➜🖼 Video Path to Images (Load video)",
     "Bjornulf_AudioVideoSync": "🔊📹 Audio Video Sync",
     "Bjornulf_ScramblerCharacter": "🔀🎲 Text scrambler (🧑 Character)",
-    "Bjornulf_WriteTextAdvanced": "✒🗔 Advanced Write Text",
-    "Bjornulf_LoopWriteText": "♻ Loop (✒🗔 Advanced Write Text)",
+    "Bjornulf_WriteTextAdvanced": "✒🗔🅰️ Advanced Write Text",
+    "Bjornulf_LoopWriteText": "♻ Loop (✒🗔🅰️ Advanced Write Text)",
     "Bjornulf_LoopModelClipVae": "♻ Loop (Model+Clip+Vae)",
     "Bjornulf_LoopImages": "♻🖼 Loop (Images)",
     "Bjornulf_CombineTextsByLines": "♻ Loop (All Lines from input 🔗 combine by lines)",

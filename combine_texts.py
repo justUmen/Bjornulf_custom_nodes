@@ -3,11 +3,11 @@ class CombineTexts:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "number_of_inputs": ("INT", {"default": 2, "min": 2, "max": 50, "step": 1}),
-                "delimiter": (["newline", "comma", "space", "slash", "nothing"], {"default": "newline"}),
+                "number_of_inputs": ("INT", {"default": 2, "min": 2, "max": 100, "step": 1}),
+                "delimiter": (["newline", "comma", "space", "slash", "backslash", "nothing"], {"default": "newline"}),
             },
             "hidden": {
-                **{f"text_{i}": ("STRING", {"forceInput": True}) for i in range(1, 51)}
+                **{f"text_{i}": ("STRING", {"forceInput": True}) for i in range(1, 101)}
             }
         }
 
@@ -42,6 +42,8 @@ class CombineTexts:
             return " "
         elif delimiter == "slash":
             return "/"
+        elif delimiter == "backslash":
+            return "\\"
         elif delimiter == "nothing":
             return ""
         else:
