@@ -41,8 +41,8 @@ image_folders = {
     "lora_pony": os.path.join(civitai_base_path, "lora_pony"),
     "lora_flux.1_d": os.path.join(civitai_base_path, "lora_flux.1_d"),
     "lora_hunyuan_video": os.path.join(civitai_base_path, "lora_hunyuan_video"),
-    "NSFW_lora_hunyuan_video": os.path.join(civitai_base_path, "NSFW_lora_hunyuan_video")
 }
+    # "NSFW_lora_hunyuan_video": os.path.join(civitai_base_path, "NSFW_lora_hunyuan_video")
 
 # Add folder paths for each image folder
 for folder_name, folder_path in image_folders.items():
@@ -53,14 +53,14 @@ for folder_name, folder_path in image_folders.items():
     
     # Create link if it doesn't exist
     if not os.path.exists(target_path):
-        try:
-            if os.name == 'nt':  # Windows
-                os.system(f'mklink /J "{target_path}" "{folder_path}"')
-            else:  # Unix-like
-                os.symlink(folder_path, target_path)
-            print(f"Successfully created link from {folder_path} to {target_path}")
-        except OSError as e:
-            print(f"Failed to create link: {e}")
+        # try:
+        if os.name == 'nt':  # Windows
+            os.system(f'mklink /J "{target_path}" "{folder_path}"')
+        else:  # Unix-like
+            os.symlink(folder_path, target_path)
+        #print(f"Successfully created link from {folder_path} to {target_path}")
+        # except OSError as e:
+        #     print(f"Failed to create link: {e}")
 
 # Prepare Loras
 # lora_images_path = os.path.join(custom_nodes_dir, "ComfyUI", "custom_nodes", "Bjornulf_custom_nodes", "civitai", "lora_images")
