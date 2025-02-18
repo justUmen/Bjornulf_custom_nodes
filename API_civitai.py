@@ -1664,15 +1664,15 @@ class CivitAILoraSelectorHunyuan:
         image_extensions = ('.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp')
     
         # Try NSFW folder first
-        nsfw_files = [f"NSFW_lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("NSFW_lora_hunyuan_video") 
-                if f.lower().endswith(image_extensions)]
+        # nsfw_files = [f"NSFW_lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("NSFW_lora_hunyuan_video") 
+        #         if f.lower().endswith(image_extensions)]
         
         # If NSFW folder is empty or doesn't exist, try regular folder
-        if not nsfw_files:
-            files = [f"lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("lora_hunyuan_video") 
-                    if f.lower().endswith(image_extensions)]
-        else:
-            files = nsfw_files
+        # if not nsfw_files:
+        files = [f"lora_hunyuan_video/{f}" for f in folder_paths.get_filename_list("lora_hunyuan_video") 
+            if f.lower().endswith(image_extensions)]
+        # else:
+        #     files = nsfw_files
         
         if not files:
             files = ["none"]
@@ -1735,10 +1735,11 @@ class CivitAILoraSelectorHunyuan:
             raise ValueError("No image selected")
 
         # Try loading NSFW JSON first, fall back to regular JSON if not found
-        nsfw_json_path = os.path.join(parsed_models_path, 'NSFW_parsed_lora_hunyuan_video_loras.json')
-        regular_json_path = os.path.join(parsed_models_path, 'parsed_lora_hunyuan_video_loras.json')
+        # nsfw_json_path = os.path.join(parsed_models_path, 'NSFW_parsed_lora_hunyuan_video_loras.json')
+        # regular_json_path = os.path.join(parsed_models_path, 'parsed_lora_hunyuan_video_loras.json')
+        json_path = os.path.join(parsed_models_path, 'parsed_lora_hunyuan_video_loras.json')
         
-        json_path = nsfw_json_path if os.path.exists(nsfw_json_path) else regular_json_path
+        # json_path = nsfw_json_path if os.path.exists(nsfw_json_path) else regular_json_path
         hunYuan = "hunyuan_video"
 
         with open(json_path, 'r') as f:
