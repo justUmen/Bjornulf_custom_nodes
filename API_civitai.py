@@ -55,42 +55,105 @@ def setup_image_folders(folder_specs, parent_dir=""):
         folder_paths.add_model_folder_path(folder_name, str(full_path))
         create_symlink(full_path, folder_name, parent_dir)
 
-# Code works, tested on linux and 
+# Code works, tested on linux and windows
 def create_symlink(source, target_name, parent_dir=None):
     """Creates a symlink inside the ComfyUI/input directory on Linux and Windows."""
     if os.name == 'nt':  # Windows
         comfyui_input = Path("ComfyUI/input")
     else:
         comfyui_input = Path("input")
-    
+        # Ensure the input directory exists
+        comfyui_input.mkdir(parents=True, exist_ok=True)
+
     if parent_dir:
         parent_path = comfyui_input / parent_dir
         parent_path.mkdir(parents=True, exist_ok=True)
         target = parent_path / target_name
     else:
         target = comfyui_input / target_name
-    
-    if not target.exists():
-        try:
-            if os.name == 'nt':  # Windows
+
+    # Windows handling remains unchanged
+    if os.name == 'nt':
+        if not target.exists():
+            try:
                 base_path = Path(__file__).resolve().parent  # Get script location
-                source = base_path / "ComfyUI" / source  # Ensure it points inside ComfyUI
+                source_path = base_path / "ComfyUI" / source  # Ensure it points inside ComfyUI
                 try:
-                    target.symlink_to(source, target_is_directory=source.is_dir())
-                    #print(f"✅ Symlink created: {target} -> {source}")
+                    target.symlink_to(source_path, target_is_directory=source_path.is_dir())
+                    #print(f"✅ Symlink created: {target} -> {source_path}")
                 except OSError:
-                    if source.is_dir():
+                    if source_path.is_dir():
                         cmd = [
-                            "powershell", "New-Item", "-ItemType", "Junction",
-                            "-Path", str(target), "-Value", str(source)
+                            "powershell",
+                            "New-Item",
+                            "-ItemType",
+                            "Junction",
+                            "-Path",
+                            str(target),
+                            "-Value",
+                            str(source_path)
                         ]
-                        subprocess.run(cmd, check=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                        #print(f"✅ Junction created: {target} -> {source}")
+                        subprocess.run(cmd, check=True, shell=True, 
+                                      stdout=subprocess.DEVNULL, 
+                                      stderr=subprocess.DEVNULL)
+                        #print(f"✅ Junction created: {target} -> {source_path}")
                     else:
                         print(f"❌ Failed to create symlink/junction for {target_name}.")
+            except Exception as e:
+                print(f"❌ Failed to create symlink for {target_name}: {e}")
+    else:  # Linux handling with complete error management
+        try:
+            # Check if source is already absolute path
+            if os.path.isabs(source):
+                source_path = Path(source)
+                
+                # Check if the source exists with the given case
+                if not source_path.exists():
+                    # Try case variations for Bjornulf/bjornulf part of the path
+                    if 'Bjornulf_custom_nodes' in str(source_path):
+                        alt_source_path = Path(str(source_path).replace('Bjornulf_custom_nodes', 'bjornulf_custom_nodes'))
+                        if alt_source_path.exists():
+                            source_path = alt_source_path
+                    elif 'bjornulf_custom_nodes' in str(source_path):
+                        alt_source_path = Path(str(source_path).replace('bjornulf_custom_nodes', 'Bjornulf_custom_nodes'))
+                        if alt_source_path.exists():
+                            source_path = alt_source_path
+                
+                # If still doesn't exist after trying case variations
+                if not source_path.exists():
+                    print(f"❌ Source path doesn't exist (checked both cases): {source}")
+                    return
             else:
-                target.symlink_to(source, target_is_directory=True)
-                #print(f"✅ Symlink created: {target} -> {source}")
+                # For relative paths
+                source_path = Path(source).absolute()
+                if not source_path.exists():
+                    print(f"❌ Source path doesn't exist: {source_path}")
+                    return
+                
+            # Force remove target if it exists (regardless of type)
+            if target.exists() or target.is_symlink():
+                try:
+                    if target.is_dir() and not target.is_symlink():
+                        import shutil
+                        shutil.rmtree(target)
+                    else:
+                        os.unlink(target)
+                except Exception as e:
+                    print(f"❌ Failed to remove existing target {target}: {e}")
+                    return
+            
+            # Create the symlink
+            try:
+                os.symlink(source_path, target, target_is_directory=source_path.is_dir())
+                #print(f"✅ Symlink created: {target} -> {source_path}")
+            except Exception as e:
+                # Try with explicit target_is_directory set based on source
+                try:
+                    os.symlink(source_path, target, target_is_directory=True)
+                    #print(f"✅ Symlink created with explicit directory flag: {target} -> {source_path}")
+                except Exception as e2:
+                    print(f"❌ Failed to create symlink for {target_name}: {e2}")
+                    
         except Exception as e:
             print(f"❌ Failed to create symlink for {target_name}: {e}")
 
