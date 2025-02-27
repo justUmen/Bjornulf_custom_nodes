@@ -87,6 +87,7 @@ class ImageDetails:
         details = f"\nType: {input_type}"
         details += f"\nWidth: {width}"
         details += f"\nHeight: {height}"
+        details += f"\nNumber of Pixels: {width * height}"
         details += f"\nLoaded with transparency: {has_transparency}"
         details += f"\nImage Mode: {pil_image.mode}"
         details += f"\nOrientation: {orientation}\n"

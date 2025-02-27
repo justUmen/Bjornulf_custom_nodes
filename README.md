@@ -53,10 +53,10 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 `131.` [✒👉 Write Pick Me Chain](#131----write-pick-me-chain)  
-`136.` [🔛📝 Text Switch On/Off](#136)  
-`138.` [📑👈 Select from List](#138)  
-`141.` [🌎✒👉 Global Write Pick Me](#141)  
-`142.` [🌎📥 Load Global Pick Me](#142)  
+`136.` [🔛📝 Text Switch On/Off](#136----text-switch-onoff)  
+`138.` [📑👈 Select from List](#138----select-from-list)  
+`141.` [🌎✒👉 Global Write Pick Me](#141----global-write-pick-me)  
+`142.` [🌎📥 Load Global Pick Me](#142----load-global-pick-me)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -113,8 +113,8 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
-`139.` [🎲 Random Integer](#139)  
-`140.` [🎲 Random Float](#140)  
+`139.` [🎲 Random Integer](#139----random-integer)  
+`140.` [🎲 Random Float](#140----random-float)  
 
 ## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
@@ -221,17 +221,17 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 `120.` [📝➜🔊 Kokoro - Text to Speech](#120----kokoro---text-to-speech)  
-`134.` [134 - 🔊▶ Play Audio](#134)  
+`134.` [134 - 🔊▶ Play Audio](#134----play-audio)  
 
 ## 💻 General / System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
-`137.` [🌎🎲 Global Seed Manager](#137)  
+`137.` [🌎🎲 Global Seed Manager](#137----global-seed-manager)  
 
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
-`135.` [🔛✨ Anything Switch On/Off](#135)  
+`135.` [🔛✨ Anything Switch On/Off](#135----anything-switch-onoff)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
