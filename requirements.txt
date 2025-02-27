@@ -6,4 +6,5 @@ ffmpeg-python
 civitai-py
 fal_client
 sounddevice
-kokoro_onnx
+#24, remove kokoro install by default (need to do that manually to use the kokoro node)
+# kokoro_onnx

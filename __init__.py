@@ -110,7 +110,23 @@ from .images_compare import FourImageViewer
 from .write_pickme_chain import WriteTextPickMeChain
 # from .todo import ToDoList
 from .text_to_variable import TextToVariable
+from .random_stuff import RandomIntNode, RandomFloatNode
+from .global_seed_manager import GlobalSeedManager
+from .play_sound import PlayAudio
+from .switches import SwitchText, SwitchAnything
+from .write_pickme_global import WriteTextPickMeGlobal, LoadTextPickMeGlobal
+from .list_selector import ListSelector
+
 NODE_CLASS_MAPPINGS = {
+    "Bjornulf_ListSelector": ListSelector,
+    "Bjornulf_WriteTextPickMeGlobal": WriteTextPickMeGlobal,
+    "Bjornulf_LoadTextPickMeGlobal": LoadTextPickMeGlobal,
+    "Bjornulf_PlayAudio": PlayAudio,
+    "Bjornulf_SwitchText": SwitchText,
+    "Bjornulf_SwitchAnything": SwitchAnything,
+    "Bjornulf_GlobalSeedManager": GlobalSeedManager,
+    "Bjornulf_RandomIntNode": RandomIntNode,
+    "Bjornulf_RandomFloatNode": RandomFloatNode,
     "Bjornulf_TextToVariable": TextToVariable,
     # "Bjornulf_ToDoList": ToDoList,
     # "Bjornulf_WriteTextPickMe": WriteTextPickMe,
@@ -257,10 +273,20 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "Bjornulf_ListSelector": "📑👈 Select from List",
+    "Bjornulf_PlayAudio": "🔊▶ Play Audio",
+    "Bjornulf_SwitchText": "🔛📝 Text Switch On/Off",
+    "Bjornulf_SwitchAnything": "🔛✨ Anything Switch On/Off",
+    "Bjornulf_GlobalSeedManager": "🌎🎲 Global Seed Manager",
+    "Bjornulf_RandomIntNode": "🎲 Random Integer",
+    "Bjornulf_RandomFloatNode": "🎲 Random Float",
+    "Bjornulf_WriteTextPickMeGlobal": "🌎✒👉 Global Write Pick Me",
+    "Bjornulf_LoadTextPickMeGlobal": "🌎📥 Load Global Pick Me",
     "Bjornulf_TextToVariable": "📌🅰️ Set Variable from Text",
     # "Bjornulf_ToDoList": "ToDoList",
     # "Bjornulf_WriteTextPickMe": "✒👉 Write Pick Me",
     "Bjornulf_WriteTextPickMeChain": "✒👉 Write Pick Me Chain",
+    # "Bjornulf_PickByText": "✒👉 Pick Me by Text",
     # "Bjornulf_PickMe": "✋ Recover Pick Me ! ✋",
     "Bjornulf_FourImageViewer": "🖼👁 Preview 1-4 images (compare)",
     "Bjornulf_PreviewFirstImage": "🖼👁 Preview (first) image",
@@ -393,7 +419,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_LoadTextFromPath": "📥 Load Text From Path",
     "Bjornulf_LoadTextFromFolder": "📥 Load Text From Bjornulf Folder",
     "Bjornulf_CombineTexts": "🔗 Combine (Texts)",
-    "Bjornulf_imagesToVideo": "📹 images to video (FFmpeg)",
+    "Bjornulf_imagesToVideo": "🖼➜📹 images to video (FFMPEG Save Video)",
     "Bjornulf_VideoPingPong": "📹 video PingPong",
     "Bjornulf_ollamaLoader": "🦙 Ollama (Description)",
     "Bjornulf_FreeVRAM": "🧹 Free VRAM hack",

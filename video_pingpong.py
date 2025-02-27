@@ -14,6 +14,7 @@ class VideoPingPong:
         }
 
     RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("IMAGES",)
     FUNCTION = "pingpong_images"
     CATEGORY = "Bjornulf"
 

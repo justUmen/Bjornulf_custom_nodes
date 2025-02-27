@@ -1,7 +1,7 @@
 import { api } from '../../../scripts/api.js';
 import { app } from "../../../scripts/app.js";
 
-function displayVideoPreview(component, filename, category) {
+function displayVideoPreview(component, filename, category, autoplay, mute) {
     let videoWidget = component._videoWidget;
     if (!videoWidget) {
         // Create the widget if it doesn't exist
@@ -61,6 +61,10 @@ function displayVideoPreview(component, filename, category) {
         "rand": Math.random().toString().slice(2, 12)
     };
     const urlParams = new URLSearchParams(params);
+    if(mute) videoWidget.videoElement.muted = true;
+    else videoWidget.videoElement.muted = false;
+    if(autoplay) videoWidget.videoElement.autoplay = !videoWidget.value.paused && !videoWidget.value.hidden;
+    else videoWidget.videoElement.autoplay = false;
     videoWidget.videoElement.src = `http://localhost:8188/api/view?${urlParams.toString()}`;
 
     adjustSize(component); // Adjust the component size
@@ -76,7 +80,9 @@ app.registerExtension({
     async beforeRegisterNodeDef(nodeType, nodeData, appInstance) {
         if (nodeData?.name == "Bjornulf_VideoPreview") {
             nodeType.prototype.onExecuted = function (data) {
-                displayVideoPreview(this, data.video[0], data.video[1]);
+                const autoplay = this.widgets.find(w => w.name === "autoplay")?.value ?? false;
+                const mute = this.widgets.find(w => w.name === "mute")?.value ?? true;
+                displayVideoPreview(this, data.video[0], data.video[1], autoplay, mute);
             };
         }
     }

@@ -8,19 +8,25 @@ class FFmpegConfig:
         return {
             "required": {
                 "ffmpeg_path": ("STRING", {"default": "ffmpeg"}),
-                "video_codec": ([
+                "container_format": ([
                     "None",
+                    "mp4",
+                    "mkv", 
+                    "webm",
+                    "mov",
+                    "avi"
+                ], {"default": "mkv"}),
+                "video_codec": ([
+                    "Auto",
                     "copy",
                     "libx264 (H.264)",
                     "h264_nvenc (H.264 / NVIDIA GPU)", 
                     "libx265 (H.265)",
                     "hevc_nvenc (H.265 / NVIDIA GPU)",
                     "libvpx-vp9 (WebM)",
-                    "libaom-av1"
-                ], {"default": "None"}),
-                
-                "video_bitrate": ("STRING", {"default": "3045k"}),
-                
+                    "libaom-av1",
+                    "av1_nvenc (av1 / NVIDIA GPU)",
+                ], {"default": "libx265 (H.265)"}),
                 "preset": ([
                     "None",
                     "ultrafast",
@@ -32,8 +38,8 @@ class FFmpegConfig:
                     "slow",
                     "slower",
                     "veryslow"
-                ], {"default": "medium"}),
-                
+                ], {"default": "veryslow"}),
+                "crf": ("INT", {"default": 10, "min": 1, "max": 63}),
                 "pixel_format": ([
                     "None",
                     "yuv420p",
@@ -43,18 +49,7 @@ class FFmpegConfig:
                     "rgb24",
                     "rgba",
                     "yuva420p"
-                ], {"default": "yuv420p"}),
-                
-                "container_format": ([
-                    "None",
-                    "mp4",
-                    "mkv", 
-                    "webm",
-                    "mov",
-                    "avi"
-                ], {"default": "mp4"}),
-                
-                "crf": ("INT", {"default": 19, "min": 1, "max": 63}),
+                ], {"default": "yuv444p10le"}),
                 
                 "force_fps": ("FLOAT", {
                     "default": 0.0,
@@ -66,8 +61,8 @@ class FFmpegConfig:
                 "enabled_change_resolution": ("BOOLEAN", {"default": False}),
                 "width": ("INT", {"default": 0, "min": 0, "max": 10000}),
                 "height": ("INT", {"default": 0, "min": 0, "max": 10000}),
-                
-                "ignore_audio": ("BOOLEAN", {"default": False}),
+
+                "enable_change_audio": ("BOOLEAN", {"default": False}),
                 "audio_codec": ([
                     "None",
                     "copy",
@@ -77,9 +72,12 @@ class FFmpegConfig:
                     "libopus",
                     "none"
                 ], {"default": "aac"}),
+                "enabled_audio_bitrate": ("BOOLEAN", {"default": False}),
                 "audio_bitrate": ("STRING", {"default": "192k"}),
                 
-                "force_transparency": ("BOOLEAN", {
+                "enabled_static_video_bitrate": ("BOOLEAN", {"default": False}),
+                "video_bitrate": ("STRING", {"default": "3045k"}),
+                "force_transparency_webm": ("BOOLEAN", {
                     "default": False,
                     "description": "Force transparency in WebM output"
                 }),
@@ -114,10 +112,11 @@ class FFmpegConfig:
             },
             "video": {
                 "codec": config["video_codec"] or "None",
-                "bitrate": config["video_bitrate"],
+                "bitrate_mode": "static" if config["enabled_static_video_bitrate"] else "crf",
+                "bitrate": config["video_bitrate"] if config["enabled_static_video_bitrate"] else None,
                 "preset": config["preset"] or "None",
                 "pixel_format": config["pixel_format"] or "None",
-                "crf": config["crf"],
+                "crf": config["crf"] if not config["enabled_static_video_bitrate"] else None,
                 "resolution": (
                     {"width": config["width"], "height": config["height"]}
                     if (config["enabled_change_resolution"] and config["width"] > 0 and config["height"] > 0)
@@ -127,12 +126,12 @@ class FFmpegConfig:
                     "force_fps": config["force_fps"],
                     "enabled": config["force_fps"] > 0
                 },
-                "force_transparency": config["force_transparency"]
+                "force_transparency_webm": config["force_transparency_webm"]
             },
             "audio": {
-                "enabled": not config["ignore_audio"],
+                # "enabled": not config["enable_change_audio"], #DONT SEND THAT ANYMORE, IT IS DECIDED IF HAVE audio / audio_path, just used to set stuff below
                 "codec": config["audio_codec"] or "None",
-                "bitrate": config["audio_bitrate"]
+                "bitrate": None if not config["enabled_audio_bitrate"] or not config["enable_change_audio"] else config["audio_bitrate"],
             },
             "output": {
                 "container_format": config["container_format"] or "None"
@@ -140,34 +139,35 @@ class FFmpegConfig:
         }
         return json.dumps(config_info, indent=2)
 
-    def create_config(self, ffmpeg_path, ignore_audio, video_codec, audio_codec,
-                     video_bitrate, audio_bitrate, preset, pixel_format,
-                     container_format, crf, force_fps, enabled_change_resolution, 
-                     width, height, force_transparency):
-                     
+    def create_config(self, ffmpeg_path, enable_change_audio, video_codec, audio_codec,
+                 video_bitrate, audio_bitrate, preset, pixel_format,
+                 container_format, crf, force_fps, enabled_change_resolution, 
+                 width, height, force_transparency_webm, enabled_static_video_bitrate, enabled_audio_bitrate):          
         config = {
             "ffmpeg_path": ffmpeg_path,
-            "video_bitrate": video_bitrate,
+            "video_bitrate": video_bitrate if enabled_static_video_bitrate else None,
             "preset": None if preset == "None" else preset,
             "crf": crf,
             "force_fps": force_fps,
             "enabled_change_resolution": enabled_change_resolution,
-            "ignore_audio": ignore_audio,
-            "audio_bitrate": audio_bitrate,
+            # "enable_change_audio": enable_change_audio,
+            "audio_bitrate": audio_bitrate if not enabled_audio_bitrate or not enable_change_audio else None,
             "width": width,
             "height": height,
-            "video_codec": video_codec.split(" ")[0] if video_codec != "None" else None,
+            "video_codec": video_codec.split(" ")[0] if video_codec != "Auto" else None,
             "pixel_format": None if pixel_format == "None" else pixel_format,
             "container_format": None if container_format == "None" else container_format,
-            "audio_codec": None if audio_codec == "None" or ignore_audio else audio_codec,
-            "force_transparency": force_transparency
+            "audio_codec": None if audio_codec == "None" or not enable_change_audio else audio_codec,
+            "force_transparency_webm": force_transparency_webm,
+            "enabled_static_video_bitrate": enabled_static_video_bitrate,
+            "enabled_audio_bitrate": enabled_audio_bitrate
         }
 
         return (self.create_json_output(config),)
 
     @classmethod 
-    def IS_CHANGED(cls, ffmpeg_path, ignore_audio, video_codec, audio_codec,
-                  video_bitrate, audio_bitrate, preset, pixel_format,
-                  container_format, crf, force_fps, enabled_change_resolution, 
-                  width, height, force_transparency) -> float:
+    def IS_CHANGED(cls, ffmpeg_path, enable_change_audio, video_codec, audio_codec,
+                video_bitrate, audio_bitrate, preset, pixel_format,
+                container_format, crf, force_fps, enabled_change_resolution, 
+                width, height, force_transparency_webm, enabled_static_video_bitrate, enabled_audio_bitrate) -> float:
         return 0.0

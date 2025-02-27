@@ -1,80 +1,44 @@
 import { app } from "../../../scripts/app.js";
+
 app.registerExtension({
     name: "Bjornulf.ImageNoteLoadImage",
     async nodeCreated(node) {
+        // Ensure the node is of the specific class
         if (node.comfyClass !== "Bjornulf_ImageNoteLoadImage") return;
+		console.log("node created");
 
-        setTimeout(() => {
-            // Update widget positions
-            node.onResize(node.size);
-            
-            // Refresh all widgets
-            node.widgets.forEach(w => {
-                if (w.onShow?.(true)) {
-                    w.onShow?.(false);
+        // Store the initial node size
+        let prevSize = [...node.size];
+        let stableCount = 0;
+        const minStableFrames = 3; // Number of frames the size must remain stable
+
+        // Function to check if the node's size has stabilized
+        const checkSizeStable = () => {
+            if (node.size[0] === prevSize[0] && node.size[1] === prevSize[1]) {
+                stableCount++;
+                if (stableCount >= minStableFrames) {
+                    // Size has been stable, simulate a resize to trigger layout update
+                    const originalSize = [...node.size];
+                    node.setSize([originalSize[0] + 1, originalSize[1]]); // Slightly increase width
+                    setTimeout(() => {
+                        node.setSize(originalSize); // Revert to original size
+                        app.graph.setDirtyCanvas(true, true); // Trigger canvas redraw
+                    }, 0);
+                } else {
+                    // Size is stable but not for enough frames yet, check again
+                    requestAnimationFrame(checkSizeStable);
                 }
-            });
-            
-            app.graph.setDirtyCanvas(true, true);
-        }, 500);
+            } else {
+                // Size changed, reset counter and update prevSize
+                prevSize = [...node.size];
+                stableCount = 0;
+                requestAnimationFrame(checkSizeStable);
+            }
+        };
+
+        // Start checking after a short delay to allow node initialization
+        setTimeout(() => {
+            requestAnimationFrame(checkSizeStable);
+        }, 5000);
     }
 });
-
-// app.registerExtension({
-//     name: "Bjornulf.ImageNote",
-//     async nodeCreated(node) {
-//         if (node.comfyClass !== "Bjornulf_ImageNote") return;
-
-//         // Add Save Note button
-//         node.addWidget("button", "Save Note", null, () => {
-//             const imagePathWidget = node.widgets.find(w => w.name === "image_path");
-//             const noteTextWidget = node.widgets.find(w => w.name === "note_text");
-            
-//             if (!imagePathWidget?.value) {
-//                 return;
-//             }
-
-//             fetch("/save_note", {
-//                 method: "POST",
-//                 body: JSON.stringify({
-//                     image_path: imagePathWidget.value,
-//                     note_text: noteTextWidget?.value || ""
-//                 }),
-//                 headers: { "Content-Type": "application/json" }
-//             })
-//             .then(response => response.json())
-//             .catch(error => {
-//                 console.error("Error saving note:", error);
-//             });
-//         });
-
-//         // Add Load Note button
-//         node.addWidget("button", "Load Note", null, () => {
-//             const imagePathWidget = node.widgets.find(w => w.name === "image_path");
-            
-//             if (!imagePathWidget?.value) {
-//                 return;
-//             }
-
-//             fetch("/load_note", {
-//                 method: "POST",
-//                 body: JSON.stringify({ image_path: imagePathWidget.value }),
-//                 headers: { "Content-Type": "application/json" }
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data.success) {
-//                     const noteTextWidget = node.widgets.find(w => w.name === "note_text");
-//                     if (noteTextWidget) {
-//                         noteTextWidget.value = data.note_text;
-//                         // Trigger widget changed event to update UI
-//                         app.graph.setDirtyCanvas(true);
-//                     }
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error("Error loading note:", error);
-//             });
-//         });
-//     }
-// });

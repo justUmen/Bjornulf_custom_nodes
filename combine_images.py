@@ -1,8 +1,9 @@
 import torch
 import numpy as np
-# import logging
 
 class CombineImages:
+    SPECIAL_PREFIX = "ImSpEcIaL"  # The special text prefix to look for
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -21,19 +22,41 @@ class CombineImages:
     OUTPUT_NODE = True
     CATEGORY = "Bjornulf"
 
-    def all_in_one_images(self, number_of_images, all_in_one, ** kwargs):
-        images = [kwargs[f"image_{i}"] for i in range(1, number_of_images + 1) if f"image_{i}" in kwargs]
-        
-        # for i, img in enumerate(images):
-        #     logging.info(f"Image {i+1} shape: {img.shape}, dtype: {img.dtype}, min: {img.min()}, max: {img.max()}")
-        
+    def all_in_one_images(self, number_of_images, all_in_one, **kwargs):
+        # Retrieve all inputs based on number_of_images
+        inputs = [kwargs.get(f"image_{i}", None) for i in range(1, number_of_images + 1)]
+
+        # Check for special text input with "ImSpEcIaL" prefix
+        for i, inp in enumerate(inputs):
+            if isinstance(inp, str):
+                if inp.startswith(self.SPECIAL_PREFIX):
+                    # Extract the text after the prefix (for logging or future use)
+                    text_after_prefix = inp[len(self.SPECIAL_PREFIX):].lstrip()
+                    # Return a dummy image as a placeholder
+                    # Note: Adjust this to return an actual image if necessary
+                    dummy_image = torch.zeros((1, 256, 256, 3), dtype=torch.float32)
+                    return (dummy_image,)
+                else:
+                    # Ignore non-special text inputs (e.g., empty strings or other text)
+                    inputs[i] = None
+
+        # Filter out None values (ignored inputs) and non-image inputs
+        images = []
+        for inp in inputs:
+            if inp is not None and not isinstance(inp, str):
+                images.append(inp)
+
+        # Check if there are any valid images
+        if not images:
+            raise ValueError("No valid image inputs provided after filtering non-image inputs.")
+
         if all_in_one:
             # Check if all images have the same shape
             shapes = [img.shape for img in images]
             if len(set(shapes)) > 1:
                 raise ValueError("All images must have the same resolution to use all_in_one. "
                                  f"Found different shapes: {shapes}")
-            
+
             # Convert images to float32 and scale to 0-1 range if necessary
             processed_images = []
             for img in images:
@@ -47,30 +70,30 @@ class CombineImages:
                         img = img.float() / 255.0
                     elif img.dtype == torch.bool:
                         img = img.float()
-                
+
                 # Ensure the image is 3D (height, width, channels)
                 if img.ndim == 4:
                     img = img.squeeze(0)
-                
+
                 processed_images.append(img)
-            
+
             # Stack all images along a new dimension
             if isinstance(processed_images[0], np.ndarray):
                 all_in_oned = np.stack(processed_images)
                 all_in_oned = torch.from_numpy(all_in_oned)
             else:
                 all_in_oned = torch.stack(processed_images)
-            
+
             # Ensure the output is in the format expected by the preview node
             # (batch, height, width, channels)
             if all_in_oned.ndim == 3:
                 all_in_oned = all_in_oned.unsqueeze(0)
             if all_in_oned.shape[-1] != 3 and all_in_oned.shape[-1] != 4:
                 all_in_oned = all_in_oned.permute(0, 2, 3, 1)
-            
+
             return (all_in_oned,)
         else:
-            # Return a single tuple containing all images (original behavior)
+            # Return a single tuple containing all valid images
             return (images,)
 
     @classmethod
@@ -78,7 +101,7 @@ class CombineImages:
         return float("NaN")
 
     @classmethod
-    def VALIDATE_INPUTS(cls, ** kwargs):
+    def VALIDATE_INPUTS(cls, **kwargs):
         if kwargs['all_in_one']:
             cls.OUTPUT_IS_LIST = (False,)
         else:

@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.71 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.76 🔗
 
-A list of 133 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 142 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 #  Watch Video (Quick overview 28 minutes) :
@@ -53,6 +53,10 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 `131.` [✒👉 Write Pick Me Chain](#131----write-pick-me-chain)  
+`136.` [🔛📝 Text Switch On/Off](#136)  
+`138.` [📑👈 Select from List](#138)  
+`141.` [🌎✒👉 Global Write Pick Me](#141)  
+`142.` [🌎📥 Load Global Pick Me](#142)  
 
 ## 🔥 Text Generator 🔥
 `81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
@@ -109,6 +113,8 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `48.` [🔀🎲 Text scrambler (🧑 Character)](#48----text-scrambler--character)  
 `55.` [🎲👑 Random Lora Selector](#55----random-lora-selector)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
+`139.` [🎲 Random Integer](#139)  
+`140.` [🎲 Random Float](#140)  
 
 ## 🖼💾 Save Image / Text 💾🖼
 `16.` [💾🖼💬 Save image for Bjornulf LobeChat](#16----save-image-for-bjornulf-lobechat-for-my-custom-lobe-chat)  
@@ -143,6 +149,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `80.` [🩷 Empty Latent Selector](#80----empty-latent-selector)  
 
 ## 🅰️ Variables 🅰️
+`3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3---🅰%EF%B8%8F-advanced-write-text---random-option)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 `123.` [💾🅰️ Save Global Variables](#123---🅰%EF%B8%8F-save-global-variables)  
 `124.` [📥🅰️ Load Global Variables](#124---🅰%EF%B8%8F-load-global-variables)  
@@ -182,7 +189,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
-`21.` [📹 Images to Video (FFmpeg)](#21----images-to-video)  
+`21.` [🖼➜📹 Images to Video (FFmpeg Save Video)](#21)  
 `49.` [📹👁 Video Preview](#49----video-preview)  
 `50.` [🖼➜📹 Images to Video path (tmp video)](#50----images-to-video-path-tmp-video)  
 `51.` [📹➜🖼 Video Path to Images](#51----video-path-to-images)  
@@ -214,14 +221,17 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 `120.` [📝➜🔊 Kokoro - Text to Speech](#120----kokoro---text-to-speech)  
+`134.` [134 - 🔊▶ Play Audio](#134)  
 
-## 💻 System 💻
+## 💻 General / System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
+`137.` [🌎🎲 Global Seed Manager](#137)  
 
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
+`135.` [🔛✨ Anything Switch On/Off](#135)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
@@ -290,7 +300,7 @@ You can then run comfyui.
 
 ## 🐧🐍 Linux : Install dependencies (without venv, not recommended)
 
-Move the the custom_node folder and :  `pip install -r requirements.txt`
+Move to the custom_node folder and do :  `pip install -r requirements.txt`
 
 OR
 
@@ -400,6 +410,15 @@ Text replace now have multine option for regex. (https://github.com/justUmen/Bjo
 Fix a lot of code everywhere, a little better logging system, etc...  
 WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71?) Maybe don't use them yet...
 - **0.71**: ❗Breaking changes for Global variable nodes. (add to global variable system a "filename", which is a a separate global variable file.) bug fix speech to text node, 5 new nodes 129-133. combine text limit raised to 100. improve Save image in folder node.
+- **0.71-0.75**: Many bug fixing. Civitai nodes are working on windows. (encoding, links problem are solved ? - at least on my machines...)
+- **0.76**: Removed kokoro_onnx from requirements.txt due to sonflict with other nodes (need to be installed manually if you want to use this node.)
+New syntaxes for advanced text/line selector, ex: {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR} and {A(80%)|B(15%)|C(5%)}
+2 new nodes switch : 🔛✨ Anything Switch On/Off (compatible with combine images) AND 🔛📝 Text Switch On/Off (Compatible with combine texts)
+2 new pick Me global nodes, using an identifier instead of chain : 🌎✒👉 Global Write Pick Me AND 🌎📥 Load Global Pick Me
+3 random nodes : 🌎🎲 Global Random Seed, 🎲 Random Integer, 🎲 Random Float (Each return their value but also TEXT version of it.) "Seed node" more advanced.
+1 new node to quickly select element from list : 📑👈 Select from List
+1 new audio node : 🔊▶ Play Audio (Just play an audio file, will default to bell.m4a if none provided.) Can take AUDIO format or audio_path.
+❗Breaking changes. Large rewrite for all FFMPEG related nodes. With options for video preview. (Still have few changes to make, next version.)
 
 # 📝 Nodes descriptions
 
@@ -440,6 +459,10 @@ Usage example :
 
 ![variables](screenshots/variables.png)
 
+❗ 0.76 - New syntax available :  
+Groups, with no duplicate, example : {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR}  
+Random based on percentage : {A(80%)|B(15%)|C(5%)}  
+
 ## 4 - 🔗 Combine Texts
 
 **Description:**  
@@ -454,7 +477,6 @@ Generate and display random text from a predefined list. Great for creating rand
 You also have `control_after_generate` to manage the randomness.  
 
 ![Random Text](screenshots/random_text.png)
-
 
 ## 6 - ♻ Loop
 
@@ -633,7 +655,7 @@ Create a ping-pong effect from a list of images (from a video) by reversing the 
 
 ![Video Ping Pong](screenshots/video_pingpong.png)
 
-## 21 - 📹 Images to Video
+## 21 - 🖼➜📹 Images to Video (FFMPEG Save Video)
 
 **Description:**  
 Combine a sequence of images into a video file.  
@@ -1701,6 +1723,10 @@ So use that if you want to ignore a line.
 
 ![Line Selector](screenshots/line_selector.png)  
 
+❗ 0.76 - New syntax available :  
+Groups, with no duplicate, example : {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR}  
+Random based on percentage : {A(80%)|B(15%)|C(5%)}  
+
 #### 118 - 🔊 TTS Configuration ⚙
 
 **Description:**  
@@ -1726,6 +1752,9 @@ The workflow below is included : `workflows/HUNYUAN_basic_lora.json`) :
 #### 120 - 📝➜🔊 Kokoro - Text to Speech
 
 **Description:**  
+
+❗ 0.76 - Due to some compatibility issues with other custom now, you now need to install it manually if you want to use it : `pip install kokoro_onnx`  
+
 Another Text to Speech node based on Kokoro. : https://github.com/thewh1teagle/kokoro-onnx  
 Lightweight, much simpler, no configuration and fully integrated into Comfyui. (No external backend to run.)  
 
@@ -1852,3 +1881,109 @@ Below is an example, you can see that at this size/resolution, 25% is almost as 
 Here is a zoom on the same image :  
 
 ![four previews](screenshots/four_preview_zoom.png)  
+
+#### 134 - 🔊▶ Play Audio
+
+**Description:**  
+
+This node will just play a bell.  
+For example, if you have a workflow that takes a while and you want to be alerted every time it's over.  
+
+![play_audio_1](screenshots/play_audio_1.png)  
+
+You can connect to it a custom path of an audio file :  
+
+![play_audio_2](screenshots/play_audio_2.png)  
+
+Or send it an AUDIO type format :  
+
+![play_audio_3](screenshots/play_audio_3.png)  
+
+#### 135 - 🔛✨ Anything Switch On/Off
+
+**Description:**  
+
+Basic switch that will not send anything if toggled off.  
+below is an example with the compatible "combine image node", here you can see that the top image was ignored.  
+
+![switch_anything](screenshots/switch_anything.png)  
+
+#### 136 - 🔛📝 Text Switch On/Off
+
+**Description:**  
+
+Tired of disconnecting nodes you don't want for a moment ?  
+Maybe you are working on this input, but your workflow isn't ready for it yet ?  
+Well now you can quickly enable / disable it. (If disabled you will see it in red.)  
+
+![switch_text](screenshots/switch_text.png)  
+
+If connected with my combine text node, you can use a special option `ONLY_ME_combine_text` that will tell combine text to write ONLY the selected node. It will ignore all the otehrs. (Here will appear in blue.) :  
+
+![switch_text_onlyme](screenshots/switch_text_onlyme.png)  
+
+#### 137 - 🌎🎲 Global Seed Manager
+
+**Description:**  
+
+Seed manager.  
+It is :
+- Generating a random seed every run.
+- Return the current seed as a STRING that you can use in other nodes with STRING format.
+- Return the value of the previously used seed.
+- Will save all the seeds used inside a file. (that you can reset with a button.)
+If you want to select a seed from this list, use node 138.
+
+![global_seed_manager](screenshots/global_seed_manager.png)  
+
+#### 138 - 📑👈 Select from List
+
+**Description:**  
+
+Select quickly an element from a LIST. (a STRING with elements separated by ; by default)
+Example of LIST : a;b;c;d
+
+Below is an example for quickly selecting the third seed used by Global Seed Manager :  
+
+![select_from_list](screenshots/select_from_list.png)  
+
+#### 139 - 🎲 Random Integer
+
+**Description:**  
+
+Simply return an INT in between the 2 values provided.  
+
+![random_int](screenshots/random_int.png)  
+
+#### 140 - 🎲 Random Float
+
+**Description:**  
+
+Simply return a FLOAT in between the 2 values provided.  
+
+![random_float](screenshots/random_float.png)  
+
+#### 141 - 🌎✒👉 Global Write Pick Me
+
+**Description:**  
+
+Do you enjoy Pick Me chain nodes ?  
+This one is using IDENTIFIERS (global_pickme_id) instead of connections.  
+Just pick up a name as global_pickme_id and if the nodes have the same global_pickme_id they will automatically connect to each other.  
+
+Below is an example of write + load :  
+
+![global_write_pickme_load](screenshots/global_write_pickme_load.png)  
+
+#### 142 - 🌎📥 Load Global Pick Me
+
+**Description:**  
+
+The node used to recover the values from PICK ME global write nodes.  
+It will return the value from the currently selecte global_pickme_id.  
+
+This node also automatically return a random value from the list with the global_pickme_id.  
+
+Below is an example of write + load :  
+
+![global_write_pickme_load](screenshots/global_write_pickme_load.png)  

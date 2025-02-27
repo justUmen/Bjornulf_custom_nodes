@@ -36,6 +36,10 @@ class TextReplace:
             # Convert input to string
             input_text = str(input_text)
             
+            # Early exit if search_text is empty to prevent hanging
+            if not search_text:
+                return (input_text,)
+            
             # Prepare regex flags
             regex_flags = 0
             if not case_sensitive:
@@ -118,6 +122,5 @@ class TextReplace:
             return (input_text,)
 
     @classmethod
-    def IS_CHANGED(cls, *args):
-        # Return float("NaN") to ensure the node always processes
+    def IS_CHANGED(cls, search_text, replace_text, input_text, replace_count, use_regex, case_sensitive, trim_whitespace, multiline_regex, *args):
         return float("NaN")

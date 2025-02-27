@@ -1,6 +1,10 @@
 import os
 import shutil
-# import logging
+import time
+import hashlib
+from pathlib import Path
+
+SUPPORTED_EXTENSIONS = {'.mp4', '.webm', '.ogg', '.mov', '.mkv'}
 
 class VideoPreview:
     @classmethod
@@ -8,6 +12,8 @@ class VideoPreview:
         return {
             "required": {
                 "video_path": ("STRING", {"forceInput": True}),
+                "autoplay": ("BOOLEAN", {"default": False}),
+                "mute": ("BOOLEAN", {"default": True}),
             },
         }
 
@@ -16,34 +22,47 @@ class VideoPreview:
     CATEGORY = "Bjornulf"
     OUTPUT_NODE = True
 
-    def preview_video(self, video_path):
-        if not video_path:
-            return {"ui": {"error": "No video path provided."}}
+    def preview_video(self, video_path, autoplay, mute):
+        try:
+            if not video_path or not isinstance(video_path, str):
+                raise ValueError("Invalid video path provided")
 
-        # Keep the "output" folder structure for copying
-        dest_dir = os.path.join("output", "Bjornulf", "preview_video")
-        os.makedirs(dest_dir, exist_ok=True)
-        
-        video_name = os.path.basename(video_path)
-        dest_path = os.path.join(dest_dir, video_name)
-        
-        if os.path.abspath(video_path) != os.path.abspath(dest_path):
-            shutil.copy2(video_path, dest_path)
-            print(f"Video copied successfully to {dest_path}")
-        else:
-            print(f"Video is already in the destination folder: {dest_path}")
+            video_path = os.path.abspath(video_path)
+            if not os.path.exists(video_path):
+                raise FileNotFoundError(f"Video file not found: {video_path}")
 
-        # Determine the video type based on file extension
-        _, file_extension = os.path.splitext(dest_path)
-        video_type = file_extension.lower()[1:]  # Remove the dot from extension
+            ext = Path(video_path).suffix.lower()
+            if ext not in SUPPORTED_EXTENSIONS:
+                raise ValueError(f"Unsupported video format: {ext}. Supported formats: {', '.join(SUPPORTED_EXTENSIONS)}")
 
-        # logging.info(f"Video type: {video_type}")
-        # logging.info(f"Video path: {dest_path}")
-        # logging.info(f"Destination directory: {dest_dir}")
-        # logging.info(f"Video name: {video_name}")
+            dest_dir = os.path.join("output", "Bjornulf", "preview_video")
+            os.makedirs(dest_dir, exist_ok=True)
 
-        # Create a new variable for the return value without "output"
-        return_dest_dir = os.path.join("Bjornulf", "preview_video")
+            file_hash = hashlib.md5(open(video_path,'rb').read()).hexdigest()[:8]
+            timestamp = int(time.time())
+            base_name = Path(video_path).stem
+            dest_name = f"{base_name}_{timestamp}_{file_hash}{ext}"
+            dest_path = os.path.join(dest_dir, dest_name)
 
-        # Return the video name and the modified destination directory
-        return {"ui": {"video": [video_name, return_dest_dir]}}
+            if not os.path.exists(dest_path):
+                shutil.copy2(video_path, dest_path)
+
+            return {
+                "ui": {
+                    "video": [dest_name, "Bjornulf/preview_video"],
+                    "metadata": {
+                        "width": 512,
+                        "height": 512,
+                        "autoplay": autoplay,
+                        "mute": mute
+                    }
+                }
+            }
+
+        except Exception as e:
+            return {
+                "ui": {
+                    "error": str(e),
+                    "video": None
+                }
+            }

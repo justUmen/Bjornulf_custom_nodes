@@ -31,16 +31,16 @@ class ConvertVideo:
         """Provide basic default configuration."""
         return {
             'ffmpeg_path': 'ffmpeg',  # Assuming ffmpeg is in PATH
-            'video_codec': 'copy',
-            'video_bitrate': '3045K',
+            'video_codec': 'libx264',
+            'video_bitrate': None,
             'preset': 'medium',
             'pixel_format': 'yuv420p',
             'container_format': 'mp4',
             'crf': 19,
-            'force_fps': 30,
+            'force_fps': 0,
             'width': None,
             'height': None,
-            'ignore_audio': False,
+            'ignore_audio': True,
             'audio_codec': 'aac',
             'audio_bitrate': '128k'
         }

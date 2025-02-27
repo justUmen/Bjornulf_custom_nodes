@@ -15,12 +15,12 @@ class ImagesListToVideo:
         return {
             "required": {
                 "images": ("IMAGE",),
-                "frames_per_second": ("FLOAT", {"default": 30, "min": 1, "max": 120, "step": 1}),
+                "fps": ("FLOAT", {"default": 25, "min": 1, "max": 120, "step": 0.01}),
             },
             "optional": {
-                "audio_path": ("STRING", {"default": "", "multiline": False}),
+                "audio_path": ("STRING", {"forceInput": True}),
                 "audio": ("AUDIO", {"default": None}),
-                "FFMPEG_CONFIG_JSON": ("STRING", {"default": None}),
+                "FFMPEG_CONFIG_JSON": ("STRING", {"forceInput": True}),
             }
         }
     
@@ -46,40 +46,59 @@ class ImagesListToVideo:
                 "-i", input_pattern,
                 "-c:v", "libx264",
                 "-pix_fmt", "yuv420p",
-                "-crf", "19"
+                "-crf", "19",
+                "-y"
             ]
 
         cmd = [config["ffmpeg"]["path"]] if config["ffmpeg"]["path"] else ["ffmpeg"]
+        
+        # Handle framerate - use force_fps if enabled
         cmd.extend(["-framerate", str(config["video"]["fps"]["force_fps"] if config["video"]["fps"]["enabled"] else fps)])
         cmd.extend(["-i", input_pattern])
 
-        # Video settings
-        if config["video"]["codec"] not in [None, "None", "copy"]:
-            cmd.extend(["-c:v", config["video"]["codec"]])
+        # Video codec settings
+        codec = config["video"]["codec"]
+        if codec not in [None, "None", "copy"]:
+            cmd.extend(["-c:v", codec])
         
-        if config["video"]["pixel_format"] not in [None, "None"]:
-            cmd.extend(["-pix_fmt", config["video"]["pixel_format"]])
+        # Pixel format
+        pixel_format = config["video"]["pixel_format"]
+        if pixel_format not in [None, "None"]:
+            cmd.extend(["-pix_fmt", pixel_format])
         
-        if config["video"]["preset"] not in [None, "None"]:
-            cmd.extend(["-preset", config["video"]["preset"]])
+        # Preset
+        preset = config["video"]["preset"]
+        if preset not in [None, "None"]:
+            cmd.extend(["-preset", preset])
         
-        if config["video"]["bitrate"] not in [None, "None", ""]:
+        # Handle bitrate mode - static or CRF
+        if config["video"]["bitrate_mode"] == "static" and config["video"]["bitrate"]:
             cmd.extend(["-b:v", config["video"]["bitrate"]])
+        else:
+            crf_value = config["video"]["crf"]
+            if crf_value is not None:
+                cmd.extend(["-crf", str(crf_value)])
         
-        cmd.extend(["-crf", str(config["video"]["crf"])])
-
-        if config["video"]["resolution"] and config["video"]["resolution"]["width"] > 0 and config["video"]["resolution"]["height"] > 0:
-            cmd.extend(["-s", f"{config['video']['resolution']['width']}x{config['video']['resolution']['height']}"])
-
+        # Resolution change if enabled
+        if config["video"]["resolution"]:
+            width = config["video"]["resolution"]["width"]
+            height = config["video"]["resolution"]["height"]
+            if width > 0 and height > 0:
+                cmd.extend(["-s", f"{width}x{height}"])
+        
+        # Special handling for WebM transparency if enabled
+        if config["output"]["container_format"] == "webm" and config["video"]["force_transparency_webm"]:
+            cmd.extend(["-auto-alt-ref", "0"])
+        
         return cmd
 
-    def images_to_video(self, images, frames_per_second=30, audio_path="", audio=None, ffmpeg_config=None):
-        config = self.parse_ffmpeg_config(ffmpeg_config)
+    def images_to_video(self, images, fps=30, audio_path="", audio=None, FFMPEG_CONFIG_JSON=None):
+        config = self.parse_ffmpeg_config(FFMPEG_CONFIG_JSON)
         
         output_dir = os.path.join("Bjornulf", "images_to_video")
         os.makedirs(output_dir, exist_ok=True)
 
-        # Determine output format
+        # Determine output format from config
         output_format = "mp4"
         if config and config["output"]["container_format"] not in [None, "None"]:
             output_format = config["output"]["container_format"]
@@ -88,6 +107,7 @@ class ImagesListToVideo:
         video_path = os.path.join(output_dir, video_filename)
 
         with tempfile.TemporaryDirectory() as temp_dir:
+            # Save frames as images
             for i, img in enumerate(images):
                 img_np = self.convert_to_numpy(img)
                 if img_np.shape[-1] != 3:
@@ -97,11 +117,13 @@ class ImagesListToVideo:
                 img_pil.save(img_path)
 
             input_pattern = os.path.join(temp_dir, "frame_%05d.png")
-            ffmpeg_cmd = self.build_ffmpeg_command(input_pattern, video_path, frames_per_second, config)
+            ffmpeg_cmd = self.build_ffmpeg_command(input_pattern, video_path, fps, config)
 
-            # Handle audio
+            # Handle audio based on config
             temp_audio_path = None
-            if not (config and config["audio"]["enabled"] == False):
+            audio_enabled = not (config and config["audio"]["enabled"] == False)
+            
+            if audio_enabled:
                 if audio is not None and isinstance(audio, dict):
                     waveform = audio['waveform'].numpy().squeeze()
                     sample_rate = audio['sample_rate']
@@ -111,25 +133,28 @@ class ImagesListToVideo:
                     temp_audio_path = audio_path
 
             if temp_audio_path:
+                # First create video without audio
                 temp_video = os.path.join(temp_dir, "temp_video.mp4")
                 temp_cmd = ffmpeg_cmd + ["-y", temp_video]
                 
                 try:
                     subprocess.run(temp_cmd, check=True, capture_output=True, text=True)
                     
+                    # Now add audio
                     audio_cmd = [
-                        config["ffmpeg"]["path"] if config else "ffmpeg",
+                        config["ffmpeg"]["path"] if config and config["ffmpeg"]["path"] else "ffmpeg",
                         "-i", temp_video,
                         "-i", temp_audio_path,
                         "-c:v", "copy"
                     ]
 
                     # Audio codec settings from config
-                    if config and config["audio"]["codec"] not in [None, "None"]:
+                    if config and config["audio"]["codec"] not in [None, "None", "copy"]:
                         audio_cmd.extend(["-c:a", config["audio"]["codec"]])
                     else:
                         audio_cmd.extend(["-c:a", "aac"])
 
+                    # Audio bitrate
                     if config and config["audio"]["bitrate"]:
                         audio_cmd.extend(["-b:a", config["audio"]["bitrate"]])
 
@@ -140,6 +165,7 @@ class ImagesListToVideo:
                     print(f"FFmpeg error: {e.stderr}")
                     return ("",)
             else:
+                # Just create video without audio
                 ffmpeg_cmd.append("-y")
                 ffmpeg_cmd.append(video_path)
                 try:
