@@ -65,7 +65,8 @@ function displayVideoPreview(component, filename, category, autoplay, mute) {
     else videoWidget.videoElement.muted = false;
     if(autoplay) videoWidget.videoElement.autoplay = !videoWidget.value.paused && !videoWidget.value.hidden;
     else videoWidget.videoElement.autoplay = false;
-    videoWidget.videoElement.src = `http://localhost:8188/api/view?${urlParams.toString()}`;
+    // videoWidget.videoElement.src = `http://localhost:8188/api/view?${urlParams.toString()}`;
+    videoWidget.videoElement.src = `api/view?${urlParams.toString()}`;
 
     adjustSize(component); // Adjust the component size
 }

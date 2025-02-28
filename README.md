@@ -1,4 +1,4 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.76 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.77 🔗
 
 A list of 142 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
@@ -232,6 +232,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `36.` [⏸️ Paused. Select input, Pick 👇](#36---%EF%B8%8F-paused-select-input-pick-one)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 `135.` [🔛✨ Anything Switch On/Off](#135----anything-switch-onoff)  
+`136.` [🔛📝 Text Switch On/Off](#136----text-switch-onoff)  
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
@@ -411,14 +412,14 @@ Fix a lot of code everywhere, a little better logging system, etc...
 WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71?) Maybe don't use them yet...
 - **0.71**: ❗Breaking changes for Global variable nodes. (add to global variable system a "filename", which is a a separate global variable file.) bug fix speech to text node, 5 new nodes 129-133. combine text limit raised to 100. improve Save image in folder node.
 - **0.71-0.75**: Many bug fixing. Civitai nodes are working on windows. (encoding, links problem are solved ? - at least on my machines...)
-- **0.76**: Removed kokoro_onnx from requirements.txt due to sonflict with other nodes (need to be installed manually if you want to use this node.)
-New syntaxes for advanced text/line selector, ex: {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR} and {A(80%)|B(15%)|C(5%)}
-2 new nodes switch : 🔛✨ Anything Switch On/Off (compatible with combine images) AND 🔛📝 Text Switch On/Off (Compatible with combine texts)
-2 new pick Me global nodes, using an identifier instead of chain : 🌎✒👉 Global Write Pick Me AND 🌎📥 Load Global Pick Me
-3 random nodes : 🌎🎲 Global Random Seed, 🎲 Random Integer, 🎲 Random Float (Each return their value but also TEXT version of it.) "Seed node" more advanced.
-1 new node to quickly select element from list : 📑👈 Select from List
-1 new audio node : 🔊▶ Play Audio (Just play an audio file, will default to bell.m4a if none provided.) Can take AUDIO format or audio_path.
-❗Breaking changes. Large rewrite for all FFMPEG related nodes. With options for video preview. (Still have few changes to make, next version.)
+- **0.76**: Removed kokoro_onnx from requirements.txt due to some conflict with other nodes (need to be installed manually if you want to use this node.)  
+New syntaxes for advanced text/line selector, ex: {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR} and {A(80%)|B(15%)|C(5%)}  
+2 new nodes switch : 🔛✨ Anything Switch On/Off (compatible with combine images) AND 🔛📝 Text Switch On/Off (Compatible with combine texts)  
+2 new pick Me global nodes, using an identifier instead of chain : 🌎✒👉 Global Write Pick Me AND 🌎📥 Load Global Pick Me  
+3 random nodes : 🌎🎲 Global Random Seed, 🎲 Random Integer, 🎲 Random Float (Each return their value but also TEXT version of it.) "Seed node" more advanced.  
+1 new node to quickly select element from list : 📑👈 Select from List  
+1 new audio node : 🔊▶ Play Audio (Just play an audio file, will default to bell.m4a if none provided.) Can take AUDIO format or audio_path.  
+❗Breaking changes. Large rewrite for all FFMPEG related nodes. With options for video preview. (Still have few changes to make, next version.)  
 
 # 📝 Nodes descriptions
 

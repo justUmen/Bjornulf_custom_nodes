@@ -3,6 +3,8 @@ import numpy as np
 from PIL import Image, ImageSequence, ImageOps
 import torch
 
+from aiohttp import web
+from server import PromptServer
 class LoadImagesFromSelectedFolder:
     @classmethod
     def INPUT_TYPES(cls):
@@ -94,3 +96,29 @@ class LoadImagesFromSelectedFolder:
                 outputs.append(placeholder_image)
 
         return tuple(outputs)
+
+# Define the API endpoint to get the list of image folders
+@PromptServer.instance.routes.get("/get_image_folders")
+async def get_image_folders(request):
+    # Get the ComfyUI output directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    comfyui_root = os.path.abspath(os.path.join(script_dir, '..', '..'))
+    output_dir = os.path.join(comfyui_root, 'output')
+    
+    # Collect folders with images
+    folders = []
+    for root, dirs, files in os.walk(output_dir):
+        rel_path = os.path.relpath(root, output_dir)
+        if rel_path == '.':
+            continue  # Skip the root output directory itself
+        # Count image files in the folder
+        image_count = len([f for f in os.listdir(root) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))])
+        if image_count > 0:
+            folder_name = f"{rel_path} ({image_count} images)"
+            folders.append(folder_name)
+    
+    # Sort the list alphabetically (case-insensitive)
+    folders.sort(key=lambda x: x.lower())
+    
+    # Return the folder list as JSON
+    return web.json_response({"success": True, "folders": folders})
