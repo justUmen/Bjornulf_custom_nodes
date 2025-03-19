@@ -153,8 +153,9 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `62.` [🦙👁 Ollama Vision](#62----ollama-vision)  
 `70.` [📏 Resize Image Percentage](#70----resize-image-percentage)  
 `80.` [🩷 Empty Latent Selector](#80----empty-latent-selector)  
-`146` [🖼📹🔪 Split Image/Video Grid](#)  
-`147` [🖼📹🔨 Reassemble Image/Video Grid](#)  
+`146` [🖼📹🔪 Split Image/Video Grid](#146----split-imagevideo-grid)  
+`147` [🖼📹🔨 Reassemble Image/Video Grid](#147----reassemble-imagevideo-grid)  
+`160.` [🦙👁 Ollama Vision Prompt Selector](#160----ollama-vision-prompt-selector)  
 
 ## 🅰️ Variables 🅰️
 `3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3---🅰%EF%B8%8F-advanced-write-text---random-option)  
@@ -182,7 +183,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `108.` [☁👑 Add Lora (API ONLY - CivitAI) 👑☁](#108----add-lora-api-only---civitai-)  
 `109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
 `110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
-`151` [📥🕑🤖 Load CivitAI Links](#)  
+`151` [📥🕑🤖 Load CivitAI Links](#151----load-civitai-links)  
 
 ## 📥 Take from CivitAI / Hugginface 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
@@ -212,9 +213,9 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `78.` [📹➜📹 Convert Video](#78----convert-video)  
 `79.` [📹🔗 Concat Videos from list](#79----concat-videos-from-list)  
 `119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
-`146` [🖼📹🔪 Split Image/Video Grid](#)  
-`147` [🖼📹🔨 Reassemble Image/Video Grid](#)  
-`149` [💾📹 Save Video (tmp_api.mp4/mkv/webm) ⚠️💣](#)  
+`146` [🖼📹🔪 Split Image/Video Grid](#146----split-imagevideo-grid)  
+`147` [🖼📹🔨 Reassemble Image/Video Grid](#147----reassemble-imagevideo-grid)  
+`149` [💾📹 Save Video (tmp_api.mp4/mkv/webm) ⚠️💣](#149----save-video-tmp_apimp4mkvwebm-%EF%B8%8F)  
 
 ## 🤖 AI 🤖
 `19.` [🦙💬 Ollama Talk](#19----ollama-talk)  
@@ -225,7 +226,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `65.` [🦙 Ollama Persona Selector 🧑](#65----ollama-persona-selector-)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
-`160.` [🦙👁 Ollama Vision Prompt Selector](#)  
+`160.` [🦙👁 Ollama Vision Prompt Selector](#160----ollama-vision-prompt-selector)  
 
 ## 🔊 Audio 🔊
 `31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
@@ -235,8 +236,8 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 `120.` [📝➜🔊 Kokoro - Text to Speech](#120----kokoro---text-to-speech)  
 `134.` [134 - 🔊▶ Play Audio](#134----play-audio)  
-`145` [🔊▶ Audio Preview (Audio player)](#)  
-`148` [💾🔊 Save Audio (tmp_api.wav/mp3) ⚠️💣](#)  
+`145` [🔊▶ Audio Preview (Audio player)](#145----audio-preview-audio-player)  
+`148` [💾🔊 Save Audio (tmp_api.wav/mp3) ⚠️💣](#148----save-audio-tmp_apiwavmp3-%EF%B8%8F)  
 
 ## 💻 General / System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
@@ -254,7 +255,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
 
 ## [Coming soon] - not sorted in the categories above yet...
-`150` [[Coming soon] 🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn](#)  
+`150` [[Coming soon] 🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn](#150----style-selector--or--or---civitai-urn)  
 `152` [[Coming soon] 💾 Save Tensors (tmp_api.pt) ⚠️💣](#)  
 `153` [[Coming soon] 📥 Load Tensor (tmp_api.pt)](#)  
 `154` [[Coming soon] 🔮 Remote VAE Decoder](#)  
