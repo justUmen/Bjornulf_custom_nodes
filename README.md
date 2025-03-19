@@ -531,7 +531,7 @@ You also have `control_after_generate` to manage the randomness.
 **Description:**  
 
 ⚠️ Warning : DEPRECATED, this node doesn't work anymore.  
-Latest comfyui versoin just refuse to output 2 times the same value.  
+Latest comfyui version just refuse to output 2 times the same value.  
 
 General-purpose loop node, you can connect that in between anything.  
 
