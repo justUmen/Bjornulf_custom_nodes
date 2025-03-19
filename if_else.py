@@ -12,6 +12,7 @@ class IfElse:
                     "STRING: input EQUAL TO compare_with",
                     "STRING: input NOT EQUAL TO compare_with",
                     "BOOLEAN: input IS TRUE",
+                    "BOOLEAN: input IS FALSE",
                     "NUMBER: input GREATER THAN compare_with",
                     "NUMBER: input GREATER OR EQUAL TO compare_with",
                     "NUMBER: input LESS THAN compare_with",
@@ -60,6 +61,9 @@ class IfElse:
             details += f"\nCompared strings: '{input}' != '{compare_with}'"
         elif input_type == "BOOLEAN: input IS TRUE":
             result = str(input).lower() in ("true", "1", "yes", "y", "on")
+            details += f"\nChecked if '{input}' is considered True"
+        elif input_type == "BOOLEAN: input IS FALSE":
+            result = str(input).lower() in ("false", "0", "no", "n", "off")
             details += f"\nChecked if '{input}' is considered True"
         else:  # Numeric comparisons
             try:

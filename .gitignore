@@ -11,3 +11,7 @@ civitai/NSFW_*
 pickme.py
 web/js/pickme.js
 todo.py
+video_text_generator.py
+run_workflow_from_api.py
+remote_nodes.py
+fix_face.py

@@ -46,3 +46,28 @@ class SwitchText:
             return (STRING,)
         else:
             return ("",)
+        
+class ConditionalSwitch:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "condition": ("BOOLEAN", {"default": False}),  # True or False to pick the path
+            },
+            "optional": {
+                "input_data": (Everything("*"), {"forceInput": True}),  # Passthrough any data type
+            }
+        }
+
+    RETURN_TYPES = (Everything("*"), Everything("*"))  # Two outputs, dynamically typed
+    RETURN_NAMES = ("TRUE", "FALSE")  # Named outputs for clarity
+    FUNCTION = "switch"
+    CATEGORY = "Utilities"
+
+    def switch(self, condition, input_data=None):
+        if condition:
+            # If condition is True, send data to TRUE output, FALSE gets None
+            return (input_data, None)
+        else:
+            # If condition is False, send data to FALSE output, TRUE gets None
+            return (None, input_data)

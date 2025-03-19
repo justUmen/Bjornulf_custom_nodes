@@ -1,10 +1,15 @@
 ollama
 pydub
 opencv-python
-faster_whisper
+# Remove faster-whisper for the people using python 3.13 (old pkgutil)
+# faster_whisper
 ffmpeg-python
 civitai-py
 fal_client
 sounddevice
 #24, remove kokoro install by default (need to do that manually to use the kokoro node)
 # kokoro_onnx
+langdetect
+spacy
+textblob
+dill

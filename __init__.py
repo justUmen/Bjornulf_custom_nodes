@@ -40,6 +40,7 @@ from .character_description import CharacterDescriptionGenerator
 from .text_to_speech import TextToSpeech, XTTSConfig
 from .loop_combine_texts_by_lines import CombineTextsByLines
 from .free_vram_hack import FreeVRAM
+#, PurgeCLIPNode
 from .pause_resume_stop import PauseResume
 from .pick_input import PickInput
 from .loop_images import LoopImages
@@ -71,7 +72,7 @@ from .ffmpeg_combine_video_audio import CombineVideoAudio
 from .images_merger_horizontal import MergeImagesHorizontally
 from .images_merger_vertical import MergeImagesVertically
 from .ollama_talk import OllamaTalk
-from .ollama_image_vision import OllamaImageVision
+from .ollama_image_vision import OllamaImageVision, OllamaVisionPromptSelector
 from .ollama_config_selector import OllamaConfig
 from .ollama_system_persona import OllamaSystemPersonaSelector
 from .ollama_system_job import OllamaSystemJobSelector
@@ -87,7 +88,7 @@ from .ffmpeg_convert import ConvertVideo
 from .text_generator import TextGenerator, TextGeneratorScene, TextGeneratorStyle, TextGeneratorCharacterFemale, TextGeneratorCharacterMale, TextGeneratorOutfitMale, TextGeneratorOutfitFemale, ListLooper, ListLooperScene, ListLooperStyle, ListLooperCharacter, ListLooperOutfitFemale, ListLooperOutfitMale, TextGeneratorCharacterPose, TextGeneratorCharacterObject, TextGeneratorCharacterCreature
 from .API_flux import APIGenerateFlux
 from .API_StableDiffusion import APIGenerateStability
-from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY, CivitAILoraSelectorHunyuan
+from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY, CivitAILoraSelectorHunyuan, LoadCivitAILinks
 from .API_falAI import APIGenerateFalAI
 from .latent_resolution_selector import LatentResolutionSelector
 from .loader_lora_with_path import LoaderLoraWithPath
@@ -116,8 +117,48 @@ from .play_sound import PlayAudio
 from .switches import SwitchText, SwitchAnything
 from .write_pickme_global import WriteTextPickMeGlobal, LoadTextPickMeGlobal
 from .list_selector import ListSelector
+from .text_analyzer import TextAnalyzer
+from .math_node import MathNode
+from .save_tmp_audio import SaveTmpAudio
+from .save_tmp_video import SaveTmpVideo
+from .audio_preview import AudioPreview
+from .style_selector import StyleSelector
+# from .switches import ConditionalSwitch
+from .split_image import SplitImageGrid, ReassembleImageGrid
+
+# from .video_text_generator import VideoTextGenerator
+# from .run_workflow_from_api import ExecuteWorkflowNode, ApiDynamicTextInputs
+# from .remote_nodes import RemoteVAEDecoderNodeTiled, RemoteVAEDecoderNode, LoadFromBase64, SaveTensors, LoadTensor
+# from .fix_face import FixFace, FaceSettings
+
+#RemoteTextEncodingWithCLIPs
 
 NODE_CLASS_MAPPINGS = {
+    # "Bjornulf_PurgeCLIPNode": PurgeCLIPNode,
+    # "Bjornulf_RemoteTextEncodingWithCLIPs": RemoteTextEncodingWithCLIPs,
+    
+    # "Bjornulf_FixFace": FixFace,
+    # "Bjornulf_FaceSettings": FaceSettings,
+    # "Bjornulf_SaveTensors": SaveTensors,
+    # "Bjornulf_LoadTensor": LoadTensor,
+    # "Bjornulf_LoadFromBase64": LoadFromBase64,
+    # "Bjornulf_RemoteVAEDecoderNode": RemoteVAEDecoderNode,
+    # "Bjornulf_RemoteVAEDecoderNodeTiled": RemoteVAEDecoderNodeTiled,
+    # "Bjornulf_VideoTextGenerator": VideoTextGenerator,
+    # "Bjornulf_ExecuteWorkflowNode": ExecuteWorkflowNode,
+    # "Bjornulf_ApiDynamicTextInputs": ApiDynamicTextInputs,
+    
+    # "Bjornulf_ConditionalSwitch": ConditionalSwitch,
+    "Bjornulf_LoadCivitAILinks": LoadCivitAILinks,
+    "Bjornulf_SplitImageGrid": SplitImageGrid,
+    "Bjornulf_ReassembleImageGrid": ReassembleImageGrid,
+    "Bjornulf_StyleSelector": StyleSelector,
+    "Bjornulf_OllamaVisionPromptSelector": OllamaVisionPromptSelector,
+    "Bjornulf_AudioPreview": AudioPreview,
+    "Bjornulf_SaveTmpAudio": SaveTmpAudio,
+    "Bjornulf_SaveTmpVideo": SaveTmpVideo,
+    "Bjornulf_MathNode": MathNode,
+    "Bjornulf_TextAnalyzer": TextAnalyzer,
     "Bjornulf_ListSelector": ListSelector,
     "Bjornulf_WriteTextPickMeGlobal": WriteTextPickMeGlobal,
     "Bjornulf_LoadTextPickMeGlobal": LoadTextPickMeGlobal,
@@ -273,6 +314,31 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    # "Bjornulf_RemoteTextEncodingWithCLIPs": "[BETA] 🔮 Remote Text Encoding with CLIPs",
+    # "Bjornulf_ConditionalSwitch": "ConditionalSwitch",
+    # "Bjornulf_PurgeCLIPNode": "🧹📎 Purge CLIP",
+    
+    # "Bjornulf_FixFace": "[BETA] 🔧🧑 Fix Face",
+    # "Bjornulf_FaceSettings": "[BETA] 🧑 Face Settings [Fix Face] ⚙",
+    # "Bjornulf_SaveTensors": "[BETA] 💾 Save Tensors (tmp_api.pt) ⚠️💣",
+    # "Bjornulf_LoadTensor": "[BETA] 📥 Load Tensor (tmp_api.pt)",
+    # "Bjornulf_RemoteVAEDecoderNode": "[BETA] 🔮 Remote VAE Decoder",
+    # "Bjornulf_RemoteVAEDecoderNodeTiled": "[BETA] 🔮 Remote VAE Decoder (Tiled)",
+    # "Bjornulf_LoadFromBase64": "[BETA] 📥🔮 Load from Base64",
+    # "Bjornulf_ApiDynamicTextInputs": "[BETA] 📥🔮📝 Text Manager Api (Execute Workflow)",
+    # "Bjornulf_ExecuteWorkflowNode": "[BETA] 🔮⚡ Remote Execute Workflow",
+    # "Bjornulf_VideoTextGenerator": "[BETA] 🔥📝📹 Video Text Generator 📹📝🔥",
+    
+    "Bjornulf_LoadCivitAILinks": "📥🕑🤖 Load CivitAI Links",
+    "Bjornulf_StyleSelector": "🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn",
+    "Bjornulf_ReassembleImageGrid": "🖼📹🔨 Reassemble Image/Video Grid",
+    "Bjornulf_SplitImageGrid": "🖼📹🔪 Split Image/Video Grid",
+    "Bjornulf_SaveTmpAudio": "💾🔊 Save Audio (tmp_api.wav/mp3) ⚠️💣",
+    "Bjornulf_SaveTmpVideo": "💾📹 Save Video (tmp_api.mp4/mkv/webm) ⚠️💣",
+    "Bjornulf_AudioPreview": "🔊▶ Audio Preview (Audio player)",
+    "Bjornulf_MathNode": "🧮 Basic Math",
+    "Bjornulf_TextAnalyzer": "📊🔍 Text Analyzer",
+    "Bjornulf_OllamaVisionPromptSelector": "🦙👁 Ollama Vision Prompt Selector",
     "Bjornulf_ListSelector": "📑👈 Select from List",
     "Bjornulf_PlayAudio": "🔊▶ Play Audio",
     "Bjornulf_SwitchText": "🔛📝 Text Switch On/Off",
@@ -327,7 +393,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_APIGenerateCivitAIAddLORA": "☁👑 Add Lora (API ONLY - CivitAI) 👑☁",
     "Bjornulf_APIGenerateFlux": "☁🎨 API Image Generator (Black Forest Labs - Flux) 🎨☁",
     "Bjornulf_APIGenerateStability": "☁🎨 API Image Generator (Stability - Stable Diffusion) 🎨☁",
-    "Bjornulf_TextGenerator": "🔥📝 Text Generator 📝🔥",
+    "Bjornulf_TextGenerator": "🔥📝 Image Text Generator 📝🔥",
     "Bjornulf_TextGeneratorCharacterFemale": "👩‍🦰📝 Text Generator (Character Female)",
     "Bjornulf_TextGeneratorCharacterMale": "👨‍🦰📝 Text Generator (Character Male)",
     "Bjornulf_TextGeneratorCharacterPose": "💃🕺📝 Text Generator (Character Pose)",

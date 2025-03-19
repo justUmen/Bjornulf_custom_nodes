@@ -98,21 +98,25 @@ class TextToSpeech:
         
         try:
             response = requests.get(url, stream=True)
-            response.raise_for_status()
+            response.raise_for_status()  # Raises an HTTPError for 4xx/5xx status codes
 
             audio_data = io.BytesIO()
             for chunk in response.iter_content(chunk_size=8192):
                 audio_data.write(chunk)
             
             audio_data.seek(0)
+            # Check if the audio data is empty
+            if audio_data.getbuffer().nbytes == 0:
+                raise ValueError("Received empty audio data from server")
+            
             return audio_data
 
         except requests.RequestException as e:
             print(f"Error generating audio: {e}")
-            return io.BytesIO()
+            raise  # Re-raise the exception to stop the workflow
         except Exception as e:
             print(f"Unexpected error: {e}")
-            return io.BytesIO()
+            raise  # Re-raise any other unexpected exceptions
 
     def play_audio(self, audio: AudioSegment) -> None:
         if sys.platform.startswith('win'):
@@ -194,28 +198,6 @@ class TextToSpeech:
 
             audio_output, _, duration = self.process_audio_data(autoplay, audio_data, full_path if save_audio else None)
             return (audio_output, save_path, full_path, duration)
-
-# GET VOICE FROM TTS SERVER (Not good for now)
-# @PromptServer.instance.routes.post("/bjornulf_TTS_get_voices")
-# async def get_voices(request):
-#     try:
-#         data = await request.json()
-#         TTS_url = data.get('url', 'http://localhost:8020')
-        
-#         # Use requests instead of client_session
-#         response = requests.get(f"{TTS_url}/speakers")
-#         response.raise_for_status()  # Raise an exception for bad status codes
-#         voices = response.json()
-        
-#         # Transform the response to just get the voice_ids
-#         voice_ids = [voice["voice_id"] for voice in voices]
-#         return web.json_response({"voices": voice_ids})
-#     except requests.RequestException as e:
-#         print(f"Error fetching voices: {str(e)}")
-#         return web.json_response({"error": str(e)}, status=500)
-#     except Exception as e:
-#         print(f"Unexpected error: {str(e)}")
-#         return web.json_response({"error": str(e)}, status=500)
 
 # Scan folder
 @PromptServer.instance.routes.post("/bjornulf_TTS_get_voices")

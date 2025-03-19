@@ -57,3 +57,20 @@ class FreeVRAM:
             print("HTTP request triggered successfully")
         except requests.exceptions.RequestException as e:
             print(f"Failed to trigger HTTP request: {e}")
+            
+class PurgeCLIPNode:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {"required": {}}
+
+    RETURN_TYPES = ()
+    FUNCTION = "purge_clip"
+    CATEGORY = "utils"
+
+    def purge_clip(self):
+        # Check if the CLIP model is accessible in the global scope
+        global clip_model
+        if 'clip_model' in globals():
+            del clip_model  # Delete the CLIP model reference
+            torch.cuda.empty_cache()  # Clear VRAM cache
+        return ()

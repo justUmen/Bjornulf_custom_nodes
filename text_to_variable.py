@@ -9,6 +9,6 @@ class TextToVariable:
     CATEGORY = "Custom"
     
     def process(self, variable_name, text_value):
-        text_value = text_value.replace("\n", ";")
+        text_value = text_value.replace("\n", "")
         output_string = f"{variable_name} = {text_value}"
         return (output_string,)

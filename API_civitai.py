@@ -1,4 +1,6 @@
 import os
+from server import PromptServer
+import aiohttp.web as web
 import time
 import requests
 from PIL import Image, ImageSequence, ImageOps
@@ -168,11 +170,27 @@ def download_file(url, destination_path, model_name, api_token=None):
             response.raise_for_status()
             file_size = int(response.headers.get('content-length', 0))
             
+            # Initialize progress tracking if file size is known
+            if file_size > 0:
+                downloaded = 0
+                bar_width = 20  # Fixed width for the progress bar
+            
             with open(file_path, 'wb') as f:
                 for chunk in response.iter_content(chunk_size=8192):
                     if chunk:
                         f.write(chunk)
-                        # Add progress reporting here if needed
+                        # Progress bar logic
+                        if file_size > 0:
+                            downloaded += len(chunk)
+                            progress = min(100, int((downloaded / file_size) * 100))
+                            num_hashes = int(progress / (100 / bar_width))
+                            bar = "[" + "#" * num_hashes + " " * (bar_width - num_hashes) + "]"
+                            percentage = f"{progress:3d}%"
+                            print(f"\r{bar} {percentage}", end="", flush=True)
+            
+            # Add a newline after download completes to avoid overwriting
+            if file_size > 0:
+                print()  # Moves to the next line after completion
                         
         return str(file_path)
     except Exception as e:
@@ -222,95 +240,165 @@ import civitai
 # ======================
 # GENERATE WITH CIVITAI
 # ======================
+
 class APIGenerateCivitAI:
     @classmethod
     def INPUT_TYPES(cls):
+        """Define the input types for the node."""
         return {
             "required": {
-                "api_token": ("STRING", {
-                    "multiline": False,
-                    "default": "",
-                    "placeholder": "Enter your CivitAI API token here"
-                }),
-                "model_urn": ("STRING", {
-                    "multiline": False,
-                    "default": "urn:air:sdxl:checkpoint:civitai:133005@782002"
-                }),
-                "prompt": ("STRING", {
-                    "multiline": True,
-                    "default": "RAW photo, face portrait photo of 26 y.o woman"
-                }),
+                "api_token": ("STRING", {"default": "", "placeholder": "CivitAI API token"}),
+                "prompt": ("STRING", {"multiline": True, "default": "RAW photo, face portrait photo of 26 y.o woman"}),
                 "negative_prompt": ("STRING", {
                     "multiline": True,
-                    "default": "(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime)"
+                    "default": "low quality, blurry, pixelated, distorted, artifacts"
                 }),
-                "width": ("INT", {
-                    "default": 1024,
-                    "min": 128,
-                    "max": 1024,
-                    "step": 64
-                }),
-                "height": ("INT", {
-                    "default": 768,
-                    "min": 128,
-                    "max": 1024,
-                    "step": 64
-                }),
-                "steps": ("INT", {
-                    "default": 20,
-                    "min": 1,
-                    "max": 50,
-                    "step": 1
-                }),
-                "cfg_scale": ("FLOAT", {
-                    "default": 7.0,
-                    "min": 1.0,
-                    "max": 30.0,
-                    "step": 0.1
-                }),
-                "seed": ("INT", {
-                    "default": -1,
-                    "min": -1,
-                    "max": 0x7FFFFFFFFFFFFFFF
-                }),
-                "number_of_images": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 10,
-                    "step": 1
-                }),
-                "timeout": ("INT", {
-                    "default": 300,
-                    "min": 60,
-                    "max": 1800,
-                    "step": 60,
-                    "display": "Timeout (seconds)"
-                }),
+                "width": ("INT", {"default": 1024, "min": 128, "max": 1024, "step": 64}),
+                "height": ("INT", {"default": 768, "min": 128, "max": 1024, "step": 64}),
+                "steps": ("INT", {"default": 20, "min": 1, "max": 50, "step": 1}),
+                "cfg_scale": ("FLOAT", {"default": 7.0, "min": 1.0, "max": 30.0, "step": 0.1}),
+                "seed": ("INT", {"default": -1, "min": -1, "max": 0x7FFFFFFFFFFFFFFF}),
+                "number_of_images": ("INT", {"default": 1, "min": 1, "max": 10, "step": 1}),
+                "timeout": ("INT", {"default": 300, "min": 60, "max": 1800, "step": 60}),
             },
-            "optional":{
-                "add_LORA": ("add_LORA", {"forceInput": True}),
+            "optional": {
+                "model_urn": ("STRING", {"default": "urn:air:sdxl:checkpoint:civitai:101055@128078"}), #SDXL default
+                "add_LORA": ("STRING", {"multiline": True, "default": ""}),
+                "DO_NOT_WAIT": ("BOOLEAN", {"default": False, "label_on": "Save Links Only", "label_off": "Generate Now"}),
+                "links_file": ("STRING", {"default": "", "multiline": False}),
+                "LIST_from_style_selector": ("STRING", {
+                    "default": "",
+                    "multiline": True,
+                    "placeholder": "e.g., Low Poly ;Samaritan 3D Cartoon;urn:air:sdxl:checkpoint:civitai:81270@144566;https://civitai.green/models/81270?modelVersionId=144566"
+                }),
             }
         }
 
-    RETURN_TYPES = ("IMAGE", "STRING",)
-    RETURN_NAMES = ("image", "generation_info",)
+    RETURN_TYPES = ("IMAGE", "STRING")
+    RETURN_NAMES = ("images", "generation_info")
     FUNCTION = "generate"
     CATEGORY = "Civitai"
 
     def __init__(self):
-        self.output_dir = "output/API/CivitAI"
-        self.metadata_dir = "output/API/CivitAI/metadata"
-        os.makedirs(self.output_dir, exist_ok=True)
-        os.makedirs(self.metadata_dir, exist_ok=True)
+        self.links_dir = "Bjornulf/civitai_links"
+        os.makedirs(self.links_dir, exist_ok=True)
         self._interrupt_event = threading.Event()
 
-    def get_next_number(self):
-        """Get the next available number for file naming"""
-        files = [f for f in os.listdir(self.output_dir) if f.endswith('.png')]
-        if not files:
-            return 1
-        numbers = [int(f.split('.')[0]) for f in files]
-        return max(numbers) + 1
+    def generate(self, api_token, prompt, negative_prompt, width, height, steps, cfg_scale, seed, number_of_images, timeout, model_urn="", add_LORA="", DO_NOT_WAIT=False, links_file="", LIST_from_style_selector=""):
+        """Generate images or save links based on DO_NOT_WAIT."""
+        if not api_token:
+            raise ValueError("API token is required")
+        os.environ["CIVITAI_API_TOKEN"] = api_token
+        civitai = get_civitai()
+
+        empty_image = torch.zeros((1, 512, 512, 3))
+
+        # Extract model_urn from LIST_from_style_selector if model_urn is empty and LIST_from_style_selector is provided
+        if not model_urn and LIST_from_style_selector:
+            parts = LIST_from_style_selector.split(';')
+            if len(parts) >= 3:
+                model_urn = parts[2].strip()
+            else:
+                raise ValueError("Invalid LIST_from_style_selector format: cannot extract model_urn")
+        if not model_urn:
+            raise ValueError("model_urn is required")
+
+        seed = random.randint(0, 0x7FFFFFFFFFFFFFFF) if seed == -1 else seed
+        jobs = []
+
+        # Prepare job requests
+        for i in range(number_of_images):
+            current_seed = seed + i
+            input_data = {
+                "model": model_urn,
+                "params": {
+                    "prompt": prompt,
+                    "negativePrompt": negative_prompt,
+                    "scheduler": "EulerA",
+                    "steps": steps,
+                    "cfgScale": cfg_scale,
+                    "width": width,
+                    "height": height,
+                    "clipSkip": 2,
+                    "seed": current_seed
+                }
+            }
+            if add_LORA:
+                try:
+                    lora_data = json.loads(add_LORA)
+                    if "additionalNetworks" in lora_data:
+                        input_data["additionalNetworks"] = lora_data["additionalNetworks"]
+                except Exception as e:
+                    print(f"Error processing LORA data: {str(e)}")
+
+            response = civitai.image.create(input_data)
+            if 'token' not in response or 'jobs' not in response:
+                raise ValueError("Invalid API response")
+            jobs.append({
+                'token': response['token'],
+                'job_id': response['jobs'][0]['jobId'],
+                'input_data': input_data
+            })
+
+        # Save links if DO_NOT_WAIT is True
+        if DO_NOT_WAIT:
+            date_str = time.strftime("%d_%B_%Y").lower()
+            base_name = f"{date_str}_"
+            existing_files = [f for f in os.listdir(self.links_dir) if f.startswith(base_name) and f.endswith(".txt")]
+            next_number = max([int(f[len(base_name):-4]) for f in existing_files] or [0]) + 1
+            file_name = f"{date_str}_{next_number:03d}.txt"
+            file_path = os.path.join(self.links_dir, links_file if links_file else file_name)
+            mode = 'a' if links_file else 'w'
+            if not file_path.endswith(".txt"):
+                file_path += ".txt"
+
+            with open(file_path, mode) as f:
+                for job in jobs:
+                    if LIST_from_style_selector:
+                        f.write(f"{LIST_from_style_selector};Token: {job['token']};Job ID: {job['job_id']}\n")
+                    else:
+                        f.write(f"Token: {job['token']};Job ID: {job['job_id']}\n")
+
+            generation_info = {
+                "status": "links_saved",
+                "links_file": file_path,
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "number_of_jobs": len(jobs)
+            }
+            return (empty_image, json.dumps(generation_info, indent=2))
+
+        # Generate images immediately (DO_NOT_WAIT=False)
+        images = []
+        infos = []
+        failed_jobs = []
+
+        for job in jobs:
+            try:
+                image_url = self.check_job_status(job['token'], job['job_id'], timeout)
+                image_response = requests.get(image_url)
+                if image_response.status_code != 200:
+                    raise ConnectionError(f"Image download failed: {image_response.status_code}")
+
+                img = Image.open(BytesIO(image_response.content)).convert('RGB')
+                img_tensor = torch.from_numpy(np.array(img).astype(np.float32) / 255.0)
+                images.append(img_tensor.unsqueeze(0))
+                infos.append(self.format_generation_info(job['input_data'], job['token'], job['job_id'], image_url))
+
+            except Exception as e:
+                failed_jobs.append({'job': job, 'error': str(e)})
+
+        if not images:
+            generation_info = {"error": "All jobs failed", "failed_jobs": failed_jobs}
+            return (empty_image, json.dumps(generation_info, indent=2))
+
+        combined_tensor = torch.cat(images, dim=0)
+        combined_info = {
+            "successful_generations": len(images),
+            "total_requested": number_of_images,
+            "individual_results": infos,
+            "failed_jobs": failed_jobs if failed_jobs else None
+        }
+        return (combined_tensor, json.dumps(combined_info, indent=2))
 
     def check_job_status(self, job_token, job_id, timeout=9999):
         """Check job status with timeout"""
@@ -341,196 +429,183 @@ class APIGenerateCivitAI:
             raise InterruptedError("Generation interrupted by user")
         raise TimeoutError(f"Job timed out after {timeout} seconds")
 
-    def save_image_and_metadata(self, img, generation_info, number):
-        """Save both image and its metadata"""
-        # Save image
-        filename = f"{number:04d}.png"
-        filepath = os.path.join(self.output_dir, filename)
-        img.save(filepath)
+    def format_generation_info(self, input_data, token, job_id, image_url):
+        """Format generation info (implementation assumed)."""
+        return {"token": token, "job_id": job_id, "image_url": image_url}
 
-        # Save metadata
-        metadata_filename = f"{number:04d}_metadata.json"
-        metadata_filepath = os.path.join(self.metadata_dir, metadata_filename)
-        with open(metadata_filepath, 'w') as f:
-            json.dump(generation_info, f, indent=4)
-
-        return filepath, metadata_filepath
-
-    def format_generation_info(self, input_data, job_token, job_id, image_url):
-        """Format generation information for recovery"""
-        recovery_info = {
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "generation_parameters": input_data,
-            "job_details": {
-                "token": job_token,
-                "job_id": job_id,
-                "image_url": image_url
+class LoadCivitAILinks:
+    @classmethod
+    def INPUT_TYPES(cls):
+        """Define the input types for the node."""
+        return {
+            "required": {
+                "api_token": ("STRING", {"default": "", "placeholder": "CivitAI API token"}),
+                "links_file_path": ("STRING", {
+                    "default": "",
+                    "placeholder": "Path to links file (priority if not empty)"
+                }),
+                "selected_file": (["Not selected"] + cls.get_links_files(), {
+                    "default": "Not selected"
+                }),
+                "direct_links": ("STRING", {
+                    "multiline": True,
+                    "default": "",
+                    "placeholder": "Enter links directly (e.g., Style;Model;URN;Link;Token: <token>;Job ID: <job_id>)"
+                }),
             },
-            "recovery_command": f"curl -X GET '{image_url}' --output recovered_image.png",
-            "recovery_instructions": """
-To recover this image:
-1. Use the provided curl command to download the image
-2. Or use the image_url directly in a browser
-3. If the image is no longer available, you can retry generation with the same parameters
-            """
+            "optional": {
+                "auto_save": ("BOOLEAN", {
+                    "default": False,
+                    "label_on": "Enable Auto-Save",
+                    "label_off": "Disable Auto-Save"
+                }),
+            }
         }
-        return recovery_info
 
-    def generate_single_image(self, input_data, job_token, job_id, timeout):
-        """Generate a single image and return its tensor and info"""
-        try:
-            image_url = self.check_job_status(job_token, job_id, timeout)
-            if not image_url:
-                raise ValueError("No image URL received")
+    RETURN_TYPES = ("IMAGE", "STRING", "STRING")
+    RETURN_NAMES = ("images", "status_info", "LIST_style")
+    OUTPUT_IS_LIST = (False, False, True)
+    FUNCTION = "load_images"
+    CATEGORY = "Civitai"
 
-            image_response = requests.get(image_url)
-            if image_response.status_code != 200:
-                raise ConnectionError(f"Failed to download image: Status code {image_response.status_code}")
-
-            img = Image.open(BytesIO(image_response.content))
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-
-            number = self.get_next_number()
-            generation_info = self.format_generation_info(input_data, job_token, job_id, image_url)
-            image_path, metadata_path = self.save_image_and_metadata(img, generation_info, number)
-
-            img_tensor = torch.from_numpy(np.array(img).astype(np.float32) / 255.0)
-            img_tensor = img_tensor.unsqueeze(0)
-
-            return img_tensor, generation_info
-
-        except Exception as e:
-            raise Exception(f"Error generating single image: {str(e)}")
-
-
-    def generate(self, api_token, prompt, negative_prompt, width, height, model_urn, steps=20, 
-                cfg_scale=7.0, seed=-1, number_of_images=1, timeout=300, add_LORA=""):
-
-        # Set the environment variable
-        if api_token:
-            os.environ["CIVITAI_API_TOKEN"] = api_token
-            # Get a fresh instance of civitai with the new token
-            civitai = get_civitai()
-
-        self._interrupt_event.clear()
-        empty_image = torch.zeros((1, height, width, 3))
-        
-        try:
-            # Handle seed
-            if seed == -1:
-                seed = random.randint(0, 0x7FFFFFFFFFFFFFFF)
-            
-            # Prepare jobs list
-            jobs = []
-            generation_tasks = []
-
-            for i in range(number_of_images):
-                current_seed = seed + i
-                input_data = {
-                    "model": model_urn,
-                    "params": {
-                        "prompt": prompt,
-                        "negativePrompt": negative_prompt,
-                        "scheduler": "EulerA",
-                        "steps": steps,
-                        "cfgScale": cfg_scale,
-                        "width": width,
-                        "height": height,
-                        "clipSkip": 2,
-                        "seed": current_seed
-                    }
-                }
-
-                # Handle add_LORA input if provided
-                if add_LORA:
-                    try:
-                        lora_data = json.loads(add_LORA)
-                        if "additionalNetworks" in lora_data:
-                            input_data["additionalNetworks"] = lora_data["additionalNetworks"]
-                    except Exception as e:
-                        print(f"Error processing LORA data: {str(e)}")
-
-                # Create generation job
-                response = civitai.image.create(input_data)
-                if not response or 'token' not in response or 'jobs' not in response:
-                    raise ValueError("Invalid response from Civitai API")
-
-                jobs.append({
-                    'token': response['token'],
-                    'job_id': response['jobs'][0]['jobId'],
-                    'input_data': input_data
-                })
-
-            # Process all jobs in parallel
-            images = []
-            infos = []
-            failed_jobs = []
-
-            for job in jobs:
-                try:
-                    img_tensor, generation_info = self.generate_single_image(
-                        job['input_data'], 
-                        job['token'], 
-                        job['job_id'], 
-                        timeout
-                    )
-                    images.append(img_tensor)
-                    infos.append(generation_info)
-                except Exception as e:
-                    failed_jobs.append({
-                        'job': job,
-                        'error': str(e)
-                    })
-
-            if not images:  # If all jobs failed
-                generation_info = {
-                    "error": "All generation jobs failed",
-                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                    "failed_jobs": failed_jobs
-                }
-                return (empty_image, json.dumps(generation_info, indent=2))
-
-            # Combine images into a batch
-            combined_tensor = torch.cat(images, dim=0)
-            
-            # Combine generation info
-            combined_info = {
-                "successful_generations": len(images),
-                "total_requested": number_of_images,
-                "base_seed": seed,
-                "generation_parameters": jobs[0]['input_data'],
-                "individual_results": infos,
-                "failed_jobs": failed_jobs if failed_jobs else None
-            }
-
-            return (combined_tensor, json.dumps(combined_info, indent=2))
-
-        except InterruptedError:
-            generation_info = {
-                "error": "Generation interrupted by user",
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "base_seed": seed
-            }
-            return (empty_image, json.dumps(generation_info, indent=2))
-            
-        except Exception as e:
-            generation_info = {
-                "error": f"Civitai generation failed: {str(e)}",
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "base_seed": seed if 'seed' in locals() else None
-            }
-            return (empty_image, json.dumps(generation_info, indent=2))
+    def __init__(self):
+        """Initialize the node with the links directory."""
+        self.links_dir = "Bjornulf/civitai_links"
+        os.makedirs(self.links_dir, exist_ok=True)
 
     @classmethod
-    def IS_CHANGED(cls, **kwargs):
+    def get_links_files(cls):
+        links_dir = "Bjornulf/civitai_links"
+        if not os.path.exists(links_dir):
+            return []
+        files = [f for f in os.listdir(links_dir) if f.endswith(".txt")]
+        return files
+
+    def load_images(self, api_token, links_file_path, selected_file, direct_links, auto_save=False):
+        """Load images from links and optionally save them to style-based folders."""
+        if not api_token:
+            raise ValueError("API token is required")
+        os.environ["CIVITAI_API_TOKEN"] = api_token
+        civitai = get_civitai()
+
+        # Determine the source of links
+        lines = None
+        if links_file_path:
+            if not os.path.exists(links_file_path):
+                raise ValueError(f"File path '{links_file_path}' does not exist")
+            with open(links_file_path, 'r') as f:
+                lines = f.readlines()
+        elif selected_file != "Not selected":
+            file_path = os.path.join(self.links_dir, selected_file)
+            if not os.path.exists(file_path):
+                raise ValueError(f"Selected file '{file_path}' does not exist")
+            with open(file_path, 'r') as f:
+                lines = f.readlines()
+        elif direct_links:
+            lines = direct_links.splitlines()
+        else:
+            raise ValueError("No valid links source provided")
+
+        images = []
+        list_styles = []  # To store LIST_style strings
+        status_info = {
+            "loaded": 0,
+            "failed": 0,
+            "attempted": 0,
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            status_info["attempted"] += 1
+            try:
+                parts = line.split(";")
+                if len(parts) == 6:
+                    style = parts[0].strip()
+                    model_name = parts[1].strip()
+                    model_urn = parts[2].strip()
+                    model_link = parts[3].strip()
+                    token = parts[4].split("Token: ")[1].strip()
+                    job_id = parts[5].split("Job ID: ")[1].strip()
+                    list_style = ';'.join(parts[:4])
+                elif len(parts) == 2 and "Token: " in parts[0] and "Job ID: " in parts[1]:
+                    token = parts[0].split("Token: ")[1].strip()
+                    job_id = parts[1].split("Job ID: ")[1].strip()
+                    list_style = ""
+                else:
+                    raise ValueError(f"Invalid link format: {line}")
+
+                # Fetch job status from CivitAI API
+                response = civitai.jobs.get(token=token)
+                job_status = next((job for job in response['jobs'] if job['jobId'] == job_id), None)
+
+                if not job_status or not job_status['result'].get('available'):
+                    status_info["failed"] += 1
+                    continue
+
+                # Download and process the image
+                image_url = job_status['result'].get('blobUrl')
+                image_response = requests.get(image_url)
+                if image_response.status_code != 200:
+                    status_info["failed"] += 1
+                    continue
+
+                img = Image.open(BytesIO(image_response.content))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+
+                # Auto-save if enabled and style is available
+                if auto_save and len(parts) == 6:
+                    style_folder = style.replace(" ", "_")  # Replace spaces with underscores
+                    save_dir = os.path.join(folder_paths.get_output_directory(), "civitai_autosave", style_folder)
+                    os.makedirs(save_dir, exist_ok=True)
+                    file_name = f"{job_id}.png"
+                    file_path = os.path.join(save_dir, file_name)
+                    img.save(file_path)
+
+                # Convert to tensor and collect
+                img_tensor = torch.from_numpy(np.array(img).astype(np.float32) / 255.0)
+                images.append(img_tensor.unsqueeze(0))
+                list_styles.append(list_style)
+                status_info["loaded"] += 1
+
+            except Exception as e:
+                status_info["failed"] += 1
+                print(f"Error processing link '{line}': {str(e)}")
+
+        if not images:
+            raise ValueError("No images loaded from the provided links")
+
+        combined_tensor = torch.cat(images, dim=0)
+        return (combined_tensor, json.dumps(status_info, indent=2), list_styles)
+
+    @classmethod
+    def IS_CHANGED(cls, api_token, links_file_path, selected_file, direct_links, auto_save):
+        """Force node re-execution when inputs change."""
         return float("NaN")
 
-    def interrupt(self):
-        """Method to handle interruption"""
-        print("Interrupting CivitAI generation...")
-        self._interrupt_event.set()
-
+@PromptServer.instance.routes.post("/get_civitai_links_files")
+async def get_civitai_links_files(request):
+    try:
+        links_dir = "Bjornulf/civitai_links"
+        if not os.path.exists(links_dir):
+            return web.json_response({
+                "success": False,
+                "error": "Links directory does not exist"
+            }, status=404)
+        files = [f for f in os.listdir(links_dir) if f.endswith(".txt")]
+        return web.json_response({
+            "success": True,
+            "files": files
+        }, status=200)
+    except Exception as e:
+        error_msg = str(e)
+        return web.json_response({
+            "success": False,
+            "error": error_msg
+        }, status=500)
 class APIGenerateCivitAIAddLORA:
     @classmethod
     def INPUT_TYPES(cls):

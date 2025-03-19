@@ -1638,7 +1638,8 @@ class TextGeneratorOutfitFemale:
             }
         }
 
-    RETURN_TYPES = ("GEN_OUTFIT",)
+    RETURN_TYPES = ("GEN_OUTFIT,STRING",)
+    RETURN_NAMES = ("GEN_OUTFIT",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
     
@@ -1796,7 +1797,8 @@ class TextGeneratorOutfitMale:
             }
         }
 
-    RETURN_TYPES = ("GEN_OUTFIT",)
+    RETURN_TYPES = ("GEN_OUTFIT,STRING",)
+    RETURN_NAMES = ("GEN_OUTFIT",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -1976,13 +1978,14 @@ class TextGeneratorCharacterFemale:
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
             },
             "optional": {
-                "add_GEN_CHARACTER": ("GEN_CHARACTER",),
-                "GEN_OUTFIT": ("GEN_OUTFIT",),
-                "GEN_POSE": ("GEN_POSE",),
+                "add_GEN_CHARACTER": ("GEN_CHARACTER,STRING",),
+                "GEN_OUTFIT": ("GEN_OUTFIT,STRING",),
+                "GEN_POSE": ("GEN_POSE,STRING",),
             }
         }
 
-    RETURN_TYPES = ("GEN_CHARACTER",)
+    RETURN_TYPES = ("GEN_CHARACTER,STRING",)
+    RETURN_NAMES = ("GEN_CHARACTER",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -2120,13 +2123,14 @@ class TextGeneratorCharacterMale:
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
             },
             "optional": {
-                "add_GEN_CHARACTER": ("GEN_CHARACTER",),
-                "GEN_OUTFIT": ("GEN_OUTFIT",),
-                "GEN_POSE": ("GEN_POSE",),
+                "add_GEN_CHARACTER": ("GEN_CHARACTER,STRING",),
+                "GEN_OUTFIT": ("GEN_OUTFIT,STRING",),
+                "GEN_POSE": ("GEN_POSE,STRING",),
             }
         }
 
-    RETURN_TYPES = ("GEN_CHARACTER",)
+    RETURN_TYPES = ("GEN_CHARACTER,STRING",)
+    RETURN_NAMES = ("GEN_CHARACTER",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -2253,7 +2257,8 @@ class TextGeneratorStyle:
             }
         }
 
-    RETURN_TYPES = ("GEN_STYLE",)
+    RETURN_TYPES = ("GEN_STYLE,STRING",)
+    RETURN_NAMES = ("GEN_STYLE",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -2316,7 +2321,8 @@ class TextGeneratorScene:
             }
         }
 
-    RETURN_TYPES = ("GEN_SCENE",)
+    RETURN_TYPES = ("GEN_SCENE,STRING",)
+    RETURN_NAMES = ("GEN_SCENE",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -2373,9 +2379,9 @@ class TextGenerator:
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
             },
             "optional": {
-                "GEN_STYLE": ("GEN_STYLE",),
-                "GEN_CHARACTER": ("GEN_CHARACTER",),
-                "GEN_SCENE": ("GEN_SCENE",),
+                "GEN_STYLE": ("GEN_STYLE,STRING",),
+                "GEN_CHARACTER": ("GEN_CHARACTER,STRING",),
+                "GEN_SCENE": ("GEN_SCENE,STRING",),
             }
         }
 
@@ -2889,12 +2895,13 @@ class TextGeneratorCharacterPose:
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
             },
             "optional": {
-                "GEN_OBJECT": ("GEN_OBJECT",),
-                "add_GEN_POSE": ("GEN_POSE",),
+                "GEN_OBJECT": ("GEN_OBJECT,STRING",),
+                "add_GEN_POSE": ("GEN_POSE,STRING",),
             }
         }
 
-    RETURN_TYPES = ("GEN_POSE",)
+    RETURN_TYPES = ("GEN_POSE,STRING",)
+    RETURN_NAMES = ("GEN_POSE",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -2968,11 +2975,12 @@ class TextGeneratorCharacterObject:
                 "CUSTOM_PROMPT_SUFFIX": ("STRING", {"default": "", "multiline": True}),
             },
             "optional": {
-                "add_GEN_OBJECT": ("GEN_OBJECT",),
+                "add_GEN_OBJECT": ("GEN_OBJECT,STRING",),
             }
         }
 
-    RETURN_TYPES = ("GEN_OBJECT",)
+    RETURN_TYPES = ("GEN_OBJECT,STRING",)
+    RETURN_NAMES = ("GEN_OBJECT",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 
@@ -3017,11 +3025,12 @@ class TextGeneratorCharacterCreature:
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
             },
             "optional": {
-                "add_GEN_CHARACTER": ("GEN_CHARACTER",),
+                "add_GEN_CHARACTER": ("GEN_CHARACTER,STRING",),
             }
         }
 
-    RETURN_TYPES = ("GEN_CHARACTER",)
+    RETURN_TYPES = ("GEN_CHARACTER,STRING",)
+    RETURN_NAMES = ("GEN_CHARACTER",)
     FUNCTION = "generate"
     CATEGORY = "Bjornulf"
 

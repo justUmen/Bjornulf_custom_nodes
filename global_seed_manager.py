@@ -1,14 +1,12 @@
-
 from server import PromptServer
 import os
 from aiohttp import web
-import random
 
 class GlobalSeedManager:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": {"seed": ( "INT", {
-            "default": 0,
+            "default": 1,
             "min": 0,
             "max": 4294967294
         })}}
@@ -19,8 +17,8 @@ class GlobalSeedManager:
     CATEGORY = "Bjornulf"
 
     def generate_seed(self, seed: int):
-        # Generate new random seed
-        new_seed = random.randint(0, 2**31 - 1)
+        # Use the provided seed instead of generating a new one
+        new_seed = seed
         seed_str = str(new_seed)
         
         # Define file path

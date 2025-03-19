@@ -5,13 +5,8 @@ import numpy as np
 import tempfile
 import wave
 import subprocess  # Added for ffmpeg
-
-try:
-    import faster_whisper
-    WHISPER_AVAILABLE = True
-except ImportError:
-    WHISPER_AVAILABLE = False
-    print("faster-whisper not found. To use local transcription, install with: pip install faster-whisper")
+import sys
+import logging
 
 class SpeechToText:
     def __init__(self):
@@ -56,8 +51,7 @@ class SpeechToText:
         return temp_file.name
 
     def load_local_model(self, model_size):
-        if not WHISPER_AVAILABLE:
-            return False, "faster-whisper not installed. Install with: pip install faster-whisper"
+        import faster_whisper
         
         try:
             if self.local_model is None:
@@ -84,6 +78,10 @@ class SpeechToText:
             return False, f"Error during local transcription: {str(e)}", None
 
     def transcribe_audio(self, model_size, AUDIO=None, audio_path=None, video_path=None):
+        # Check Python version and warn if 3.12 or higher
+        if sys.version_info > (3, 12):
+            logging.warning("⚠️⚠️⚠️ Warning: You are using Python {}.{} or higher. This may cause compatibility issues with some dependencies (e.g., faster_whisper). Consider using Python 3.11 or 3.12 instead. ⚠️⚠️⚠️".format(sys.version_info.major, sys.version_info.minor))
+        import faster_whisper
         transcript = "No valid audio input provided"
         detected_language = ""
         temp_wav_path = None

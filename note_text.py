@@ -22,4 +22,7 @@ class DisplayNote:
     
     def display_text_pass(self, any, display_text):
         # Simply pass through the input
-        return (any,)
+        if any is None:
+            return (None,)
+        else:
+            return (any,)

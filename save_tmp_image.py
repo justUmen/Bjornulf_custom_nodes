@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 import json
 from PIL.PngImagePlugin import PngInfo
+import torch
 
 class SaveTmpImage:
     @classmethod

@@ -31,7 +31,8 @@ app.registerExtension({
             // Function to update voices based on selected language
             const updateVoicesForLanguage = async (selectedLanguage) => {
                 try {
-                    const response = await fetch('/bjornulf_xtts_get_voices', {
+                    // const response = await fetch('/bjornulf_xtts_get_voices', {
+                    const response = await fetch('/bjornulf_TTS_get_voices', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

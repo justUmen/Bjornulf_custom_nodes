@@ -24,9 +24,12 @@ class SaveImageToFolder(SaveImage):
         
         # Call the parent's save_images with filename_prefix set to "folder_name/"
         # This will make the parent class save to the custom folder
-        return super().save_images(
-            images=images,
-            filename_prefix=f"{folder_name}/_",
-            prompt=prompt,
-            extra_pnginfo=extra_pnginfo
-        )
+        if images is None:
+            return (None,)
+        else:
+            return super().save_images(
+                images=images,
+                filename_prefix=f"{folder_name}/_",
+                prompt=prompt,
+                extra_pnginfo=extra_pnginfo
+            )

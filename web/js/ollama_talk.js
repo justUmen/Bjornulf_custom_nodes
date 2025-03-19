@@ -7,10 +7,10 @@ app.registerExtension({
   async nodeCreated(node) {
     if (node.comfyClass === "Bjornulf_OllamaTalk") {
       // Set seed widget to hidden input
-      const seedWidget = node.widgets.find((w) => w.name === "seed");
-      if (seedWidget) {
-        seedWidget.type = "HIDDEN";
-      }
+      // const seedWidget = node.widgets.find((w) => w.name === "seed");
+      // if (seedWidget) {
+      //   seedWidget.type = "HIDDEN";
+      // }
 
       // Function to update the Reset Button text
       const updateResetButtonTextNode = () => {

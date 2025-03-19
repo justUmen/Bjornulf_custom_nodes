@@ -1,7 +1,6 @@
 class Everything(str):
     def __ne__(self, _):
         return False
-
 class ShowText:
     @classmethod
     def INPUT_TYPES(cls):
@@ -21,7 +20,6 @@ class ShowText:
         if isinstance(value, int):
             return 'integer'
         elif isinstance(value, float):
-            # Check if it has a decimal part
             if value % 1 == 0:
                 return 'float' if str(value).endswith('.0') else 'integer'
             return 'float'
@@ -39,5 +37,5 @@ class ShowText:
             return 'other type'
 
     def show_text(self, text_int_float):
-        type_info = [f"{value}" for value in text_int_float]
+        type_info = [f"{value}" for value in text_int_float if value is not None]
         return {"ui": {"text": type_info}}

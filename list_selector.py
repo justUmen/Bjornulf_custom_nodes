@@ -42,16 +42,15 @@ class ListSelector:
         # Convert to 0-based index
         index = selection - 1
         
-        # Get the selected number
+        # Get the selected element
         selected = numbers[index]
         
-        # Convert to integer and string
+        # Try to convert to integer, but keep string value regardless
         try:
             selected_int = int(selected)
-            selected_str = str(selected_int)
         except ValueError:
-            # If conversion fails, return 0
-            selected_int = 0
-            selected_str = "0"
+            selected_int = 0  # Return 0 for non-numeric values
             
+        selected_str = selected  # Return original string value
+        
         return selected_int, selected_str, list_length

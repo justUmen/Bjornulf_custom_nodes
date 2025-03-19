@@ -8,6 +8,7 @@ import os
 import io
 import sys
 import random
+# from comfy_execution.graph import ExecutionBlocker
 
 class Everything(str):
     def __ne__(self, __value: object) -> bool:
@@ -68,6 +69,7 @@ class PauseResume:
             PauseResume.should_stop = False  # Reset for next run
             PauseResume.is_paused = True
             raise Exception("Workflow stopped by user")
+            # return (ExecutionBlocker("Workflow stopped by user"),)  # Return ExecutionBlocker to stop gracefully, but error on next node.
         
         PauseResume.is_paused = True
         PauseResume.should_stop = False

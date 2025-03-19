@@ -306,39 +306,41 @@ class AudioVideoSync:
         temp_dir = os.path.join(self.temp_dir, "temp_frames")
         os.makedirs(temp_dir, exist_ok=True)
 
-        # Extract frames using ffmpeg
+        # Clear existing files to avoid mixing frames from previous runs
+        for file in os.listdir(temp_dir):
+            os.remove(os.path.join(temp_dir, file))
+
+        # Extract frames using FFmpeg
         subprocess.run([
-            'ffmpeg', '-i', video_path,
-            os.path.join(temp_dir, 'frame_%05d.png')
-        ], check=True)
+            'ffmpeg', '-y', '-i', video_path, os.path.join(temp_dir, 'frame_%05d.png')
+        ], check=True)  # Added '-y' to overwrite without prompting
 
         # Load frames and convert to tensor
         frames = []
         frame_files = sorted(os.listdir(temp_dir))
         transform = transforms.Compose([
             transforms.ToTensor(),
-            transforms.Lambda(lambda x: x * 255)  # Scale to 0-255 range
+            transforms.Lambda(lambda x: x * 255)
         ])
 
         for frame_file in frame_files:
-            image = Image.open(os.path.join(temp_dir, frame_file))
+            image = Image.open(os.path.join(temp_dir, frame_file)).convert('RGB')
             frame_tensor = transform(image)
             frames.append(frame_tensor)
 
         # Stack frames into a single tensor
         frames_tensor = torch.stack(frames)
 
-        # Ensure the tensor is in the correct format (B, C, H, W)
+        # Ensure correct format (B, C, H, W)
         if frames_tensor.dim() == 3:
             frames_tensor = frames_tensor.unsqueeze(0)
 
         # Convert to uint8
         frames_tensor = frames_tensor.byte()
 
-        # Clean up temporary directory
+        # Clean up
         for frame_file in frame_files:
             os.remove(os.path.join(temp_dir, frame_file))
-        os.rmdir(temp_dir)
 
         return frames_tensor
 

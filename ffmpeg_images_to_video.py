@@ -122,6 +122,48 @@ class imagesToVideo:
         except Exception as e:
             logging.error(f"Unexpected error in FFmpeg-python: {str(e)}")
             return False, f"Error: {str(e)}"
+    
+    def get_next_filename(self, output_base, format="mp4"):
+        """
+        Determines the next filename in a sequence with 4-digit numbering (0001, 0002, etc.).
+        
+        Args:
+            output_base (str): The base path and prefix (e.g., 'output/imgs2video/me')
+            format (str): The file extension (e.g., 'mp4')
+        
+        Returns:
+            str: The next filename in the sequence (e.g., 'output/imgs2video/me_0001.mp4')
+        """
+        # Ensure output_base is clean
+        output_base = output_base.rstrip(os.sep)
+        
+        # Pattern to match files with 4-digit numbers: e.g., 'output/imgs2video/me_0001.mp4'
+        pattern = f"{output_base}_[0-9][0-9][0-9][0-9].{format}"
+        
+        # Get all files matching the pattern
+        existing_files = glob.glob(pattern)
+        
+        # Extract numbers from filenames
+        numbers = []
+        for filepath in existing_files:
+            # Get the filename from the full path
+            filename = os.path.basename(filepath)
+            # Extract the 4-digit number between '_' and '.'
+            number_part = filename.split('_')[-1].split('.')[0]
+            # Verify it's a 4-digit number
+            if number_part.isdigit() and len(number_part) == 4:
+                numbers.append(int(number_part))
+        
+        # Determine the next number
+        if numbers:
+            next_num = max(numbers) + 1
+        else:
+            next_num = 1
+        
+        # Construct the next filename with zero-padding to 4 digits
+        next_filename = f"{output_base}_{next_num:04d}.{format}"
+        
+        return next_filename
 
     def image_to_video(self, images, fps, name_prefix, use_python_ffmpeg=False, audio=None, audio_path=None, FFMPEG_CONFIG_JSON=None):
         ffmpeg_config = self.parse_ffmpeg_config(FFMPEG_CONFIG_JSON)
@@ -130,27 +172,24 @@ class imagesToVideo:
         if ffmpeg_config and ffmpeg_config["output"]["container_format"] != "None":
             format = ffmpeg_config["output"]["container_format"]
         
+        # Remove any extension from name_prefix and create output_base
         name_prefix = os.path.splitext(name_prefix)[0]
         output_base = os.path.join("output", name_prefix)
         
-        existing_files = glob.glob(f"{output_base}_*.{format}")
-        if existing_files:
-            max_num = max([int(f.split('_')[-1].split('.')[0]) for f in existing_files])
-            next_num = max_num + 1
-        else:
-            next_num = 1
+        # Get the next filename using the corrected function
+        output_file = self.get_next_filename(output_base, format)
         
-        output_file = f"{output_base}_{next_num:04d}.{format}"
-        
-        temp_dir = "Bjornulf/temp_images_imgs2video"
+        # Clean up and prepare temporary directory
+        temp_dir = os.path.join("Bjornulf", "temp_images_imgs2video")  # Use os.path.join for cross-platform compatibility
         if os.path.exists(temp_dir) and os.path.isdir(temp_dir):
             for file in os.listdir(temp_dir):
                 os.remove(os.path.join(temp_dir, file))
             os.rmdir(temp_dir)
         
+        # Create necessary directories
         os.makedirs(temp_dir, exist_ok=True)
         os.makedirs(os.path.dirname(output_file) if os.path.dirname(output_file) else ".", exist_ok=True)
-
+        
         for i, img_tensor in enumerate(images):
             img = Image.fromarray((img_tensor.cpu().numpy() * 255).astype(np.uint8))
             if format == "webm":

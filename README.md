@@ -1,14 +1,19 @@
 # 🔗 Comfyui : Bjornulf_custom_nodes v0.77 🔗
 
-A list of 142 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 162 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
-#  Watch Video (Quick overview 28 minutes) :
+⚠️ Warning : Very active development. Work in progress. 🏗  
+
+# Watch Video (Quick overview 28 minutes) + Updates in video playlist :
 [![Watch the video](https://img.youtube.com/vi/jTg9QsgKYmA/hqdefault.jpg)](https://www.youtube.com/playlist?list=PL_hRi_PPLLWvUNfG_np_d3K0nBCabM3iQ)
 
 # Coffee : ☕☕☕☕☕ 5/5
 
-Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️❤️❤️
+Very active development, new nodes, new features, new ideas, new possibilities...  
+Let me know if you have any issues, they must be solved for everyone !  
+
+Support me, this project and my other AI exciting projects : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️❤️❤️
 
 # ☘ This project is part of my AI trio. ☘
 
@@ -29,7 +34,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `126.` [📒 Note](#126----note)  
 `127.` [🖼📒 Image Note (Load image)](#130----image-note-load-image)  
 `128.` [🖼👁 Preview (first) image](#128----preview-first-image)  
-`130.` [📥🖼📒 Image Note (Load image)](#130----image-note-load-image)
+`130.` [📥🖼📒 Image Note (Load image)](#130----image-note-load-image)  
 `133.` [🖼👁 Preview 1-4 images (compare)](#128----preview-first-image)  
 
 ## ✒ Text ✒
@@ -57,9 +62,10 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `138.` [📑👈 Select from List](#138----select-from-list)  
 `141.` [🌎✒👉 Global Write Pick Me](#141----global-write-pick-me)  
 `142.` [🌎📥 Load Global Pick Me](#142----load-global-pick-me)  
+`144` [📊🔍 Text Analyzer](#)  
 
 ## 🔥 Text Generator 🔥
-`81.` [🔥📝 Text Generator 📝🔥](#81----text-generator-)  
+`81.` [🔥📝🖼 Image Text Generator 🖼📝🔥](#81----text-generator-)  
 `82.` [👩‍🦰📝 Text Generator (Character Female)](#82----text-generator-character-female)  
 `83.` [👨‍🦰📝 Text Generator (Character Male)](#83----text-generator-character-male)  
 `84.` [👾📝 Text Generator (Character Creature)](#84----text-generator-character-creature)  
@@ -147,6 +153,8 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `62.` [🦙👁 Ollama Vision](#62----ollama-vision)  
 `70.` [📏 Resize Image Percentage](#70----resize-image-percentage)  
 `80.` [🩷 Empty Latent Selector](#80----empty-latent-selector)  
+`146` [🖼📹🔪 Split Image/Video Grid](#)  
+`147` [🖼📹🔨 Reassemble Image/Video Grid](#)  
 
 ## 🅰️ Variables 🅰️
 `3.` [✒🗔🅰️ Advanced Write Text (+ 🎲 random option)](#3---🅰%EF%B8%8F-advanced-write-text---random-option)  
@@ -174,6 +182,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `108.` [☁👑 Add Lora (API ONLY - CivitAI) 👑☁](#108----add-lora-api-only---civitai-)  
 `109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
 `110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
+`151` [📥🕑🤖 Load CivitAI Links](#)  
 
 ## 📥 Take from CivitAI / Hugginface 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
@@ -193,7 +202,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `49.` [📹👁 Video Preview](#49----video-preview)  
 `50.` [🖼➜📹 Images to Video path (tmp video)](#50----images-to-video-path-tmp-video)  
 `51.` [📹➜🖼 Video Path to Images](#51----video-path-to-images)  
-`52.` [🔊📹 Audio Video Sync](#52----audio-video-sync) 
+`52.` [🔊📹 Audio Video Sync](#52----audio-video-sync)  
 `58.` [📹🔗 Concat Videos](#58----concat-videos)  
 `59.` [📹🔊 Combine Video + Audio](#59----combine-video--audio)  
 `60.` [🖼🖼 Merge Images/Videos 📹📹 (Horizontally)](#60----merge-imagesvideos--horizontally)  
@@ -203,6 +212,9 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `78.` [📹➜📹 Convert Video](#78----convert-video)  
 `79.` [📹🔗 Concat Videos from list](#79----concat-videos-from-list)  
 `119.` [📥👑📹 Load Lora Hunyuan Video (+Download from CivitAi)](#119----load-lora-hunyuan-video-download-from-civitai)  
+`146` [🖼📹🔪 Split Image/Video Grid](#)  
+`147` [🖼📹🔨 Reassemble Image/Video Grid](#)  
+`149` [💾📹 Save Video (tmp_api.mp4/mkv/webm) ⚠️💣](#)  
 
 ## 🤖 AI 🤖
 `19.` [🦙💬 Ollama Talk](#19----ollama-talk)  
@@ -213,6 +225,7 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `65.` [🦙 Ollama Persona Selector 🧑](#65----ollama-persona-selector-)  
 `66.` [🔊➜📝 STT - Speech to Text](#66----stt---speech-to-text)  
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
+`160.` [🦙👁 Ollama Vision Prompt Selector](#)  
 
 ## 🔊 Audio 🔊
 `31.` [📝➜🔊 TTS - Text to Speech](#31----tts---text-to-speech-100-local-any-voice-you-want-any-language)  
@@ -222,10 +235,13 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 `118.` [🔊 TTS Configuration ⚙](#118----tts-configuration-)  
 `120.` [📝➜🔊 Kokoro - Text to Speech](#120----kokoro---text-to-speech)  
 `134.` [134 - 🔊▶ Play Audio](#134----play-audio)  
+`145` [🔊▶ Audio Preview (Audio player)](#)  
+`148` [💾🔊 Save Audio (tmp_api.wav/mp3) ⚠️💣](#)  
 
 ## 💻 General / System 💻
 `34.` [🧹 Free VRAM hack](#34----free-vram-hack)  
 `137.` [🌎🎲 Global Seed Manager](#137----global-seed-manager)  
+`143` [🧮 Basic Math](#)  
 
 ## 🧍 Manual user Control 🧍
 `35.` [⏸️ Paused. Resume or Stop, Pick 👇](#35---%EF%B8%8F-paused-resume-or-stop-)  
@@ -236,6 +252,19 @@ Support me and my work : ❤️❤️❤️ <https://ko-fi.com/bjornulf> ❤️�
 
 ## 🧠 Logic / Conditional Operations 🧠
 `45.` [🔀 If-Else (input / compare_with)](#45----if-else-input--compare_with)  
+
+## [Coming soon] - not sorted in the categories above yet...
+`150` [[Coming soon] 🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn](#)  
+`152` [[Coming soon] 💾 Save Tensors (tmp_api.pt) ⚠️💣](#)  
+`153` [[Coming soon] 📥 Load Tensor (tmp_api.pt)](#)  
+`154` [[Coming soon] 🔮 Remote VAE Decoder](#)  
+`155` [[Coming soon] 🔮 Remote VAE Decoder (Tiled)](#)  
+`156` [[Coming soon] 📥🔮 Load from Base64](#)  
+`157` [[Coming soon] 🔮⚡ Execute Workflow](#)  
+`158` [[Coming soon] 📥🔮📝 Text Manager Api (Execute Workflow)](#)  
+`159` [[Coming soon] 🔥📝📹 Video Text Generator 📹📝🔥](#)  
+`161` [[Coming soon] 🔧🧑 Fix Face](#)  
+`162` [[Coming soon] 🧑 Face Settings [Fix Face] ⚙](#)  
 
 # ☁ Usage in cloud : 
 
@@ -283,18 +312,18 @@ Then you can download it from the file manager JupyterLab.
 
 If you have any issues with this template from Runpod, please let me know, I'm here to help. 😊  
 
-# 🏗 Dependencies (nothing to do for runpod ☁)
+# 🏗 Dependencies (nothing to do for my runpod ☁)
 
-Check `requirements.txt` for the latest dependencies...  
+Check `requirements.txt` for the latest dependencies.  
 
 ## 🪟🐍 Windows : Install dependencies on windows with embedded python (portable version)
 
 First you need to find this python_embedded `python.exe`, then you can right click or shift + right click inside the folder in your file manager to open a terminal there.  
 
 This is where I have it, with the command you need :  
-`H:\ComfyUI_windows_portable\python_embeded> .\python.exe -m pip install pydub ollama opencv-python`  
+`H:\ComfyUI_windows_portable\python_embeded> .\python.exe -m pip install ollama pydub opencv-python ffmpeg-python civitai-py fal_client sounddevice langdetect spacy textblob dill`  
 
-When you have to install something you can retake the same code and install the dependency you want :  
+When you have to install something else, you can retake the same code and install the dependency you want :  
 `.\python.exe -m pip install whateveryouwant`  
 
 You can then run comfyui.  
@@ -412,7 +441,7 @@ Fix a lot of code everywhere, a little better logging system, etc...
 WIP : Rewrite of all my ffmpeg nodes. (Still need improvements and fixes, will do that in 0.71?) Maybe don't use them yet...
 - **0.71**: ❗Breaking changes for Global variable nodes. (add to global variable system a "filename", which is a a separate global variable file.) bug fix speech to text node, 5 new nodes 129-133. combine text limit raised to 100. improve Save image in folder node.
 - **0.71-0.75**: Many bug fixing. Civitai nodes are working on windows. (encoding, links problem are solved ? - at least on my machines...)
-- **0.76**: Removed kokoro_onnx from requirements.txt due to some conflict with other nodes (need to be installed manually if you want to use this node.)  
+- **0.76**: Removed kokoro_onnx from requirements.txt due to some conflict with other nodes, like Impact-Pack, with old version of numpy... (kokoro_onnx need to be installed manually if you want to use this node.)  
 New syntaxes for advanced text/line selector, ex: {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR} and {A(80%)|B(15%)|C(5%)}  
 2 new nodes switch : 🔛✨ Anything Switch On/Off (compatible with combine images) AND 🔛📝 Text Switch On/Off (Compatible with combine texts)  
 2 new pick Me global nodes, using an identifier instead of chain : 🌎✒👉 Global Write Pick Me AND 🌎📥 Load Global Pick Me  
@@ -420,6 +449,15 @@ New syntaxes for advanced text/line selector, ex: {left|right|middle|group=LMR}+
 1 new node to quickly select element from list : 📑👈 Select from List  
 1 new audio node : 🔊▶ Play Audio (Just play an audio file, will default to bell.m4a if none provided.) Can take AUDIO format or audio_path.  
 ❗Breaking changes. Large rewrite for all FFMPEG related nodes. With options for video preview. (Still have few changes to make, next version.)  
+- **0.77**: Add Refresh button to Load image from folder.  
+Add new syntax for advanced write / line selector : 2 {apple|orange|banana|static_group=FRUIT}s, one {apple|orange|banana|static_group=FRUIT} on the left, one {apple|orange|banana|static_group=FRUIT} on the right.  
+TTS fix request voices.  
+❗Breaking changes. New vision model for Ollama.  
+20 new nodes (143 - 162), Text Analyzer, basic math, audio preview, etc..... (10 not realesed yet, but included as a public "roadmap".)  
+Remove faster-whisper from requirements.txt for people using python 3.13. (Need to install manually.)  
+Fix preview image node for the new comfyui layout.  
+Rewrite of FFMPEG nodes, COnfiguration and Video preview.  
+Many other bug fixes and improvements on many nodes, thx for the reports.  
 
 # 📝 Nodes descriptions
 
@@ -437,7 +475,9 @@ These are convenient because these are automatically recommended on drag and dro
 ## 2 - ✒ Write Text
 
 **Description:**  
-Simple node to write text.  
+Simple node to write text / send text to another node.  
+
+Below is a simple example of how to use the write text node with a show node :  
 
 ![write Text](screenshots/write.png)
 
@@ -463,6 +503,9 @@ Usage example :
 ❗ 0.76 - New syntax available :  
 Groups, with no duplicate, example : {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR}  
 Random based on percentage : {A(80%)|B(15%)|C(5%)}  
+
+❗ 0.77 - New syntax available :  
+2 {apple|orange|banana|static_group=FRUIT}s, one {apple|orange|banana|static_group=FRUIT} on the left, one {apple|orange|banana|static_group=FRUIT} on the right
 
 ## 4 - 🔗 Combine Texts
 
@@ -559,7 +602,9 @@ Example of usage to see the differences between different combinations :
 ## 13/14 - 📏 + 🖼 Resize and Save Exact name ⚠️💣
 
 **Description:**  
-Resize an image to exact dimensions. The other node will save the image to the exact path.  
+Resize an image to exact dimensions. If height or width is set to 0, it will keep the aspect ratio.  
+
+The other node will save the image to the exact path.  
 ⚠️💣 Warning : The image will be overwritten if it already exists.
 
 ![Resize and Save Exact](screenshots/resize_save_exact.png)
@@ -1213,7 +1258,7 @@ Here is one possible example for videos with node 60 and 61 :
 ### 62 - 🦙👁 Ollama Vision
 
 **Description:**  
-Take an image as input and will describe the image. Uses `moondream` by default, but can select anything with node 63.  
+Take an image as input and will describe the image. Uses `moondream` by default, but can select anything with node 63, and a custom prompt with node 161.  
 
 ![ollama vision](screenshots/ollama_vision.png)  
 
@@ -1248,6 +1293,10 @@ Below, an example of a crazy scientist explaining gravity. (Notice that the LLM 
 
 **Description:**  
 Use `faster-whisper` to transform an AUDIO type or audio_path into text. (Autodetect language)  
+
+⚠️ Warning, this node is not compatible with python `3.13`, you need to use `3.12`. (As a gereneral rule, comfyui ecosystem still recommend you to use 3.12 : https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#manual-install-windows-linux.)  
+(faster-whisper was removed from requirements.txt and must be installed manually.)  
+If you really want to use that node, you are responsible for installing that manually : `pip install faster-whisper`.  
 
 ![stt](screenshots/stt_1.png)  
 ![stt](screenshots/stt_2.png)  
@@ -1369,7 +1418,7 @@ Just connect that to your KSampler.
 
 ![empty_latent](screenshots/empty_latent.png)  
 
-#### 81 - 🔥📝 Text Generator 📝🔥
+#### 81 - 🔥📝🖼 Image Text Generator 🖼📝🔥
 
 **Description:**  
 Main node to generate content, doesn't really do much by itself, just `camera angle` and `multicharacter action`. (For example : `... eat picnic, view from above.`)  
@@ -1728,6 +1777,9 @@ So use that if you want to ignore a line.
 Groups, with no duplicate, example : {left|right|middle|group=LMR}+{left|right|middle|group=LMR}+{left|right|middle|group=LMR}  
 Random based on percentage : {A(80%)|B(15%)|C(5%)}  
 
+❗ 0.77 - New syntax available :  
+2 {apple|orange|banana|static_group=FRUIT}s, one {apple|orange|banana|static_group=FRUIT} on the left, one {apple|orange|banana|static_group=FRUIT} on the right
+
 #### 118 - 🔊 TTS Configuration ⚙
 
 **Description:**  
@@ -1821,6 +1873,8 @@ It's behavior is like a "Preview image" node. (See node 130 if you want a behavi
 Sometimes I want to display an image to explain what something specific is doing visually. (For example a stack of loras will have a specific style.)  
 Here is a complex example on how i use that, for a list of loras stacks. (I then "select" a style by using node `125 - Model-Clip-Vae selector`)  
 
+**0.77** Multiline + image is now an issue on newer comfyui versions. Replaced with single line notes, couldn't find any clean js hack to solve the layout issue...  
+
 ![Image note](screenshots/image_notes.png)  
 
 #### 128 - 🖼👁 Preview (first) image
@@ -1834,6 +1888,8 @@ Very useful for testing when working with videos.
 Below is a visual example of what I just said :  
 
 ![First image preview](screenshots/first_image_preview.png)  
+
+**0.77** Multiline + image is now an issue on newer comfyui versions. Replaced with single line notes, couldn't find any clean js hack to solve the layout issue...  
 
 #### 129 - 📌🅰️ Set Variable from Text
 
@@ -1919,7 +1975,7 @@ Well now you can quickly enable / disable it. (If disabled you will see it in re
 
 ![switch_text](screenshots/switch_text.png)  
 
-If connected with my combine text node, you can use a special option `ONLY_ME_combine_text` that will tell combine text to write ONLY the selected node. It will ignore all the otehrs. (Here will appear in blue.) :  
+If connected with my combine text node, you can use a special option `ONLY_ME_combine_text` that will tell combine text to write ONLY the selected node. It will ignore all the others. (Here will appear in blue.) :  
 
 ![switch_text_onlyme](screenshots/switch_text_onlyme.png)  
 
@@ -1988,3 +2044,260 @@ This node also automatically return a random value from the list with the global
 Below is an example of write + load :  
 
 ![global_write_pickme_load](screenshots/global_write_pickme_load.png)  
+
+#### 143 - 🧮 Basic Math
+
+**Description:**  
+Basic node for basic math.  
+Addition, multiplication...  
+Here is an example that I use to detect the number of "missing" frames in a video, compared to another video :  
+
+![basic math](screenshots/basic_math.png)  
+
+#### 144 - 📊🔍 Text Analyzer
+
+**Description:**  
+
+Display details about an input text.  
+You can use it just to recover the number of characters, you can then for example use this number to avoid too long prompts and avoid OOM :  
+
+![text_ana_1](screenshots/text_ana_1.png)  
+
+Or extract more details about dialog and sentiment polarity of it. (For example, if you want a specific TTS voice for positive/neutral/negative.) :  
+
+![text_ana_2](screenshots/text_ana_2.png)  
+
+#### 145 - 🔊▶ Audio Preview (Audio player)
+
+**Description:**  
+
+Simple preview audio node that can take as input an audio_path, mp3 or wav.  
+
+![audio_preview](screenshots/audio_preview.png)  
+
+#### 146 - 🖼📹🔪 Split Image/Video Grid
+
+**Description:**  
+This node will split a grid of images or videos into separate images or videos.  
+
+Below is an example with a grid of 6 images, it will split them into 6 separate images (3 rows X 3 columns) :
+
+![split_grid](screenshots/split_grid.png)  
+
+Why do I need that ? Sometimes I have several characters in a single image/video.  
+When I want to apply lip sync to a character, I need to split them into separate images/videos where4 the character is located, create the lip sync, and then reassemble them with node 147.  
+Or just to save VRAM, by processing only the part of the image that I need.  
+
+#### 147 - 🖼📹🔨 Reassemble Image/Video Grid
+
+**Description:**  
+
+Reassemble an image/video that was grid split with node 146.  
+Will need to take the same grid size as input.  
+
+You can apply changes to a specific element of the grid, and then reassemble them.  
+
+You can select each part individually.  
+But there is also a "special" part, the MODIFIED one.  
+This part is selected with the MODIFIED_part and the MODIFIED_part_index (part number, if index set to 2, it will use `part_2`).  
+
+Below is an example where I modify part_2 and reassmbling it. (Without using part_2 output but selectionning it using 2 as MODIFIED_part_index) :  
+You can also work directly with part_2, but twith this setup you can quickly switch in between parts without changing the node layout.  
+
+![grid_assemble1](screenshots/grid_assemble_1.png)  
+
+Below is an example where I show you that you can also influence different parts "manually". (Here, I just send part_1 to replace part 7,8,9.)  
+
+![grid_assemble2](screenshots/grid_assemble_2.png)  
+
+For reassembling videos it might get tricky.  
+For example if you used the node `52 - 🔊📹 Audio Video Sync`, the modified part might be shorter/longer, change FPS etc...  
+You can try to re-synchronize them all if the duration was modified.  
+In this situation you need to use the `reference_video_part_index` to select the reference video part. (Probably the same as the MODIFIED_part_index.)  
+
+![](screenshots/.png)  
+
+#### 148 - 💾🔊 Save Audio (tmp_api.wav/mp3) ⚠️💣
+
+**Description:**  
+
+Temporary save for an audio file, mp3 or wav.  
+Useful if you want to synchronize data in between API calls from several Comfyui instances. (Used in the background by my API nodes, like node 157 `🔮⚡ Execute Workflow`, to exchange audio files. - raw/processed -)  
+
+You can send audio_path (This will create file `tmp_api.mp3`) :  
+
+![savetmp_audio1](screenshots/savetmp_audio1.png)  
+
+Or an AUDIO type (This will create file `tmp_api.wav`) :  
+
+![savetmp_audio2](screenshots/savetmp_audio2.png)  
+
+Note that if you are sending an AUDIO type, this node will save it as a `wav` file. (Even if your selection is an mp3 file.)  
+
+#### 149 - 💾📹 Save Video (tmp_api.mp4/mkv/webm) ⚠️💣
+
+**Description:**  
+
+Temporary save for a video file, mp4, mkv or webm.  
+Useful if you want to synchronize data in between API calls from several Comfyui instances. (Used in the background by my API nodes, like node 157 `🔮⚡ Execute Workflow`, to exchange video files. - raw/processed -)  
+
+![savetmp_video](screenshots/savetmp_video.png) 
+
+#### 150 - 🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn
+
+**Description:**  
+
+A new Universal node for selecting styles.  
+Also contains some informations for Civitai urn. (Need test and better "database" of good/fast models, i recommended you to send the urns you like manually.)  
+
+Here is an example of usage with CivitAI API node :  
+
+![style_gen_1](screenshots/style_gen_1.png)  
+
+Here is a slightly more complex example using model urns :
+
+![style_gen_2](screenshots/style_gen_2.png)  
+
+NOTE : CivitAI can be particularly slow !! So you can use the option DO_NOT_WAIT instead with an optional "links_file".  
+It will create a file with the links to recover the generated images later with the node 151.   
+So you can make as many requests as you want, and come back another time to recover the images with this txt file.  
+
+Note that you can also send the LIST directly with all the values.  
+
+![style_gen_3](screenshots/style_gen_3.png)  
+
+If you do that you can later recover the values like text and use the "autosave" option of node 151.  
+It will take the style and make a folder for it. Example from the image above : `./ComfyUI/output/civitai_autosave/Cinematic_photography/`  
+It is very useful if you use node 150 as a LOOP, you can recover the images later and organise them automatically in separate folders according to the selected style.  
+
+#### 151 - 📥🕑🤖 Load CivitAI Links
+
+**Description:**  
+
+This node must be used after using the node 150 + DO_NOT_WAIT + links_file.  
+When saving DO_NOT_WAIT and the "links_file" from the node 150, it will create a txt file in "ComfyUI/Bjornulf/civitai_links/", you can load them with this node.  
+
+Below are the images recovered from the file "11_mars.txt":  
+
+![load_civit](screenshots/load_civit.png)  
+
+If you used from node 150 the `LIST_from_style_selector` you can later recover the values and use the "autosave" option of node 151.  
+It will take the style and make a folder for it. Example from the image above : `./ComfyUI/output/civitai_autosave/Cinematic_photography/`  
+It is very useful if you use node 150 as a LOOP, you can recover the images later and organise them automatically in separate folders according to the selected style.  
+
+#### 152 - [Coming soon] 💾 Save Tensors (tmp_api.pt) ⚠️💣
+
+**Description:**  
+
+This is BETA, it will save a tensor in a file.  
+The goal is to optimize the VRAM usage by saving tensors in files.  
+
+#### 153 - [Coming soon] 📥 Load Tensor (tmp_api.pt)
+
+**Description:**  
+
+This is BETA, it will load a tensor.  
+The goal is to optimize the VRAM usage by saving tensors in files.  
+
+#### 154 - 🔮 Remote VAE Decoder
+
+**Description:**  
+
+Simple node to decode a VAE model from a remote machine.  
+
+The VAE decode node doesn't have to be on the same machine, so if you have a remote machine and want to save the VRAM, you can use that.  
+The remote machine need to have my custom nodes too.  
+
+![remote_vae](screenshots/remote_vae.png)  
+
+#### 155 - [Coming soon] 🔮 Remote VAE Decoder (Tiled)
+
+**Description:**  
+
+Same as 154 but with tiled version.  
+
+![remote_vae_tiled](screenshots/remote_vae_tiled.png)  
+
+#### 156 - [Coming soon] 📥🔮 Load from Base64
+
+**Description:**  
+
+This is BETA, it is used to recovered some values between Comfyui instances.  
+
+#### 157 - [Coming soon] 🔮⚡ Remote Execute Workflow
+
+**Description:**  
+
+This is the start of a complex new environment and this is in BETA.  
+The goal of this node is to run a workflow on another Comfyui instance and recover what was generated.  
+For now it supports image/sound/video.  
+
+It can do anything that a normal workflow can do.  
+Create an image, create a video, upscale an image, etc...  
+
+I will share custom JSON and a lot more cool stuff for my Kofi supporters. (https://ko-fi.com/bjornulf)  
+Keep in touch for more informations... Wip...  
+
+Basically use run heavy duty workflows on another machine, and recover the results.  
+Below is an example of a lipsync workflow that I run on another Comfyui instance. (For now local network only, but will run on runpod too.)  
+I use that on my laptop (192.168.1.23), that recovers the results from my "ai dedicated" desktop machine (192.168.1..100) :  
+
+![execute_worflow](screenshots/execute_worflow.png)  
+
+#### 158 - [Coming soon] 📥🔮📝 Text Manager Api (Execute Workflow)
+
+**Description:**  
+
+This is BETA.  
+This node need to be used to create functional workflows to run with node 157.  
+It is communicating with node 157 from another Comfyui instance.  
+
+#### 159 - [Coming soon] 🔥📝📹 Video Text Generator 📹📝🔥
+
+**Description:**  
+
+This is BETA.  
+This is the start of a new node that will generate a video prompt.  
+It's goal is to be like the "Text Generator" node, but for videos.  
+The "old" Text Generator main node 81 is now renamed for image only : 🔥📝🖼 Image Text Generator 🖼📝🔥.  
+
+![video_text_generator](screenshots/video_text_generator.png)  
+
+#### 160 - 🦙👁 Ollama Vision Prompt Selector
+
+**Description:**  
+New layout prompt selector for Ollama Vision.  
+Ollama vision is now divided in 2 separate nodes.  
+
+![ollama vision prompt](screenshots/ollama_vision.png) 
+
+#### 161 - [Coming soon] 🔧🧑 Fix Face
+
+**Description:**  
+
+This is BETA.  
+First node of a new collection of "Fix Images" nodes.  
+Quickly fix, control and edit faces. (and more)  
+![fix_face](screenshots/fix_face_1.png)  
+
+Here is a zoom of that :  
+![fix_face](screenshots/fix_face_2_zoom.png)  
+
+You can also give specific text and custom denoise for each faces :  
+![fix_face](screenshots/fix_face_3.png)  
+
+You can also select a specific face, if set at 0 it will do all the faces, but below I set it to 1 :  
+![fix_face](screenshots/fix_face_4_ignore.png)  
+
+This node can also fix the whole person, but i will likely make another separate node for that later :  
+![fix_face](screenshots/fix_face_5_person.png)  
+
+You can preview the nodes effects very well with my Preview Image node, You can clearly see here the white box that is the detected "person" :  
+![fix_face](screenshots/fix_face_6_preview.png)  
+
+In the future I will make a system to "inject" a specific reusable character, probably connected to loras or suchs.  
+
+#### 162 - [Coming soon] 🧑 Face Settings [Fix Face] ⚙
+
+**Description:**  
+Connect to Fix Face node to modify a specific face.  
