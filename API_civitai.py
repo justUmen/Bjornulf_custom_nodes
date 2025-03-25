@@ -199,6 +199,7 @@ def download_file(url, destination_path, model_name, api_token=None):
 # Set up main checkpoint directory
 _, civitai_base_path, parsed_models_path = get_civitai_base_paths()
 bjornulf_checkpoint_path = Path(folder_paths.models_dir) / "checkpoints" / "Bjornulf_civitAI"
+bjornulf_checkpoint_path.mkdir(parents=True, exist_ok=True)
 
 # Register the main checkpoint folder
 checkpoint_folders = list(folder_paths.folder_names_and_paths["checkpoints"])
@@ -780,7 +781,6 @@ class CivitAIModelSelectorSDXL:
     CATEGORY = "Bjornulf"
  
     def load_model(self, image, civitai_token):
-        create_bjornulf_checkpoint_folder()
         if image == "none":
             raise ValueError("No image selected")
 
@@ -883,7 +883,6 @@ class CivitAIModelSelectorFLUX_D:
     CATEGORY = "Bjornulf"
  
     def load_model(self, image, civitai_token):
-        create_bjornulf_checkpoint_folder()
         if image == "none":
             raise ValueError("No image selected")
 
@@ -985,7 +984,6 @@ class CivitAIModelSelectorFLUX_S:
     CATEGORY = "Bjornulf"
  
     def load_model(self, image, civitai_token):
-        create_bjornulf_checkpoint_folder()
         if image == "none":
             raise ValueError("No image selected")
 
@@ -1087,7 +1085,6 @@ class CivitAIModelSelectorPony:
     CATEGORY = "Bjornulf"
  
     def load_model(self, image, civitai_token):
-        create_bjornulf_checkpoint_folder()
         if image == "none":
             raise ValueError("No image selected")
 
