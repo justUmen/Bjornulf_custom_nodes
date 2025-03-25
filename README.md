@@ -1,4 +1,4 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.77 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.78 🔗
 
 A list of 162 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
@@ -462,6 +462,8 @@ Remove faster-whisper from requirements.txt for people using python 3.13. (Need 
 Fix preview image node for the new comfyui layout.  
 Rewrite of FFMPEG nodes, COnfiguration and Video preview.  
 Many other bug fixes and improvements on many nodes, thx for the reports.  
+- **0.78**: Fix Line selector Reset button javascript. (not showing on refresh)
+Fix civitai links and folder creation, now only when you use the nodes.
 
 # 📝 Nodes descriptions
 

@@ -31,7 +31,6 @@ app.registerExtension({
             if (data.value === 0) {
               resetButton.name = "Reset Counter (Empty)";
             } else {
-              // Count valid lines in text
               const lines = text.value
                 .split("\n")
                 .filter((line) => line.trim() && !line.trim().startsWith("#"));
@@ -91,22 +90,7 @@ app.registerExtension({
       }
     );
 
-    // Create event handler function that we can remove later
-    // const executedHandler = async (event) => {
-    //   if (event.detail.node_id === node.id) {
-    //     updateResetButtonTextNode();
-    //   }
-    // };
-
-    // Initial update of showing counter number
-    setTimeout(updateResetButtonTextNode, 0);
-
-    // Listen for node execution events (update value when node executed)
-    // api.addEventListener("executed", async () => {
-    //   updateResetButtonTextNode();
-    // });
     api.addEventListener("executed", async () => {
-      // Check if context file is enabled before updating
       const contextWidget = node.widgets.find(
         (w) => w.name === "LOOP_SEQUENTIAL"
       );
@@ -146,25 +130,22 @@ app.registerExtension({
       }
     };
 
-    // Setup handlers for relevant widgets
     setupWidgetHandler("jump");
     setupWidgetHandler("text");
     setupWidgetHandler("LOOP_SEQUENTIAL");
 
-    //BUG this cleanup five a floating textarea
-    // Add cleanup when node is removed
-    // node.onRemoved = function() {
-    //   api.removeEventListener("executed", executedHandler);
-    // };
-
-    // Initial button visibility check
+    // Update button visibility based on LOOP_SEQUENTIAL
     const updateButtonVisibility = () => {
       const loopSeqWidget = node.widgets.find(
         (w) => w.name === "LOOP_SEQUENTIAL"
       );
-      resetButton.type = loopSeqWidget?.value ? "button" : "hidden";
-      if (loopSeqWidget?.value) {
-        updateResetButtonTextNode();
+      if (loopSeqWidget) {
+        if (loopSeqWidget.value) {
+          resetButton.type = "button";
+          updateResetButtonTextNode();
+        } else {
+          resetButton.type = "hidden";
+        }
       }
     };
 
@@ -183,6 +164,6 @@ app.registerExtension({
     }
 
     // Initial update
-    updateButtonVisibility();
+    setTimeout(updateButtonVisibility, 0);
   },
 });
