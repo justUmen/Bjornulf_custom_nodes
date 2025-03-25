@@ -463,7 +463,6 @@ Fix preview image node for the new comfyui layout.
 Rewrite of FFMPEG nodes, COnfiguration and Video preview.  
 Many other bug fixes and improvements on many nodes, thx for the reports.  
 - **0.78**: Fix Line selector Reset button javascript. (not showing on refresh)
-Fix civitai links and folder creation, now only when you use the nodes.
 
 # 📝 Nodes descriptions
 
