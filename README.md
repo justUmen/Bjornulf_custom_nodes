@@ -2244,7 +2244,6 @@ For now it supports image/sound/video.
 It can do anything that a normal workflow can do.  
 Create an image, create a video, upscale an image, etc...  
 
-I will share custom JSON and a lot more cool stuff for my Kofi supporters. (https://ko-fi.com/bjornulf)  
 Keep in touch for more informations... Wip...  
 
 Basically use run heavy duty workflows on another machine, and recover the results.  
