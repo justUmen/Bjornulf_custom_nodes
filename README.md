@@ -52,12 +52,11 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `67.` [📝➜✨ Text to Anything](#67----text-to-anything)  
 `68.` [✨➜📝 Anything to Text](#68----anything-to-text)  
 `75.` [📝➜📝 Replace text](#75----replace-text)  
-`15.` [💾 Save Text](#15----save-text)  
 `111.` [✨➜🔢 Anything to Int](#111----anything-to-int)  
 `112.` [✨➜🔢 Anything to Float](#112----anything-to-float)  
 `113.` [📝🔪 Text split in 5](#113----text-split-in-5)  
 `132.` [📝🔪 Text split in 10](#132----text-split-in-10)  
-`115.` [📥 Load Text From Bjornulf Folder](115----load-text-from-bjornulf-folder)  
+`115.` [📥 Load Text From Bjornulf Folder](#115----load-text-from-bjornulf-folder)  
 `116.` [📥 Load Text From Path](#116----load-text-from-path)  
 `117.` [📝👈🅰️ Line selector (🎲 or ♻ or ♻📑)](#117---🅰%EF%B8%8F-line-selector--or--or-)  
 `131.` [✒👉 Write Pick Me Chain](#131----write-pick-me-chain)  
@@ -202,7 +201,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 
 ## 📹 Video 📹
 `20.` [📹 Video Ping Pong](#20----video-ping-pong)  
-`21.` [🖼➜📹 Images to Video (FFmpeg Save Video)](#21)  
+`21.` [🖼➜📹 Images to Video (FFmpeg Save Video)](#21----images-to-video-ffmpeg-save-video)  
 `49.` [📹👁 Video Preview](#49----video-preview)  
 `50.` [🖼➜📹 Images to Video path (tmp video)](#50----images-to-video-path-tmp-video)  
 `51.` [📹➜🖼 Video Path to Images](#51----video-path-to-images)  
