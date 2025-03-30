@@ -462,7 +462,8 @@ Remove faster-whisper from requirements.txt for people using python 3.13. (Need 
 Fix preview image node for the new comfyui layout.  
 Rewrite of FFMPEG nodes, COnfiguration and Video preview.  
 Many other bug fixes and improvements on many nodes, thx for the reports.  
-- **0.78**: Fix Line selector Reset button javascript. (not showing on refresh)
+- **0.78**: Fix Line selector Reset button javascript. (not showing on refresh)  
+- **0.79**: Fix Ollama Talk  
 
 # 📝 Nodes descriptions
 

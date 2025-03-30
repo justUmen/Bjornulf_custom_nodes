@@ -11,6 +11,9 @@ import sys
 import os
 import time
 import glob
+import io
+import ollama
+from ollama import Client
 
 class OllamaTalk:
     @classmethod
@@ -45,8 +48,6 @@ class OllamaTalk:
     current_instance = None
         
     def __init__(self):
-        import ollama
-        from ollama import Client
         self.last_content_hash = None
         self.waiting = False
         self.OLLAMA_CONFIG = None
