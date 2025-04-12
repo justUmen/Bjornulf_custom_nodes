@@ -2,6 +2,7 @@ from .show_stuff import ShowFloat, ShowInt, ShowStringText, ShowJson
 from .ffmpeg_images_to_video import imagesToVideo
 from .write_text import WriteText
 from .text_replace import TextReplace
+
 # from .write_image_environment import WriteImageEnvironment
 # from .write_image_characters import WriteImageCharacters
 # from .write_image_character import WriteImageCharacter
@@ -17,6 +18,7 @@ from .loop_integer import LoopInteger
 from .loop_basic_batch import LoopBasicBatch
 from .loop_samplers import LoopSamplers
 from .loop_schedulers import LoopSchedulers
+
 # from .ollama import ollamaLoader OBSOLETE
 from .show_text import ShowText
 from .save_text import SaveText
@@ -40,7 +42,8 @@ from .character_description import CharacterDescriptionGenerator
 from .text_to_speech import TextToSpeech, XTTSConfig
 from .loop_combine_texts_by_lines import CombineTextsByLines
 from .free_vram_hack import FreeVRAM
-#, PurgeCLIPNode
+
+# , PurgeCLIPNode
 from .pause_resume_stop import PauseResume
 from .pick_input import PickInput
 from .loop_images import LoopImages
@@ -55,6 +58,7 @@ from .if_else import IfElse
 from .image_details import ImageDetails
 from .video_details import VideoDetails
 from .combine_images import CombineImages
+
 # from .pass_preview_image import PassPreviewImage
 from .text_scramble_character import ScramblerCharacter
 from .audio_video_sync import AudioVideoSync
@@ -62,6 +66,7 @@ from .video_path_to_images import VideoToImagesList
 from .ffmpeg_images_to_video_path import ImagesListToVideo
 from .video_preview import VideoPreview
 from .loop_model_selector import LoopModelSelector
+from .loop_upscale_model_selector import LoopUpscaleModelSelector
 from .random_lora_selector import RandomLoraSelector
 from .loop_lora_selector import LoopLoraSelector
 from .loop_sequential_integer import LoopIntegerSequential
@@ -83,12 +88,43 @@ from .anything_to_int import AnythingToInt
 from .anything_to_float import AnythingToFloat
 from .add_line_numbers import AddLineNumbers
 from .ffmpeg_convert import ConvertVideo
+
 # from .hiresfix import HiResFix
 # from .show_images import ImageBlend
-from .text_generator import TextGenerator, TextGeneratorScene, TextGeneratorStyle, TextGeneratorCharacterFemale, TextGeneratorCharacterMale, TextGeneratorOutfitMale, TextGeneratorOutfitFemale, ListLooper, ListLooperScene, ListLooperStyle, ListLooperCharacter, ListLooperOutfitFemale, ListLooperOutfitMale, TextGeneratorCharacterPose, TextGeneratorCharacterObject, TextGeneratorCharacterCreature
+from .text_generator import (
+    TextGenerator,
+    TextGeneratorScene,
+    TextGeneratorStyle,
+    TextGeneratorCharacterFemale,
+    TextGeneratorCharacterMale,
+    TextGeneratorOutfitMale,
+    TextGeneratorOutfitFemale,
+    ListLooper,
+    ListLooperScene,
+    ListLooperStyle,
+    ListLooperCharacter,
+    ListLooperOutfitFemale,
+    ListLooperOutfitMale,
+    TextGeneratorCharacterPose,
+    TextGeneratorCharacterObject,
+    TextGeneratorCharacterCreature,
+)
 from .API_flux import APIGenerateFlux
 from .API_StableDiffusion import APIGenerateStability
-from .API_civitai import APIGenerateCivitAI, APIGenerateCivitAIAddLORA, CivitAIModelSelectorPony, CivitAIModelSelectorSD15, CivitAIModelSelectorSDXL, CivitAIModelSelectorFLUX_S, CivitAIModelSelectorFLUX_D, CivitAILoraSelectorSD15, CivitAILoraSelectorSDXL, CivitAILoraSelectorPONY, CivitAILoraSelectorHunyuan, LoadCivitAILinks
+from .API_civitai import (
+    APIGenerateCivitAI,
+    APIGenerateCivitAIAddLORA,
+    CivitAIModelSelectorPony,
+    CivitAIModelSelectorSD15,
+    CivitAIModelSelectorSDXL,
+    CivitAIModelSelectorFLUX_S,
+    CivitAIModelSelectorFLUX_D,
+    CivitAILoraSelectorSD15,
+    CivitAILoraSelectorSDXL,
+    CivitAILoraSelectorPONY,
+    CivitAILoraSelectorHunyuan,
+    LoadCivitAILinks,
+)
 from .API_falAI import APIGenerateFalAI
 from .latent_resolution_selector import LatentResolutionSelector
 from .loader_lora_with_path import LoaderLoraWithPath
@@ -103,12 +139,15 @@ from .global_variables import LoadGlobalVariables, SaveGlobalVariables
 from .lora_stacks import AllLoraSelector
 from .hugginface_download import HuggingFaceDownloader
 from .preview_first_image import PreviewFirstImage
+
 # from .video_latent import VideoLatentResolutionSelector
 # from .empty_latent_video import EmptyVideoLatentWithSingle
 # from .text_generator_t2v import TextGeneratorText2Video
 from .images_compare import FourImageViewer
+
 # from .pickme import WriteTextPickMe, PickMe
 from .write_pickme_chain import WriteTextPickMeChain
+
 # from .todo import ToDoList
 from .text_to_variable import TextToVariable
 from .random_stuff import RandomIntNode, RandomFloatNode
@@ -123,6 +162,7 @@ from .save_tmp_audio import SaveTmpAudio
 from .save_tmp_video import SaveTmpVideo
 from .audio_preview import AudioPreview
 from .style_selector import StyleSelector
+
 # from .switches import ConditionalSwitch
 from .split_image import SplitImageGrid, ReassembleImageGrid
 
@@ -131,12 +171,11 @@ from .split_image import SplitImageGrid, ReassembleImageGrid
 # from .remote_nodes import RemoteVAEDecoderNodeTiled, RemoteVAEDecoderNode, LoadFromBase64, SaveTensors, LoadTensor
 # from .fix_face import FixFace, FaceSettings
 
-#RemoteTextEncodingWithCLIPs
+# RemoteTextEncodingWithCLIPs
 
 NODE_CLASS_MAPPINGS = {
     # "Bjornulf_PurgeCLIPNode": PurgeCLIPNode,
     # "Bjornulf_RemoteTextEncodingWithCLIPs": RemoteTextEncodingWithCLIPs,
-    
     # "Bjornulf_FixFace": FixFace,
     # "Bjornulf_FaceSettings": FaceSettings,
     # "Bjornulf_SaveTensors": SaveTensors,
@@ -147,7 +186,6 @@ NODE_CLASS_MAPPINGS = {
     # "Bjornulf_VideoTextGenerator": VideoTextGenerator,
     # "Bjornulf_ExecuteWorkflowNode": ExecuteWorkflowNode,
     # "Bjornulf_ApiDynamicTextInputs": ApiDynamicTextInputs,
-    
     # "Bjornulf_ConditionalSwitch": ConditionalSwitch,
     "Bjornulf_LoadCivitAILinks": LoadCivitAILinks,
     "Bjornulf_SplitImageGrid": SplitImageGrid,
@@ -228,8 +266,8 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_ListLooperOutfitFemale": ListLooperOutfitFemale,
     # "Bjornulf_HiResFix": HiResFix,
     # "Bjornulf_ImageBlend": ImageBlend,
-    "Bjornulf_ShowInt": ShowInt, 
-    "Bjornulf_TextReplace" : TextReplace,
+    "Bjornulf_ShowInt": ShowInt,
+    "Bjornulf_TextReplace": TextReplace,
     "Bjornulf_ShowFloat": ShowFloat,
     "Bjornulf_ShowJson": ShowJson,
     "Bjornulf_ShowStringText": ShowStringText,
@@ -257,6 +295,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_LoopLoraSelector": LoopLoraSelector,
     "Bjornulf_RandomLoraSelector": RandomLoraSelector,
     "Bjornulf_LoopModelSelector": LoopModelSelector,
+    "Bjornulf_LoopUpscaleModelSelector": LoopUpscaleModelSelector,
     "Bjornulf_VideoPreview": VideoPreview,
     "Bjornulf_ImagesListToVideo": ImagesListToVideo,
     "Bjornulf_VideoToImagesList": VideoToImagesList,
@@ -317,7 +356,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_RemoteTextEncodingWithCLIPs": "[BETA] 🔮 Remote Text Encoding with CLIPs",
     # "Bjornulf_ConditionalSwitch": "ConditionalSwitch",
     # "Bjornulf_PurgeCLIPNode": "🧹📎 Purge CLIP",
-    
     # "Bjornulf_FixFace": "[BETA] 🔧🧑 Fix Face",
     # "Bjornulf_FaceSettings": "[BETA] 🧑 Face Settings [Fix Face] ⚙",
     # "Bjornulf_SaveTensors": "[BETA] 💾 Save Tensors (tmp_api.pt) ⚠️💣",
@@ -328,7 +366,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_ApiDynamicTextInputs": "[BETA] 📥🔮📝 Text Manager Api (Execute Workflow)",
     # "Bjornulf_ExecuteWorkflowNode": "[BETA] 🔮⚡ Remote Execute Workflow",
     # "Bjornulf_VideoTextGenerator": "[BETA] 🔥📝📹 Video Text Generator 📹📝🔥",
-    
     "Bjornulf_LoadCivitAILinks": "📥🕑🤖 Load CivitAI Links",
     "Bjornulf_StyleSelector": "🎨📜 Style Selector (🎲 or ♻ or ♻📑) + Civitai urn",
     "Bjornulf_ReassembleImageGrid": "🖼📹🔨 Reassemble Image/Video Grid",
@@ -442,6 +479,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_LoopLoraSelector": "♻👑 Loop Lora Selector",
     "Bjornulf_RandomLoraSelector": "🎲👑 Random Lora Selector",
     "Bjornulf_LoopModelSelector": "♻ Loop Load checkpoint (Model Selector)",
+    "Bjornulf_LoopUpscaleModelSelector": "♻ Loop Load upscale mode (from upscale_models folder)",
     "Bjornulf_VideoPreview": "📹👁 Video Preview",
     "Bjornulf_ImagesListToVideo": "🖼➜📹 Images to Video path (tmp video) (FFmpeg)",
     "Bjornulf_VideoToImagesList": "📹➜🖼 Video Path to Images (Load video)",
@@ -499,4 +537,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 }
 
 WEB_DIRECTORY = "./web"
-__all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS', 'WEB_DIRECTORY']
+__all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]
