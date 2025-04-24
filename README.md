@@ -186,7 +186,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
 `110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
 `151` [📥🕑🤖 Load CivitAI Links](#151----load-civitai-links)  
-`163` [☁🎨 API Image Generator (openai, gpt-image-1)](#163)  
+`163` [☁🎨 API Image Generator (openai, gpt-image-1)](#163----api-image-generator-openai-gpt-image-1)  
 
 ## 📥 Take from CivitAI / Hugginface 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
