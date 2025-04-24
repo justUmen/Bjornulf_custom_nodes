@@ -6,7 +6,7 @@ You can manage looping operations, generate randomized content, trigger logical 
 ⚠️ Warning : Very active development. Work in progress. 🏗  
 
 Last update video :  
-[![Watch the video](https://img.youtube.com/vi/v8H8XEdB7Zg/hqdefault.jpg)](https://www.youtube.com/watch?v=v8H8XEdB7Zg)  
+[![Watch the video](https://img.youtube.com/vi/YiGgyh7nQRg/hqdefault.jpg)](https://www.youtube.com/watch?v=YiGgyh7nQRg)  
 
 # Watch Video (Quick overview 28 minutes) + Updates in video playlist :
 [![Watch the video](https://img.youtube.com/vi/jTg9QsgKYmA/hqdefault.jpg)](https://www.youtube.com/playlist?list=PL_hRi_PPLLWvUNfG_np_d3K0nBCabM3iQ)
