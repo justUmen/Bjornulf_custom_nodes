@@ -125,6 +125,7 @@ from .audio_preview import AudioPreview
 from .style_selector import StyleSelector
 # from .switches import ConditionalSwitch
 from .split_image import SplitImageGrid, ReassembleImageGrid
+from .API_openai import APIGenerateGPT4o
 
 # from .video_text_generator import VideoTextGenerator
 # from .run_workflow_from_api import ExecuteWorkflowNode, ApiDynamicTextInputs
@@ -147,6 +148,7 @@ NODE_CLASS_MAPPINGS = {
     # "Bjornulf_VideoTextGenerator": VideoTextGenerator,
     # "Bjornulf_ExecuteWorkflowNode": ExecuteWorkflowNode,
     # "Bjornulf_ApiDynamicTextInputs": ApiDynamicTextInputs,
+    "Bjornulf_APIGenerateGPT4o": APIGenerateGPT4o,
     
     # "Bjornulf_ConditionalSwitch": ConditionalSwitch,
     "Bjornulf_LoadCivitAILinks": LoadCivitAILinks,
@@ -496,6 +498,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_IfElse": "🔀 If-Else (input / compare_with)",
     "Bjornulf_ImageDetails": "🖼🔍 Image Details",
     "Bjornulf_CombineImages": "🖼🔗 Combine Images",
+    "Bjornulf_APIGenerateGPT4o": "☁🎨 API Image Generator (openai, gpt-image-1)",
 }
 
 WEB_DIRECTORY = "./web"

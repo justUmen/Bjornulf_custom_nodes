@@ -1,6 +1,6 @@
-# 🔗 Comfyui : Bjornulf_custom_nodes v0.79 🔗
+# 🔗 Comfyui : Bjornulf_custom_nodes v0.80 🔗
 
-A list of 162 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
+A list of 163 custom nodes for Comfyui : Display, manipulate, create and edit text, images, videos, loras, generate characters and more.  
 You can manage looping operations, generate randomized content, trigger logical conditions, pause and manually control your workflows and even work with external AI tools, like Ollama or Text To Speech.  
 
 ⚠️ Warning : Very active development. Work in progress. 🏗  
@@ -186,6 +186,7 @@ Support me, this project and my other AI exciting projects : ❤️❤️❤️ 
 `109.` [☁🎨 API Image Generator (Black Forest Labs - Flux) ☁](#109----api-image-generator-black-forest-labs---flux-)  
 `110.` [☁🎨 API Image Generator (Stability - Stable Diffusion) ☁](#110----api-image-generator-stability---stable-diffusion-)  
 `151` [📥🕑🤖 Load CivitAI Links](#151----load-civitai-links)  
+`163` [☁🎨 API Image Generator (openai, gpt-image-1)](#163)  
 
 ## 📥 Take from CivitAI / Hugginface 📥
 `98.` [📥 Load checkpoint SD1.5 (+Download from CivitAi)](#98----load-checkpoint-sd15-download-from-civitai)  
@@ -463,6 +464,7 @@ Rewrite of FFMPEG nodes, COnfiguration and Video preview.
 Many other bug fixes and improvements on many nodes, thx for the reports.  
 - **0.78**: Fix Line selector Reset button javascript. (not showing on refresh)  
 - **0.79**: Fix Ollama Talk  
+- **0.780**: gtp-image-1 api node  
 
 # 📝 Nodes descriptions
 
@@ -2309,3 +2311,10 @@ In the future I will make a system to "inject" a specific reusable character, pr
 
 **Description:**  
 Connect to Fix Face node to modify a specific face.  
+
+#### 163 - ☁🎨 API Image Generator (openai, gpt-image-1)
+
+**Description:**  
+Create an image with GPT-Image-1 API.  
+
+![gpt 4 image](screenshots/gpt_image_1.jpg)  

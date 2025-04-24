@@ -719,33 +719,62 @@ class SharedLists:
     ]
 
     # Style-related lists
-    ARTISTIC_STYLES = [
-        "photography", "oil painting", "watercolor", "digital art", "pencil sketch", "anime",
-        "photorealistic", "comic book", "impressionist", "pop art", "minimalist",
-        "concept art", "3D render", "cinematic", "studio photography", "film noir"
-    ]
-
+    CATEGORIES = ["Painting", "Photography", "Digital Art", "3D Rendering", "Illustration"]
+    
+    # Define specific styles (branches) within each category
+    BRANCHES = {
+        "Painting": [
+            "Renaissance", "Baroque", "Rococo", "Neoclassicism",
+            "Romanticism", "Realism", "Impressionism", "Post-Impressionism",
+            "Expressionism", "Fauvism", "Cubism", "Futurism", "Dadaism",
+            "Surrealism", "Abstract Expressionism", "Pop Art", "Op Art",
+            "Minimalism"
+        ],
+        "Photography": [
+            "Black and White", "Color", "Vintage", "Sepia Tone", "HDR",
+            "Long Exposure", "Macro", "Portrait", "Landscape", "Street",
+            "Fashion", "Analog Film", "Cinematic"
+        ],
+        "Digital Art": [
+            "Digital Painting", "Vector Art", "Pixel Art", "Fractal Art",
+            "Algorithmic Art", "Glitch Art"
+        ],
+        "3D Rendering": [
+            "Low Poly", "Voxel", "Isometric", "Ray Tracing"
+        ],
+        "Illustration": [
+            "Line Art", "Cartoon", "Comic Book", "Manga", "Anime",
+            "Technical Illustration", "Botanical Illustration",
+            "Architectural Rendering", "Concept Art", "Storyboard Art"
+        ],
+    }
+    
+    # Suffixes to append to branches for natural phrasing
+    CATEGORY_SUFFIXES = {
+        "Painting": "painting",
+        "Photography": "photography",
+        "Digital Art": "",
+        "3D Rendering": "3D rendering",
+        "Illustration": "illustration"
+    }
+    
+    # Define other style elements (optional, kept for completeness)
     COLOR_PALETTES = [
         "vibrant", "muted", "monochromatic", "pastel", "dark and moody",
         "warm", "cool", "high contrast", "earthy", "neon",
         "vintage", "black and white", "sepia", "technicolor", "iridescent"
     ]
-
+    
     LIGHTING_TYPES = [
         "natural", "dramatic", "soft", "harsh", "backlit",
         "rim lighting", "volumetric", "ambient", "studio", "cinematic",
         "golden hour", "blue hour", "neon", "candlelit", "spotlit"
     ]
-
+    
     MOODS = [
         "peaceful", "mysterious", "dramatic", "romantic", "melancholic",
         "energetic", "serene", "tense", "whimsical", "ethereal",
         "dark", "cheerful", "nostalgic", "dreamy", "epic"
-    ]
-
-    COMPOSITIONS = [
-        "rule of thirds", "symmetrical", "dynamic", "minimalist", "centered",
-        "diagonal", "framed", "leading lines", "golden ratio", "panoramic", "dutch angle"
     ]
 
     # Scene-related lists
@@ -1092,8 +1121,8 @@ class SharedLists:
 
     # Character-related lists
     POSITIONS = [
-        "left", "center", "right", "top", "bottom",
-        "top-left", "top-right", "bottom-left", "bottom-right"
+        "on the left", "in the center", "on the right", "at the top", "at the bottom",
+        "at the top-left", "at the top-right", "at the bottom-left", "at the bottom-right"
     ]
 
     ETHNICITIES = {
@@ -1536,7 +1565,7 @@ class SharedLists:
         "swaying arms to music", "bending sideways", "laying sideways"
     ]
 
-    BODY_SHAPES = [
+    FEMALE_BODY_SHAPES = [
         "athletic", "muscular", "slim", "slender", "petite", "average", "curvy",
         "full-figured", "tall and lean", "short and stocky", "broad-shouldered",
         "narrow-waisted", "hourglass figure", "pear-shaped", "apple-shaped",
@@ -1547,6 +1576,17 @@ class SharedLists:
         "straight-postured", "broad-chested", "square-shouldered", "round-shouldered",
         "willowy", "statuesque", "compact", "lanky", "lithe", "svelte",
         "sturdy", "delicate", "graceful", "imposing"
+    ]
+
+    MALE_BODY_SHAPES = [
+        "athletic", "muscular", "slim", "slender", "average", "tall", "very tall",
+        "short", "very short", "average height", "thin", "skinny", "plump", "heavy-set",
+        "robust", "long-legged", "short-legged", "broad-shouldered", "narrow-waisted",
+        "toned", "well-built", "lean muscular", "bodybuilder physique", "tall and lean",
+        "short and stocky", "compact", "lanky", "lithe", "sturdy", "imposing",
+        "barrel-chested", "stocky", "burly", "wiry", "rangy", "sinewy", "hulking",
+        "V-shaped torso", "triangular build", "ectomorphic", "mesomorphic", "endomorphic",
+        "inverted triangle", "rectangle", "chiseled", "ripped", "beefy", "scrawny"
     ]
 
     HAIR_STYLES = [
@@ -1578,11 +1618,18 @@ class SharedLists:
         "bird's eye view", "worm's eye view", "dutch angle", "over-the-shoulder",
         "high angle", "low angle", "eye level", "aerial view", "tilted angle"
     ]
-
+    
     SHOT_TYPES = [
-        "close-up", "medium shot", "full body", "wide shot",
-        "extreme close-up", "medium close-up", "medium long shot",
-        "long shot", "extreme long shot", "establishing shot"
+        "close-up shot",       # A tight focus on a subject, often a face or small detail
+        "medium shot",         # Frames the subject from the waist up, balancing detail and context
+        "full body shot",      # Captures the entire subject from head to toe
+        "wide shot",           # Shows the subject within a broader environment or scene
+        "extreme close-up shot", # Zooms in intensely, highlighting minute details like eyes or texture
+        "medium close-up shot", # A slightly wider close-up, typically from the chest or shoulders up
+        "medium long shot",    # Frames the subject from the knees or thighs up, blending foreground and background
+        "long shot",           # Places the subject at a distance, emphasizing surroundings over detail
+        "extreme long shot",   # A vast, far-off perspective, often dwarfing the subject in a massive landscape
+        "establishing shot"    # Sets the scene, providing context for location or atmosphere
     ]
 
     LIGHTING = [
@@ -1596,11 +1643,54 @@ class SharedLists:
     ]
 
     ACTIONS = [
-        "talking to each other", "fighting", "dancing", "walking together",
-        "having dinner", "playing games", "working together", "arguing",
-        "celebrating", "performing", "studying", "shopping"
+        "posing for the camera",
+        "looking at the camera",
+        "walking arm in arm",
+        "talking to each other",
+        "gesturing while talking",
+        "fighting with fists up",
+        "dodging a punch",
+        "dancing in a ballroom hold",
+        "spinning in a dance",
+        "walking together",
+        "passing food at dinner",
+        "toasting with glasses",
+        "playing a board game",
+        "acting out charades",
+        "painting a wall together",
+        "looking at a blueprint",
+        "arguing with hands on hips",
+        "arguing with arms crossed",
+        "celebrating with arms raised",
+        "lifting in celebration",
+        "singing a duet",
+        "dancing in sync",
+        "pointing at a book",
+        "huddled over a laptop",
+        "holding up a product",
+        "carrying shopping bags",
+        "posing for the camera",
+        "making bunny ears",
+        "kissing on the cheek",
+        "kissing romantically",
+        "hugging tightly",
+        "hugging from the side",
+        "helping up",
+        "whispering",
+        "comforting",
+        "high-fiving",
+        "riding piggyback",
+        "proposing with a ring",
+        "taking a selfie",
+        "fist bumping",
+        "exchanging gifts",
+        "doing a trust fall",
+        "in a group hug",
+        "in a team huddle",
+        "posing for a family photo",
+        "in a conga line",
+        "forming a human pyramid"
     ]
-
 
 class TextGeneratorOutfitFemale:
     @classmethod
@@ -1968,7 +2058,7 @@ class TextGeneratorCharacterFemale:
                 "nationality": (["NONE", "RANDOM"] + SharedLists.NATIONALITIES,),
                 "age": (["RANDOM"] + SharedLists.AGES_FEMALE, {"default": "woman"}),
                 "add_specific_age": ("STRING", {"multiline": False, "default": ""}),
-                "body_shape": (["RANDOM", "NONE"] + SharedLists.BODY_SHAPES,),
+                "body_shape": (["RANDOM", "NONE"] + SharedLists.FEMALE_BODY_SHAPES,),
                 "breasts": (["RANDOM", "NONE"] + SharedLists.BREAST_SHAPES,),
                 "ass": (["RANDOM", "NONE"] + SharedLists.ASS_SHAPES,),
                 "skin_tone": (["NONE", "RANDOM"] + SharedLists.SKIN_TONES,),
@@ -2025,7 +2115,7 @@ class TextGeneratorCharacterFemale:
         
         # Location
         if values['location_on_image']:
-            desc_parts.append(f"On the {values['location_on_image']} of the image:")
+            desc_parts.append(f"{values['location_on_image']} of the image:")
 
         # Age and ethnicity description
         if values['age']:
@@ -2114,7 +2204,7 @@ class TextGeneratorCharacterMale:
                 "nationality": (["NONE", "RANDOM"] + SharedLists.NATIONALITIES,),
                 "age": (["RANDOM"] + SharedLists.AGES_MALE, {"default": "man"}),
                 "add_specific_age": ("STRING", {"multiline": False, "default": ""}),
-                "body_shape": (["RANDOM", "NONE"] + SharedLists.BODY_SHAPES,),
+                "body_shape": (["RANDOM", "NONE"] + SharedLists.MALE_BODY_SHAPES,),
                 "skin_tone": (["NONE", "RANDOM"] + SharedLists.SKIN_TONES,),
                 "facial_hair": (["NONE", "RANDOM"] + SharedLists.FACIAL_HAIR_TYPES,),
                 "eye_color": (["NONE", "RANDOM"] + SharedLists.EYE_COLORS,),
@@ -2169,7 +2259,7 @@ class TextGeneratorCharacterMale:
         
         # Location
         if values['location_on_image']:
-            desc_parts.append(f"On the {values['location_on_image']} of the image:")
+            desc_parts.append(f"{values['location_on_image']} of the image:")
 
         # Age and ethnicity description
         if values['age']:
@@ -2240,20 +2330,34 @@ class TextGeneratorCharacterMale:
             return (f"{add_GEN_CHARACTER}\n{final_description}",)
         return (final_description,)
 
-
-
 class TextGeneratorStyle:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
+                "category": (SharedLists.CATEGORIES,),
+                "style": ([
+                    "Renaissance", "Baroque", "Rococo", "Neoclassicism",
+                    "Romanticism", "Realism", "Impressionism", "Post-Impressionism",
+                    "Expressionism", "Fauvism", "Cubism", "Futurism", "Dadaism",
+                    "Surrealism", "Abstract Expressionism", "Pop Art", "Op Art",
+                    "Minimalism",
+                    "Black and White", "Color", "Vintage", "Sepia Tone", "HDR",
+                    "Long Exposure", "Macro", "Portrait", "Landscape", "Street",
+                    "Fashion", "Analog Film", "Cinematic",
+                    "Digital Painting", "Vector Art", "Pixel Art", "Fractal Art",
+                    "Algorithmic Art", "Glitch Art",
+                    "Low Poly", "Voxel", "Isometric", "Ray Tracing",
+                    "Line Art", "Cartoon", "Comic Book", "Manga", "Anime",
+                    "Technical Illustration", "Botanical Illustration",
+                    "Architectural Rendering", "Concept Art", "Storyboard Art"
+                ],),
+                "color_palette": (["NONE", "RANDOM"] + SharedLists.COLOR_PALETTES,),
+                "lighting_type": (["NONE", "RANDOM"] + SharedLists.LIGHTING_TYPES,),
+                "mood": (["NONE", "RANDOM"] + SharedLists.MOODS,),
+                "ambiance": (["NONE", "RANDOM"] + SharedLists.AMBIANCE_TYPES,),
+                "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                "artistic_style": (["RANDOM", "NONE"] + SharedLists.ARTISTIC_STYLES,),
-                "color_palette": (["RANDOM", "NONE"] + SharedLists.COLOR_PALETTES,),
-                "lighting_type": (["RANDOM", "NONE"] + SharedLists.LIGHTING_TYPES,),
-                "mood": (["RANDOM", "NONE"] + SharedLists.MOODS,),
-                "composition": (["RANDOM", "NONE"] + SharedLists.COMPOSITIONS,),
-                "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""})
             }
         }
 
@@ -2264,47 +2368,40 @@ class TextGeneratorStyle:
 
     def select_random_element(self, available_options, selected_value, random_generator):
         if selected_value == "RANDOM":
-            valid_choices = [
-                opt for opt in available_options if opt not in ["RANDOM", "NONE"]]
+            valid_choices = [opt for opt in available_options if opt not in ["RANDOM", "NONE"]]
             return random_generator.choice(valid_choices)
         elif selected_value == "NONE":
             return ""
         return selected_value
 
-    def generate(self, seed, artistic_style, color_palette, lighting_type, mood, composition, CUSTOM_PROMPT):
+    def generate(self, category, style, color_palette, lighting_type, mood, ambiance, CUSTOM_PROMPT, seed):
         random_generator = random.Random(seed)
-
-        style_elements = {
-            k: self.select_random_element(
-                self.INPUT_TYPES()["required"][k][0], v, random_generator)
-            for k, v in locals().items()
-            if k not in ['self', 'seed', 'random_generator', 'CUSTOM_PROMPT']
-        }
-
+        
+        artistic_style = f"{style} {SharedLists.CATEGORY_SUFFIXES.get(category, '')}".strip()
+        
+        color_palette = self.select_random_element(SharedLists.COLOR_PALETTES, color_palette, random_generator)
+        lighting_type = self.select_random_element(SharedLists.LIGHTING_TYPES, lighting_type, random_generator)
+        mood = self.select_random_element(SharedLists.MOODS, mood, random_generator)
+        ambiance = self.select_random_element(SharedLists.AMBIANCE_TYPES, ambiance, random_generator)
+        
         style_components = []
-        if style_elements['artistic_style']:
-            style_components.append(
-                f"{style_elements['artistic_style']} style")
-        if style_elements['color_palette']:
-            style_components.append(
-                f"using a {style_elements['color_palette']} color scheme")
-        if style_elements['lighting_type']:
-            style_components.append(
-                f"with {style_elements['lighting_type']} lighting")
-        if style_elements['mood']:
-            style_components.append(
-                f"conveying a {style_elements['mood']} mood")
-        if style_elements['composition']:
-            style_components.append(
-                f"in a {style_elements['composition']} composition")
-
+        if artistic_style:
+            style_components.append(artistic_style)
+        if color_palette:
+            style_components.append(f"using a {color_palette} color scheme")
+        if lighting_type:
+            style_components.append(f"with {lighting_type} lighting")
+        if mood:
+            style_components.append(f"conveying a {mood} mood")
+        if ambiance:
+            style_components.append(f"with a {ambiance} ambiance")
+        
         style_description = ", ".join(style_components)
-
+        
         if CUSTOM_PROMPT.strip():
             style_description += f", {CUSTOM_PROMPT.strip()}"
-
+        
         return (style_description,)
-
 
 class TextGeneratorScene:
     @classmethod
@@ -2312,11 +2409,10 @@ class TextGeneratorScene:
         return {
             "required": {
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                "scene_type": (["RANDOM", "NONE"] + SharedLists.SCENE_TYPES,),
-                "time_period": (["RANDOM", "NONE"] + SharedLists.TIME_PERIODS,),
-                "weather_condition": (["RANDOM", "NONE"] + SharedLists.WEATHER_CONDITIONS,),
-                "ambiance": (["RANDOM", "NONE"] + SharedLists.AMBIANCE_TYPES,),
-                "setting": (["RANDOM", "NONE"] + SharedLists.SETTINGS,),
+                "scene_type": (["NONE", "RANDOM"] + SharedLists.SCENE_TYPES,),
+                "time_period": (["NONE", "RANDOM"] + SharedLists.TIME_PERIODS,),
+                "weather_condition": (["NONE", "RANDOM"] + SharedLists.WEATHER_CONDITIONS,),
+                "setting": (["NONE", "RANDOM"] + SharedLists.SETTINGS,),
                 "CUSTOM_PROMPT": ("STRING", {"multiline": True, "default": ""})
             }
         }
@@ -2328,35 +2424,31 @@ class TextGeneratorScene:
 
     def select_random_element(self, available_options, selected_value, random_generator):
         if selected_value == "RANDOM":
-            valid_choices = [
-                opt for opt in available_options if opt not in ["RANDOM", "NONE"]]
+            valid_choices = [opt for opt in available_options if opt not in ["RANDOM", "NONE"]]
             return random_generator.choice(valid_choices)
         elif selected_value == "NONE":
             return ""
         return selected_value
 
-    def generate(self, seed, scene_type, time_period, weather_condition, ambiance, setting, CUSTOM_PROMPT):
+    def generate(self, seed, scene_type, time_period, weather_condition, setting, CUSTOM_PROMPT):
         random_generator = random.Random(seed)
 
         scene_elements = {
-            k: self.select_random_element(
-                self.INPUT_TYPES()["required"][k][0], v, random_generator)
-            for k, v in locals().items()
-            if k not in ['self', 'seed', 'random_generator', 'CUSTOM_PROMPT']
+            'scene_type': self.select_random_element(SharedLists.SCENE_TYPES, scene_type, random_generator),
+            'time_period': self.select_random_element(SharedLists.TIME_PERIODS, time_period, random_generator),
+            'weather_condition': self.select_random_element(SharedLists.WEATHER_CONDITIONS, weather_condition, random_generator),
+            'setting': self.select_random_element(SharedLists.SETTINGS, setting, random_generator),
         }
 
         scene_components = []
-        if scene_elements['ambiance'] and scene_elements['scene_type']:
-            scene_components.append(
-                f"in a {scene_elements['ambiance']} {scene_elements['scene_type']} scene")
+        if scene_elements['scene_type']:
+            scene_components.append(f"in a {scene_elements['scene_type']} scene")
         if scene_elements['setting']:
             scene_components.append(f"located in {scene_elements['setting']}")
         if scene_elements['time_period']:
-            scene_components.append(
-                f"during the {scene_elements['time_period']}")
+            scene_components.append(f"during the {scene_elements['time_period']}")
         if scene_elements['weather_condition']:
-            scene_components.append(
-                f"with {scene_elements['weather_condition']} conditions")
+            scene_components.append(f"with {scene_elements['weather_condition']} conditions")
 
         scene_description = ", ".join(scene_components)
 
@@ -2364,7 +2456,6 @@ class TextGeneratorScene:
             scene_description += f", {CUSTOM_PROMPT.strip()}"
 
         return (scene_description,)
-
 
 class TextGenerator:
     @classmethod
@@ -2399,7 +2490,7 @@ class TextGenerator:
         return current_value
 
     def generate(self, seed, camera_angle, shot_type, multi_char_action, CUSTOM_action,
-                 CUSTOM_PROMPT, GEN_CHARACTER=None, GEN_STYLE=None, GEN_SCENE=None):
+                CUSTOM_PROMPT, GEN_CHARACTER=None, GEN_STYLE=None, GEN_SCENE=None):
         random_generator = random.Random(seed)
 
         local_vars = locals()
@@ -2407,22 +2498,20 @@ class TextGenerator:
             local_vars['multi_char_action'] = CUSTOM_action.strip()
 
         values = {k: self.select_random_element(self.INPUT_TYPES()["required"][k][0], v, random_generator)
-                  for k, v in local_vars.items()
-                  if k in ['camera_angle', 'shot_type', 'multi_char_action']}
+                for k, v in local_vars.items()
+                if k in ['camera_angle', 'shot_type', 'multi_char_action']}
 
         if GEN_CHARACTER is not None:
             character_count = 0
             for line in GEN_CHARACTER.split('\n'):
                 line = line.strip()
                 if line.startswith('-'):
-                    # Count the number of consecutive dashes at the start
                     dash_count = len(line) - len(line.lstrip('-'))
                     character_count += dash_count
         else:
             character_count = 0
 
         prompt_parts = []
-
         if values['shot_type'] or values['camera_angle']:
             shot_description = []
             if values['shot_type']:
@@ -2443,32 +2532,22 @@ class TextGenerator:
 
         technical_desc = ", ".join(prompt_parts) if prompt_parts else ""
 
-        final_parts = []
-        if technical_desc:
-            if CUSTOM_PROMPT.strip():
-                technical_desc += f", {CUSTOM_PROMPT.strip()}"
-            final_parts.append(technical_desc)
-        if character_intro:
-            final_parts.append(character_intro)
-
-        # Combine all parts
+        # Combine all parts, each on its own line
         final_prompt_parts = []
-
         if GEN_STYLE:
             final_prompt_parts.append(GEN_STYLE)
-
-        if final_parts:
-            final_prompt_parts.append(", ".join(final_parts))
-
+        if technical_desc:
+            final_prompt_parts.append(technical_desc)
+        if character_intro:
+            final_prompt_parts.append(character_intro)
+        if CUSTOM_PROMPT.strip():
+            final_prompt_parts.append(CUSTOM_PROMPT.strip())
         if GEN_CHARACTER:
             final_prompt_parts.append(GEN_CHARACTER)
-
         if GEN_SCENE:
             final_prompt_parts.append(GEN_SCENE)
 
-        final_prompt = "\n".join(
-            part for part in final_prompt_parts if part.strip())
-
+        final_prompt = "\n".join(part for part in final_prompt_parts if part.strip())
         return (final_prompt,)
 
 class ListLooperOutfitMale:
@@ -2625,7 +2704,8 @@ class ListLooperCharacter:
                     "nationality",
                     "age_male",
                     "age_female",
-                    "body_shape",
+                    "body_shape_female",
+                    "body_shape_male",
                     "skin_tone",
                     "eye_color",
                     "hair_style",
@@ -2650,7 +2730,8 @@ class ListLooperCharacter:
                 "nationality": ([f"ALL ({len(SharedLists.NATIONALITIES)})"] + SharedLists.NATIONALITIES,),
                 "age_male": ([f"ALL ({len(SharedLists.AGES_MALE)})"] + SharedLists.AGES_MALE,),
                 "age_female": ([f"ALL ({len(SharedLists.AGES_FEMALE)})"] + SharedLists.AGES_FEMALE,),
-                "body_shape": ([f"ALL ({len(SharedLists.BODY_SHAPES)})"] + SharedLists.BODY_SHAPES,),
+                "body_shape_female": ([f"ALL ({len(SharedLists.FEMALE_BODY_SHAPES)})"] + SharedLists.FEMALE_BODY_SHAPES,),
+                "body_shape_male": ([f"ALL ({len(SharedLists.MALE_BODY_SHAPES)})"] + SharedLists.MALE_BODY_SHAPES,),
                 "skin_tone": ([f"ALL ({len(SharedLists.SKIN_TONES)})"] + SharedLists.SKIN_TONES,),
                 "eye_color": ([f"ALL ({len(SharedLists.EYE_COLORS)})"] + SharedLists.EYE_COLORS,),
                 "hair_style": ([f"ALL ({len(SharedLists.HAIR_STYLES)})"] + SharedLists.HAIR_STYLES,),
@@ -2676,7 +2757,7 @@ class ListLooperCharacter:
     CATEGORY = "Bjornulf"
 
     def get_list(self, SELECTION, location_on_image, ethnicity, nationality, 
-                 age_male, age_female, body_shape, skin_tone, eye_color, 
+                 age_male, age_female, body_shape_female, body_shape_male, skin_tone, eye_color, 
                  hair_style, hair_color, facial_hair, breasts, ass,
                  creature_type, creature_size, creature_temperament, water_animal, land_animal,
                  creature_ability, creature_features, magical_properties):
@@ -2690,7 +2771,8 @@ class ListLooperCharacter:
             "nationality": (nationality, SharedLists.NATIONALITIES),
             "age_male": (age_male, SharedLists.AGES_MALE),
             "age_female": (age_female, SharedLists.AGES_FEMALE),
-            "body_shape": (body_shape, SharedLists.BODY_SHAPES),
+            "body_shape_male": (body_shape_male, SharedLists.MALE_BODY_SHAPES),
+            "body_shape_female": (body_shape_female, SharedLists.FEMALE_BODY_SHAPES),
             "skin_tone": (skin_tone, SharedLists.SKIN_TONES),
             "eye_color": (eye_color, SharedLists.EYE_COLORS),
             "hair_style": (hair_style, SharedLists.HAIR_STYLES),
@@ -2731,11 +2813,11 @@ class ListLooperStyle:
                     "mood",
                     "composition"
                 ], {"forceInput": False}),
-                "artistic_style": ([f"ALL ({len(SharedLists.ARTISTIC_STYLES)})"] + SharedLists.ARTISTIC_STYLES,),
+                "artistic_style": ([f"ALL ({len(SharedLists.COLOR_PALETTES)})"] + SharedLists.COLOR_PALETTES,),
                 "color_palette": ([f"ALL ({len(SharedLists.COLOR_PALETTES)})"] + SharedLists.COLOR_PALETTES,),
                 "lighting_type": ([f"ALL ({len(SharedLists.LIGHTING_TYPES)})"] + SharedLists.LIGHTING_TYPES,),
                 "mood": ([f"ALL ({len(SharedLists.MOODS)})"] + SharedLists.MOODS,),
-                "composition": ([f"ALL ({len(SharedLists.COMPOSITIONS)})"] + SharedLists.COMPOSITIONS,),
+                "composition": ([f"ALL ({len(SharedLists.MOODS)})"] + SharedLists.MOODS,),
             }
         }
 
@@ -2747,11 +2829,11 @@ class ListLooperStyle:
     def get_list(self, SELECTION, artistic_style, color_palette, 
                  lighting_type, mood, composition):
         selection_map = {
-            "artistic_style": (artistic_style, SharedLists.ARTISTIC_STYLES),
+            "artistic_style": (artistic_style, SharedLists.COLOR_PALETTES),
             "color_palette": (color_palette, SharedLists.COLOR_PALETTES),
             "lighting_type": (lighting_type, SharedLists.LIGHTING_TYPES),
             "mood": (mood, SharedLists.MOODS),
-            "composition": (composition, SharedLists.COMPOSITIONS)
+            "composition": (composition, SharedLists.MOODS)
         }
         selected_value, full_list = selection_map[SELECTION]
         return (full_list,) if "ALL" in selected_value else ([selected_value],)
@@ -3068,7 +3150,7 @@ class TextGeneratorCharacterCreature:
         
         # Location
         if values['location_on_image']:
-            desc_parts.append(f"On the {values['location_on_image']} of the image:")
+            desc_parts.append(f"{values['location_on_image']} of the image:")
 
         # Basic description
         base_desc = f"{number_to_word(number_of_creatures)} {values['size']} {values['creature_type']}"
