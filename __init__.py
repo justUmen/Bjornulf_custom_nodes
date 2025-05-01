@@ -51,7 +51,7 @@ from .loop_write_text import LoopWriteText
 from .load_images_from_folder import LoadImagesFromSelectedFolder
 from .select_image_from_list import SelectImageFromList
 from .random_model_selector import RandomModelSelector
-from .if_else import IfElse
+from .if_else import IfElse, MatchTextToInput
 from .image_details import ImageDetails
 from .video_details import VideoDetails
 from .combine_images import CombineImages
@@ -127,6 +127,10 @@ from .style_selector import StyleSelector
 from .split_image import SplitImageGrid, ReassembleImageGrid
 from .API_openai import APIGenerateGPT4o
 
+from .masks_nodes import LargestMaskOnly
+from .openai_nodes import OpenAIVisionNode
+from .loop_random_seed import LoopRandomSeed
+
 # from .video_text_generator import VideoTextGenerator
 # from .run_workflow_from_api import ExecuteWorkflowNode, ApiDynamicTextInputs
 # from .remote_nodes import RemoteVAEDecoderNodeTiled, RemoteVAEDecoderNode, LoadFromBase64, SaveTensors, LoadTensor
@@ -135,6 +139,10 @@ from .API_openai import APIGenerateGPT4o
 #RemoteTextEncodingWithCLIPs
 
 NODE_CLASS_MAPPINGS = {
+    "Bjornulf_MatchTextToInput": MatchTextToInput,
+    "Bjornulf_LargestMaskOnly": LargestMaskOnly,
+    "Bjornulf_OpenAIVisionNode": OpenAIVisionNode,
+    "Bjornulf_LoopRandomSeed": LoopRandomSeed,
     # "Bjornulf_PurgeCLIPNode": PurgeCLIPNode,
     # "Bjornulf_RemoteTextEncodingWithCLIPs": RemoteTextEncodingWithCLIPs,
     
@@ -316,6 +324,10 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "Bjornulf_MatchTextToInput": "🔛📝 Match 10 Text to Input",
+    "Bjornulf_LargestMaskOnly": "🖼🔪 Largest Mask Only",
+    "Bjornulf_OpenAIVisionNode": "🔮 OpenAI Vision Node",
+    "Bjornulf_LoopRandomSeed": "♻🎲 Loop Random Seed",
     # "Bjornulf_RemoteTextEncodingWithCLIPs": "[BETA] 🔮 Remote Text Encoding with CLIPs",
     # "Bjornulf_ConditionalSwitch": "ConditionalSwitch",
     # "Bjornulf_PurgeCLIPNode": "🧹📎 Purge CLIP",
