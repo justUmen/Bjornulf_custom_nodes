@@ -13,3 +13,4 @@ langdetect
 spacy
 textblob
 dill
+openai
