@@ -127,7 +127,7 @@ from .style_selector import StyleSelector
 from .split_image import SplitImageGrid, ReassembleImageGrid
 from .API_openai import APIGenerateGPT4o
 
-from .masks_nodes import LargestMaskOnly
+from .masks_nodes import LargestMaskOnly, BoundingRectangleMask
 from .openai_nodes import OpenAIVisionNode
 from .loop_random_seed import LoopRandomSeed
 
@@ -141,6 +141,7 @@ from .loop_random_seed import LoopRandomSeed
 NODE_CLASS_MAPPINGS = {
     "Bjornulf_MatchTextToInput": MatchTextToInput,
     "Bjornulf_LargestMaskOnly": LargestMaskOnly,
+    "Bjornulf_BoundingRectangleMask": BoundingRectangleMask,
     "Bjornulf_OpenAIVisionNode": OpenAIVisionNode,
     "Bjornulf_LoopRandomSeed": LoopRandomSeed,
     # "Bjornulf_PurgeCLIPNode": PurgeCLIPNode,
@@ -325,7 +326,8 @@ NODE_CLASS_MAPPINGS = {
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "Bjornulf_MatchTextToInput": "🔛📝 Match 10 Text to Input",
-    "Bjornulf_LargestMaskOnly": "🖼🔪 Largest Mask Only",
+    "Bjornulf_LargestMaskOnly": "👺🔪 Largest Mask Only",
+    "Bjornulf_BoundingRectangleMask": "👺➜▢ Convert mask to rectangle",
     "Bjornulf_OpenAIVisionNode": "🔮 OpenAI Vision Node",
     "Bjornulf_LoopRandomSeed": "♻🎲 Loop Random Seed",
     # "Bjornulf_RemoteTextEncodingWithCLIPs": "[BETA] 🔮 Remote Text Encoding with CLIPs",
