@@ -24,7 +24,7 @@ class LineSelector:
             },
             "optional": {
                 "variables": ("STRING", {"multiline": True, "forceInput": True}),
-                "seed": ("INT", {"default": -1, "min": -1, "max": 0x7FFFFFFFFFFFFFFF}),
+                #"seed": ("INT", {"default": -1, "min": -1, "max": 0x7FFFFFFFFFFFFFFF}),
             },
         }
 
@@ -251,8 +251,8 @@ class LineSelector:
         return ([selected], 0, line_number if line_number > 0 else 0)
 
     @classmethod
-    def IS_CHANGED(s, text, line_number, RANDOM, LOOP, LOOP_SEQUENTIAL, jump, pick_random_variable, variables="", seed=-1):
-        return float("NaN") if LOOP_SEQUENTIAL else (text, line_number, RANDOM, LOOP, LOOP_SEQUENTIAL, jump, pick_random_variable, variables, seed)
+    def IS_CHANGED(cls, **kwargs):
+        return float("NaN")
 
 @PromptServer.instance.routes.post("/reset_line_selector_counter")
 async def reset_line_selector_counter(request):
