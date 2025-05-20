@@ -135,6 +135,7 @@ from .loop_random_seed import LoopRandomSeed
 # from .run_workflow_from_api import ExecuteWorkflowNode, ApiDynamicTextInputs
 # from .remote_nodes import RemoteVAEDecoderNodeTiled, RemoteVAEDecoderNode, LoadFromBase64, SaveTensors, LoadTensor
 # from .fix_face import FixFace, FaceSettings
+from .image_cut_and_shift import HorizontalCutAndShift
 
 #RemoteTextEncodingWithCLIPs
 
@@ -144,6 +145,7 @@ NODE_CLASS_MAPPINGS = {
     "Bjornulf_BoundingRectangleMask": BoundingRectangleMask,
     "Bjornulf_OpenAIVisionNode": OpenAIVisionNode,
     "Bjornulf_LoopRandomSeed": LoopRandomSeed,
+    "Bjornulf_HorizontalCutAndShift": HorizontalCutAndShift,
     # "Bjornulf_PurgeCLIPNode": PurgeCLIPNode,
     # "Bjornulf_RemoteTextEncodingWithCLIPs": RemoteTextEncodingWithCLIPs,
     
@@ -333,6 +335,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     # "Bjornulf_RemoteTextEncodingWithCLIPs": "[BETA] 🔮 Remote Text Encoding with CLIPs",
     # "Bjornulf_ConditionalSwitch": "ConditionalSwitch",
     # "Bjornulf_PurgeCLIPNode": "🧹📎 Purge CLIP",
+    "Bjornulf_HorizontalCutAndShift": "🔪🖼 Horizontal Cut and Shift 🔼🔽",
     
     # "Bjornulf_FixFace": "[BETA] 🔧🧑 Fix Face",
     # "Bjornulf_FaceSettings": "[BETA] 🧑 Face Settings [Fix Face] ⚙",
