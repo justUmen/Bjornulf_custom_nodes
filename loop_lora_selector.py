@@ -13,14 +13,14 @@ class LoopLoraSelector:
         if not lora_list:
             lora_list = ["none"]
             
-        for i in range(1, 21):
+        for i in range(1, 101):  # Changed from 21 to 101 to support 100 LoRAs
             optional_inputs[f"lora_{i}"] = (lora_list, {"default": lora_list[0]})
             optional_inputs[f"strength_model_{i}"] = ("FLOAT", {"default": 1.0, "min": -100.0, "max": 100.0, "step": 0.01})
             optional_inputs[f"strength_clip_{i}"] = ("FLOAT", {"default": 1.0, "min": -100.0, "max": 100.0, "step": 0.01})
 
         return {
             "required": {
-                "number_of_loras": ("INT", {"default": 3, "min": 1, "max": 20, "step": 1}),
+                "number_of_loras": ("INT", {"default": 3, "min": 1, "max": 100, "step": 1}),  # Changed max from 20 to 100
                 "model": ("MODEL",),
                 "clip": ("CLIP",),
             },
