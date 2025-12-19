@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from server import PromptServer
 import aiohttp.web as web
 import time
@@ -24,11 +25,23 @@ import subprocess
 # ======================
 
 def get_civitai_base_paths():
-    """Returns common paths for CivitAI integration"""
-    custom_nodes_dir = Path(__file__).parent.parent.parent.parent
-    civitai_base_path = custom_nodes_dir / "ComfyUI" / "custom_nodes" / "Bjornulf_custom_nodes" / "civitai"
-    return custom_nodes_dir, civitai_base_path, civitai_base_path  # Last one is parsed_models_path
+    """Returns correct paths for CivitAI integration"""
+    # Правильный путь к папке custom_nodes
+    comfyui_root = Path(__file__).parent.parent.parent  # ComfyUI/custom_nodes/bjornulf_custom_nodes -> ComfyUI
+    civitai_base_path = comfyui_root / "custom_nodes" / "Bjornulf_custom_nodes" / "civitai"
+    
+    # Создаем все папки если их нет
+    for folder_name in ["sdxl_1.0", "sd_1.5", "pony", "flux.1_d", "flux.1_s", 
+                       "lora_sdxl_1.0", "lora_sd_1.5", "lora_pony", "lora_flux.1_d", "lora_hunyuan_video"]:
+        (civitai_base_path / folder_name).mkdir(parents=True, exist_ok=True)
+    
+    parsed_models_path = civitai_base_path / "parsed_models"
+    parsed_models_path.mkdir(parents=True, exist_ok=True)
+    
+    print(f"✅ CivitAI base path: {civitai_base_path}")
+    return comfyui_root, civitai_base_path, parsed_models_path
 
+    
 def setup_checkpoint_directory(model_type):
     """Creates and registers checkpoint directory for specific model type"""
     _, _, parsed_models_path = get_civitai_base_paths()
@@ -43,30 +56,36 @@ def setup_checkpoint_directory(model_type):
     
     return checkpoint_dir, parsed_models_path
 
-def setup_image_folders(folder_specs, parent_dir=""):
-    """Creates and registers image folders for different model types
-    
-    Args:
-        folder_specs: Dictionary of folder_name -> sub_path
-        parent_dir: Optional subdirectory to place links under in input folder
-    """
+def setup_image_folders(folder_specs, parent_dir="Bjornulf"):
+    """Creates and registers image folders - NO SYMLINKS NEEDED"""
     _, civitai_base_path, _ = get_civitai_base_paths()
+    
+    registered_paths = []
     
     for folder_name, sub_path in folder_specs.items():
         full_path = civitai_base_path / sub_path
+        full_path.mkdir(parents=True, exist_ok=True)
+        
+        # Регистрируем папку в folder_paths
         folder_paths.add_model_folder_path(folder_name, str(full_path))
-        create_symlink(full_path, folder_name, parent_dir)
+        registered_paths.append(str(full_path))
+        
+        print(f"✅ Registered folder: {folder_name} -> {full_path}")
+    
+    print(f"✅ Registered {len(registered_paths)} CivitAI folders")
+    return registered_paths
+
+
 
 # Code works, tested on linux and windows
 def create_symlink(source, target_name, parent_dir=None):
-    """Creates a symlink inside the ComfyUI/input directory on Linux and Windows."""
-    if os.name == 'nt':  # Windows
-        comfyui_input = Path("ComfyUI/input")
-    else:
-        comfyui_input = Path("input")
-        # Ensure the input directory exists
-        comfyui_input.mkdir(parents=True, exist_ok=True)
+    """Creates a symlink/junction inside the ComfyUI/input directory on Linux and Windows."""
+    
+    # Determine input directory path
+    comfyui_input = Path("input")
+    comfyui_input.mkdir(parents=True, exist_ok=True)
 
+    # Build target path
     if parent_dir:
         parent_path = comfyui_input / parent_dir
         parent_path.mkdir(parents=True, exist_ok=True)
@@ -74,90 +93,54 @@ def create_symlink(source, target_name, parent_dir=None):
     else:
         target = comfyui_input / target_name
 
-    # Windows handling remains unchanged
-    if os.name == 'nt':
-        if not target.exists():
-            try:
-                base_path = Path(__file__).resolve().parent  # Get script location
-                source_path = base_path / "ComfyUI" / source  # Ensure it points inside ComfyUI
-                try:
-                    target.symlink_to(source_path, target_is_directory=source_path.is_dir())
-                    #print(f"✅ Symlink created: {target} -> {source_path}")
-                except OSError:
-                    if source_path.is_dir():
-                        cmd = [
-                            "powershell",
-                            "New-Item",
-                            "-ItemType",
-                            "Junction",
-                            "-Path",
-                            str(target),
-                            "-Value",
-                            str(source_path)
-                        ]
-                        subprocess.run(cmd, check=True, shell=True, 
-                                      stdout=subprocess.DEVNULL, 
-                                      stderr=subprocess.DEVNULL)
-                        #print(f"✅ Junction created: {target} -> {source_path}")
-                    else:
-                        print(f"❌ Failed to create symlink/junction for {target_name}.")
-            except Exception as e:
-                print(f"❌ Failed to create symlink for {target_name}: {e}")
-    else:  # Linux handling with complete error management
+    # Convert source to absolute Path if it isn't already
+    if not isinstance(source, Path):
+        source = Path(source)
+    
+    if not source.is_absolute():
+        source = source.absolute()
+
+    # Check if source exists
+    if not source.exists():
+        print(f"❌ Source path doesn't exist: {source}")
+        return
+
+    # Remove existing target (file, directory, or symlink)
+    if target.exists() or target.is_symlink():
         try:
-            # Check if source is already absolute path
-            if os.path.isabs(source):
-                source_path = Path(source)
-                
-                # Check if the source exists with the given case
-                if not source_path.exists():
-                    # Try case variations for Bjornulf/bjornulf part of the path
-                    if 'Bjornulf_custom_nodes' in str(source_path):
-                        alt_source_path = Path(str(source_path).replace('Bjornulf_custom_nodes', 'bjornulf_custom_nodes'))
-                        if alt_source_path.exists():
-                            source_path = alt_source_path
-                    elif 'bjornulf_custom_nodes' in str(source_path):
-                        alt_source_path = Path(str(source_path).replace('bjornulf_custom_nodes', 'Bjornulf_custom_nodes'))
-                        if alt_source_path.exists():
-                            source_path = alt_source_path
-                
-                # If still doesn't exist after trying case variations
-                if not source_path.exists():
-                    print(f"❌ Source path doesn't exist (checked both cases): {source}")
-                    return
+            if target.is_dir() and not target.is_symlink():
+                import shutil
+                shutil.rmtree(target)
             else:
-                # For relative paths
-                source_path = Path(source).absolute()
-                if not source_path.exists():
-                    print(f"❌ Source path doesn't exist: {source_path}")
-                    return
-                
-            # Force remove target if it exists (regardless of type)
-            if target.exists() or target.is_symlink():
-                try:
-                    if target.is_dir() and not target.is_symlink():
-                        import shutil
-                        shutil.rmtree(target)
-                    else:
-                        os.unlink(target)
-                except Exception as e:
-                    print(f"❌ Failed to remove existing target {target}: {e}")
-                    return
-            
-            # Create the symlink
-            try:
-                os.symlink(source_path, target, target_is_directory=source_path.is_dir())
-                #print(f"✅ Symlink created: {target} -> {source_path}")
-            except Exception as e:
-                # Try with explicit target_is_directory set based on source
-                try:
-                    os.symlink(source_path, target, target_is_directory=True)
-                    #print(f"✅ Symlink created with explicit directory flag: {target} -> {source_path}")
-                except Exception as e2:
-                    print(f"❌ Failed to create symlink for {target_name}: {e2}")
-                    
+                target.unlink()
         except Exception as e:
-            print(f"❌ Failed to create symlink for {target_name}: {e}")
+            print(f"❌ Failed to remove existing target {target}: {e}")
+            return
+
+    # Create symlink/junction based on OS
+    try:
+        if os.name == 'nt':  # Windows
+            if source.is_dir():
+                # Use junction for directories on Windows
+                cmd = ["cmd", "/c", "mklink", "/J", str(target), str(source)]
+                result = subprocess.run(cmd, capture_output=True, text=True, shell=False)
+                if result.returncode == 0:
+                    print(f"✅ Junction created: {target} -> {source}")
+                else:
+                    print(f"❌ Failed to create junction for {target_name}.")
+            else:
+                # Use symlink for files
+                target.symlink_to(source)
+                print(f"✅ Symlink created: {target} -> {source}")
+        else:  # Linux/Unix
+            os.symlink(source, target, target_is_directory=source.is_dir())
+            print(f"✅ Symlink created: {target} -> {source}")
+            
+    except PermissionError:
+        print(f"❌ Permission denied creating link for {target_name}. Run as administrator or enable Developer Mode.")
+    except Exception as e:
+        print(f"❌ Failed to create symlink/junction for {target_name}: {e}")
+
 
 def download_file(url, destination_path, model_name, api_token=None):
     """Universal downloader with progress tracking"""
@@ -219,10 +202,9 @@ image_folders = {
     "lora_pony": "lora_pony",
     "lora_flux.1_d": "lora_flux.1_d",
     "lora_hunyuan_video": "lora_hunyuan_video",
-    # "NSFW_lora_hunyuan_video": "NSFW_lora_hunyuan_video"
 }
 
-# Set up image folders using the function, placing links under input/Bjornulf/
+# Set up image folders - создает папки и регистрирует их
 setup_image_folders(image_folders)
 
 def get_civitai():
